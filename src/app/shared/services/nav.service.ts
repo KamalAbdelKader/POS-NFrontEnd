@@ -92,7 +92,7 @@ export class NavService implements OnDestroy {
 			]
 		},
 	];
-
+ 
 	MEGAMENUITEMS: Menu[] = [
 		{
 			title: 'Error Pages', type: 'sub', active: true, children: [

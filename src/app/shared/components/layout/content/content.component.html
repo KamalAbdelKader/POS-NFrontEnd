@@ -7,16 +7,16 @@
     <app-header></app-header>
     <!-- Page Body Start-->
     <div class="page-body-wrapper">
-      <div class="sidebar-wrapper"
+      <!-- <div class="sidebar-wrapper"
            [attr.sidebar-layout]="layout.config.settings.sidebar_type"
            [class.close_icon]="navServices.collapseSidebar">
         <app-sidebar></app-sidebar>
-      </div>
+      </div> -->
       <div class="page-body">
         <main [@fadeInAnimation]="getRouterOutletState(o)">
           <router-outlet #o="outlet"></router-outlet>
         </main>
-      </div>
+      </div> 
       <!-- footer start-->
       <footer class="footer">
         <app-footer></app-footer>

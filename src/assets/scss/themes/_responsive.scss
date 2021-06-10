@@ -2254,17 +2254,17 @@
             display: flex;
           }
 
-          .toggle-sidebar {
-            position: unset;
-            margin-right: 15px;
-            border-right: 1px solid #ddd;
-            padding-right: 15px;
-            display: block;
+          // .toggle-sidebar {
+          //   position: unset;
+          //   margin-right: 15px;
+          //   border-right: 1px solid #ddd;
+          //   padding-right: 15px;
+          //   display: block;
 
-            &:before {
-              display: none;
-            }
-          }
+          //   &:before {
+          //     display: none;
+          //   }
+          // }
 
           .toggle-nav {
             display: none;
@@ -4781,18 +4781,18 @@
             display: none;
           }
 
-          .toggle-sidebar {
-            margin-left: 0;
-            padding-left: 0;
-            border-left: none;
-            border-right: 1px solid #ddd;
-            padding-right: 8px;
-            margin-right: 8px;
+          // .toggle-sidebar {
+          //   margin-left: 0;
+          //   padding-left: 0;
+          //   border-left: none;
+          //   border-right: 1px solid #ddd;
+          //   padding-right: 8px;
+          //   margin-right: 8px;
 
-            svg {
-              width: 18px;
-            }
-          }
+          //   svg {
+          //     width: 18px;
+          //   }
+          // }
         }
       }
     }
