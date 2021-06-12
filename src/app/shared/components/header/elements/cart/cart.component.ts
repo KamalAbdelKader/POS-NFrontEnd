@@ -38,4 +38,11 @@ export class CartComponent implements OnInit {
     return this.shoppingCartService.getTotalPrice();
   }
   
+  removeFromCart(item: Item) {
+    this.shoppingCartService.removeFromCart(item, this.items)
+  }
+
+  getQuantity(item: Item) {
+    return this.shoppingCartService.getQuantity(item);
+  }
 }

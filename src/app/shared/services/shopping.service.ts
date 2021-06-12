@@ -52,9 +52,10 @@ export class ShoppingCartService extends DataService {
     this.itemList = item;
     this.productChange();
   }
+
   removeFromCart(item: Item, itemList: Item[]): void {
     if (item && ObjectHasValue(item)) {
-      itemList = itemList.filter((prod) => prod.id !== item.id);
+      this.itemList = itemList.filter((prod) => prod.id !== item.id);
     }
     this.productChange();
   }

@@ -22,10 +22,10 @@
           [item]="item"
           [header]="''"
         ></app-product-quantity>
-        <h6 class="text-right text-muted">$ {{ item.endUser }}</h6>
+        <h6 class="text-right text-muted">$ {{ item.endUser }} x  {{ getQuantity(item) }}</h6>
       </div>
       <div class="close-circle">
-        <a>
+        <a (click)="removeFromCart(item)">
           <app-feather-icons [icon]="'x'"></app-feather-icons>
         </a>
       </div>
@@ -40,7 +40,7 @@
     </div>
   </li>
   <li>
-    <a class="btn btn-block btn-primary view-cart" href="#"> Checkout </a>
+    <a class="btn btn-block btn-primary view-cart" routerLink="products/checkout"> Checkout </a>
     <a class="btn btn-block btn-secondary view-cart" (click)="clearCart()"
       >Clear All</a
     >
