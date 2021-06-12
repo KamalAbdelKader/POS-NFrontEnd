@@ -1,0 +1,33 @@
+<h6 class="f-w-600"> {{ header }}</h6>
+<div class="qty-box">
+  <div class="input-group">
+    <span class="input-group-prepend">
+      <button
+        class="btn quantity-left-minus"
+        type="button"
+        data-type="minus"
+        data-field=""
+        (click)="removeFromCart()"
+      >
+        <app-feather-icons [icon]="'minus'"></app-feather-icons>
+      </button>
+    </span>
+    <input
+      class="form-control input-number"
+      type="text"
+      name="quantity"
+      [value]="getQuantity()"
+    />
+    <span class="input-group-prepend">
+      <button
+        class="btn quantity-right-plus"
+        type="button"
+        data-type="plus"
+        data-field=""
+        (click)="addToCart()"
+      >
+        <app-feather-icons [icon]="'plus'"></app-feather-icons>
+      </button>
+    </span>
+  </div>
+</div>
