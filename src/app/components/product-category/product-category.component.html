@@ -4,34 +4,33 @@
     <div class="checkbox-animated mt-0">
       <label
         class="d-block"
-        for="edo-ani5"
+        for="All-Categoryies"
         [class.active]="!category"
         routerLink="/products"
       >
         <input
           class="radio_animated"
-          id="edo-ani5"
+          id="All-Categoryies"
           type="radio"
           name="categoryMenu"
-          data-original-title=""
+          [checked]="!category"
           title=""
         />All Categories
       </label>
       <label
         class="d-block"
-        [class.active]="category === c.guid"
-        for="edo-ani5"
+        [for]="c.guid"
         routerLink="/products"
         [queryParams]="{ category: c.guid }"
         *ngFor="let c of category$ | async"
       >
         <input
           class="radio_animated"
-          id="edo-ani5"
+          [id]="c.guid"
           type="radio"
-          data-original-title=""
           name="categoryMenu"
           title=""
+          [checked]="category === c.guid"
         />
         {{ c.name }}
       </label>

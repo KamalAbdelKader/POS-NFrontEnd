@@ -9,7 +9,7 @@ import { CategoryService } from '../../shared/services/category/category.service
 export class ProductCategoryComponent implements OnInit {
   category$: any;
   @Input("category") category: string;
-
+  
   constructor(private categoryService: CategoryService) {}
   ngOnInit() {
     this.category$ =  this.categoryService.getCategoryies();

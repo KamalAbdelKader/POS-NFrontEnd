@@ -1,5 +1,6 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Item } from 'src/app/shared/model/item';
 
 @Component({
   selector: 'app-quick-view',
@@ -11,6 +12,7 @@ export class QuickViewComponent implements OnInit {
   @ViewChild("quickView", { static: false }) QuickView: TemplateRef<any>;
   public closeResult: string;
   public modalOpen: boolean = false;
+  @Input("item") item: Item;
 
   constructor(private modalService: NgbModal) { }
 

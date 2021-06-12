@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Item } from 'src/app/shared/model/item';
 import { getImageUrl } from "src/app/shared/helper/image";
 import { QuickViewComponent } from '../quick-view/quick-view.component';
@@ -10,7 +10,7 @@ import { QuickViewComponent } from '../quick-view/quick-view.component';
 })
 export class ProductCartComponent implements OnInit {
   category$: any;
-  @ViewChild('quickView') QuickView: QuickViewComponent;
+  @ViewChild("quickView", { static: false }) QuickView: TemplateRef<any>;
   @Input("item") item: Item;
   imageUrl: string | ArrayBuffer = "";
   
