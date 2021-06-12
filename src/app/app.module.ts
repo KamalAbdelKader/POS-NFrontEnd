@@ -16,9 +16,11 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 // for Core import:
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 
-import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 
+import { ItemService } from '../app/shared/services/item/item.service';
+import { CategoryService } from '../app/shared/services/category/category.service';
+import { ShoppingCartService } from './shared/services/shopping.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -52,7 +54,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     // for Core use:
     LoadingBarModule
   ],
-  providers: [],
+  providers: [
+    ItemService,
+    CategoryService,
+    ShoppingCartService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
