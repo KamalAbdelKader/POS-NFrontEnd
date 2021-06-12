@@ -1,6 +1,6 @@
-  <div class="card">
+<div class="card" *ngIf="item.name" >
     <div class="product-box">
-      <div class="product-img"><img class="img-fluid" src="assets/images/ecommerce/01.jpg" alt="">
+      <div class="product-img"><img class="img-fluid" [src]="get_ImageUrl(p)" alt="">
         <div class="product-hover">
           <ul>
             <li>
@@ -16,11 +16,11 @@
         </div>
       </div>
       <div class="product-details">
-        <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-        <h4>Man's Shirt</h4>
-        <p>Simply dummy text of the printing.</p>
-        <div class="product-price">$26.00 
-          <del>$350.00    </del>
+        <!-- <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div> -->
+        <h4>{{item.name}}</h4>
+        <p> {{item.unit1}}</p>
+        <div class="product-price">{{ item.endUser | currency: "$" }}
+          <!-- <del>$350.00    </del> -->
         </div>
       </div>
     </div>

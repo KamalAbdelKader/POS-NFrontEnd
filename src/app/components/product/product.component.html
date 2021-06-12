@@ -124,10 +124,11 @@
     <div class="product-wrapper-grid" [class.list-view]="listView">
       <div class="row">
         <div
+          *ngFor="let p of items; let i = index"
           [class]="'col-xl-' + col + ' col-sm-' + col"
           [class.col-xl-12]="listView"
         >
-          <app-product-cart></app-product-cart>
+          <app-product-cart [item]="p"></app-product-cart>
         </div>
       </div>
     </div>
