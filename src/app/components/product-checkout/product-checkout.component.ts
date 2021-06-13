@@ -30,4 +30,8 @@ export class ProductCheckoutComponent implements OnInit {
   getTotalPrice() {
     return this.shoppingCartService.getTotalPrice();
   }
+
+  getTotalProductPrice(item: Item) {
+    return this.shoppingCartService.getProductTotal(item);
+  }
 }

@@ -38,7 +38,7 @@
                         <a href="javascript:void(0);">{{ item.name }}</a>
                       </div>
                     </td>
-                    <td>$21</td>
+                    <td>{{ item.endUser | currency: "KWD" }}</td>
                     <td>
                       <app-product-quantity
                         [item]="item"
@@ -46,7 +46,9 @@
                       ></app-product-quantity>
                     </td>
                     <td><i data-feather="x-circle"></i></td>
-                    <td>$ {{ item.endUser | currency }}</td>
+                    <td>
+                      {{ getTotalProductPrice(item) | currency: "KWD":true }}
+                    </td>
                   </tr>
                   <tr>
                     <td class="total-amount">
@@ -54,7 +56,7 @@
                         <span class="f-w-600">Total Price :</span>
                       </h6>
                     </td>
-                    <td><span>$ {{ getTotalPrice() }} </span></td>
+                    <td><span> {{ getTotalPrice()  | currency: "KWD"}} </span></td>
                   </tr>
                   <tr>
                     <td class="text-right" colspan="5">
