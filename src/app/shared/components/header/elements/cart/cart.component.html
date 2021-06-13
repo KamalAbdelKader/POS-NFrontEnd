@@ -4,7 +4,7 @@
 </div>
 <ul class="cart-dropdown onhover-show-div" [class.active]="openCart">
   <li>
-    <h6 class="mb-0 f-20">Shoping Bag</h6>
+    <h6 class="mb-0 f-20">Shoping Cart</h6>
     <app-feather-icons [icon]="'shopping-cart'"></app-feather-icons>
   </li>
   <li class="mt-0" *ngFor="let item of items">
@@ -22,7 +22,7 @@
           [item]="item"
           [header]="''"
         ></app-product-quantity>
-        <h6 class="text-right text-muted">${{ item.endUser | number:'1.2-2':'en-US'}} x  {{ getQuantity(item) }}</h6>
+        <h6 class="text-right text-muted">KWD {{ item.endUser | number:'1.2-2':'en-US'}} x  {{ getQuantity(item) }}</h6>
       </div>
       <div class="close-circle">
         <a (click)="removeFromCart(item)">
@@ -35,7 +35,7 @@
     <div class="total">
       <h6 class="mb-2 mt-0 text-muted">
         Order Total :
-        <span class="f-right f-20"> ${{ getTotalPrice() | number:'1.2-2':'en-US'}} </span>
+        <span class="f-right f-20"> KWD {{ getTotalPrice() | number:'1.2-2':'en-US'}} </span>
       </h6>
     </div>
   </li>
