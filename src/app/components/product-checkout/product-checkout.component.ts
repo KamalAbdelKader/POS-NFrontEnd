@@ -10,18 +10,15 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
 })
 export class ProductCheckoutComponent implements OnInit {
   items: Item[] = [];
-  constructor(
-    private shoppingCartService: ShoppingCartService
-  ) {}
+  constructor(private shoppingCartService: ShoppingCartService) {}
   ngOnInit() {
     this.shoppingCartService.currentItemsList.subscribe((items) => {
       this.items = items.map((item) => {
-        item.image = "data:image/png;base64," + item["pic_1"];
+        item.image = 'data:image/png;base64,' + item['pic_1'];
         return item;
       });
     });
   }
-
 
   get_ImageUrl(item: Item) {
     return getImageUrl(item);
@@ -33,5 +30,11 @@ export class ProductCheckoutComponent implements OnInit {
 
   getTotalProductPrice(item: Item) {
     return this.shoppingCartService.getProductTotal(item);
+  }
+
+  checkout() {
+    this.shoppingCartService.saveItems(this.items).subscribe((response) => {});
+    // this.router.navigate(["/products/ordersuccess"]);
+    // this.shoppingCartService.clearProducts();
   }
 }
