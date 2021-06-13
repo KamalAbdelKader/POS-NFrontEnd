@@ -22,7 +22,7 @@
           [item]="item"
           [header]="''"
         ></app-product-quantity>
-        <h6 class="text-right text-muted">$ {{ item.endUser }} x  {{ getQuantity(item) }}</h6>
+        <h6 class="text-right text-muted">${{ item.endUser | number:'1.2-2':'en-US'}} x  {{ getQuantity(item) }}</h6>
       </div>
       <div class="close-circle">
         <a (click)="removeFromCart(item)">
@@ -35,7 +35,7 @@
     <div class="total">
       <h6 class="mb-2 mt-0 text-muted">
         Order Total :
-        <span class="f-right f-20"> $ {{ getTotalPrice() }} </span>
+        <span class="f-right f-20"> ${{ getTotalPrice() | number:'1.2-2':'en-US'}} </span>
       </h6>
     </div>
   </li>
