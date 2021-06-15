@@ -37,4 +37,12 @@ export class ProductCheckoutComponent implements OnInit {
     // this.router.navigate(["/products/ordersuccess"]);
     // this.shoppingCartService.clearProducts();
   }
+
+  removeFromCart(item: Item) {
+    this.shoppingCartService.removeFromCart(item, this.items)
+  }
+
+  removeExtraFromCart(item: Item, extraItem: Item) {
+    this.shoppingCartService.removeFromCart(extraItem, item.extraItems, item);
+  }
 }

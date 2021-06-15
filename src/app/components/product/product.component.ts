@@ -52,7 +52,7 @@ export class ProductComponent implements OnInit {
 
   private getExtraItems() {
     this.itemService.getExtraItems().subscribe((response) => {
-      this.extraItems = response;
+      this.extraItems = [...response];
     });
   }
 

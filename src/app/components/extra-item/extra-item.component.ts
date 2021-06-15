@@ -12,7 +12,12 @@ export class ExtraItemComponent implements OnInit {
   clicked = false;
   constructor(private shoppingService: ShoppingCartService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const count = this.shoppingService.getExtraQuantity(this.item, this.extraItem);
+    if(count > 0) {
+      this.clicked = true;
+    }
+  }
 
   onClick() {
     this.clicked = !this.clicked;

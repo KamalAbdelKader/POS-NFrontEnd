@@ -25,38 +25,82 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of items">
-                    <td>
-                      <img
-                        class="img-fluid rounded-circle mr-3 img-60"
-                        [src]="get_ImageUrl(item)"
-                        [alt]="item.name"
-                      />
-                    </td>
-                    <td>
-                      <div class="product-name">
-                        <a href="javascript:void(0);">{{ item.name }}</a>
-                      </div>
-                    </td>
-                    <td>{{ item.endUser | currency: "KWD" }}</td>
-                    <td>
-                      <app-product-quantity
-                        [item]="item"
-                        [header]="''"
-                      ></app-product-quantity>
-                    </td>
-                    <td><i data-feather="x-circle"></i></td>
-                    <td>
-                      {{ getTotalProductPrice(item) | currency: "KWD":true }}
-                    </td>
-                  </tr>
+                  <ng-container *ngFor="let item of items">
+                    <tr>
+                      <td>
+                        <img
+                          class="img-fluid rounded-circle mr-3 img-60"
+                          [src]="get_ImageUrl(item)"
+                          [alt]="item.name"
+                        />
+                      </td>
+                      <td>
+                        <div class="main-product-name">
+                          <a href="javascript:void(0);">{{ item.name }}</a>
+                        </div>
+                      </td>
+                      <td>{{ item.endUser | currency: "KWD" }}</td>
+                      <td>
+                        <app-product-quantity
+                          [item]="item"
+                          [header]="''"
+                        ></app-product-quantity>
+                      </td>
+                      <td>
+                        <span style="cursor: pointer;" (click)="removeFromCart(item)">
+                          <i
+                            data-feather="x-circle"
+                          ></i>
+                        </span>
+                      </td>
+                      <td>
+                        {{ getTotalProductPrice(item) | currency: "KWD":true }}
+                      </td>
+                    </tr>
+                    <tr *ngFor="let extraItem of item.extraItems">
+                      <td>
+                        <img
+                          class="img-fluid rounded-circle mr-3 img-60"
+                          [src]="get_ImageUrl(extraItem)"
+                          [alt]="extraItem.name"
+                        />
+                      </td>
+                      <td>
+                        <span class="badge badge-secondary pull-left">Extra</span>
+                        <div class="product-name">
+                          <a href="javascript:void(0);">{{ extraItem.name }}</a>
+                        </div>
+                      </td>
+                      <td>{{ extraItem.endUser | currency: "KWD" }}</td>
+                      <td>
+                        <app-product-quantity
+                          [item]="item"
+                          [extraItem]="extraItem"
+                          [header]="''"
+                        ></app-product-quantity>
+                      </td>
+                      <td>
+                        <span style="cursor: pointer;" (click)="removeExtraFromCart(item, extraItem)">
+                          <i
+                            data-feather="x-circle"
+                          ></i>
+                        </span>
+                      </td>
+                      <td>
+                        <!-- {{ getTotalProductPrice(item) | currency: "KWD":true }} -->
+                      </td>
+                    </tr>
+                  </ng-container>
+
                   <tr>
                     <td class="total-amount">
                       <h6 class="m-0 text-right">
                         <span class="f-w-600">Total Price :</span>
                       </h6>
                     </td>
-                    <td><span> {{ getTotalPrice()  | currency: "KWD"}} </span></td>
+                    <td>
+                      <span> {{ getTotalPrice() | currency: "KWD" }} </span>
+                    </td>
                   </tr>
                   <tr>
                     <td class="text-right" colspan="5">
@@ -67,7 +111,9 @@
                       >
                     </td>
                     <td>
-                      <a class="btn btn-success cart-btn-transform" (click)="checkout()"
+                      <a
+                        class="btn btn-success cart-btn-transform"
+                        (click)="checkout()"
                         >check out</a
                       >
                     </td>
