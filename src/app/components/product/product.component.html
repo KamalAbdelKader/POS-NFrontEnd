@@ -4,8 +4,7 @@
   [active_item]="'Product'"
 ></app-breadcrumb>
 <!-- Container-fluid starts-->
-{{ openSidebar }}
-<div class="container-fluid product-wrapper" [class.sidebaron]="openSidebar">
+ <div class="container-fluid product-wrapper" [class.sidebaron]="openSidebar">
   <div class="product-grid">
     <div class="feature-products">
       <div class="row">
@@ -29,6 +28,7 @@
               <i data-feather="list"></i>
             </a>
           </div>
+          
           <span class="d-none-productlist filter-toggle">
             Filters
             <span class="ml-2">
