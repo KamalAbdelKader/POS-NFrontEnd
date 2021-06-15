@@ -18,6 +18,8 @@ export class ProductCartComponent implements OnInit {
   category$: any;
   @ViewChild('quickView', { static: false }) QuickView: TemplateRef<any>;
   @Input('item') item: Item;
+  @Input('extraItems') extraItems: Item[] = [];
+
   imageUrl: string | ArrayBuffer = '';
 
   constructor() {}

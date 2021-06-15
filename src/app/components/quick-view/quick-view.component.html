@@ -17,19 +17,13 @@
               {{ item.unit1 }}
             </p>
           </div>
-          <!-- <div class="product-size">
+          <div class="product-size" *ngIf="quantity > 0">
             <ul>
-              <li>
-                <button class="btn btn-outline-light" type="button">M</button>
-              </li>
-              <li>
-                <button class="btn btn-outline-light" type="button">L</button>
-              </li>
-              <li>
-                <button class="btn btn-outline-light" type="button">Xl</button>
+              <li *ngFor="let eitem of extraItems">
+                <app-extra-item [item]="item" [extraItem]="eitem"></app-extra-item>
               </li>
             </ul>
-          </div> --> 
+          </div> 
           <div class="product-qnty">
             <app-product-quantity [item]="item"></app-product-quantity>
             <div class="addcart-btn">

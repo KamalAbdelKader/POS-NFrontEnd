@@ -5,7 +5,8 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { CloneObject, ObjectHasValue } from 'src/app/shared/helper/helper';
 import { getImageUrl } from 'src/app/shared/helper/image';
 import { Item } from 'src/app/shared/model/item';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
@@ -17,27 +18,38 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
 })
 export class QuickViewComponent implements OnInit {
   @ViewChild('quickView', { static: false }) QuickView: TemplateRef<any>;
+  @Input('item') item: Item;
+  @Input('extraItems') extraItems: Item[];
   public closeResult: string;
   public modalOpen: boolean = false;
-  @Input('item') item: Item;
+  
+  
+  get quantity() { 
+    if(ObjectHasValue(this.item)) {
+      return this.shoppingService.getQuantity(this.item);
+    }
+  }
 
   constructor(
     private modalService: NgbModal,
     private shoppingService: ShoppingCartService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   openModal() {
     this.modalOpen = true;
-    this.modalService
+    const model = this.modalService
       .open(this.QuickView, {
         size: 'lg',
         ariaLabelledBy: 'modal-basic-title',
         centered: true,
         windowClass: 'Quickview',
-      })
-      .result.then(
+      });
+
+
+      model.result.then(
         (result) => {
           `Result ${result}`;
         },
@@ -45,6 +57,7 @@ export class QuickViewComponent implements OnInit {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         }
       );
+      
   }
 
   private getDismissReason(reason: any): string {
