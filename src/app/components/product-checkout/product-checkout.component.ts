@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { getImageUrl } from 'src/app/shared/helper/image';
 import { Item } from 'src/app/shared/model/item';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
-
+declare var require
+const Swal = require('sweetalert2')
 @Component({
   selector: 'app-product-checkout',
   templateUrl: './product-checkout.component.html',
@@ -10,18 +12,17 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
 })
 export class ProductCheckoutComponent implements OnInit {
   items: Item[] = [];
-  constructor(private shoppingCartService: ShoppingCartService) {}
+  showMsg = false;
+  constructor(private shoppingCartService: ShoppingCartService, private router: Router) {}
   ngOnInit() {
     this.shoppingCartService.currentItemsList.subscribe((items) => {
-      this.items = items.map((item) => {
-        item.image = 'data:image/png;base64,' + item['pic_1'];
-        return item;
-      });
+      this.items = items
     });
   }
 
   get_ImageUrl(item: Item) {
-    return getImageUrl(item);
+    // return getImageUrl(item);
+    return 'data:image/png;base64,' + item.image;
   }
 
   getTotalPrice() {
@@ -34,8 +35,13 @@ export class ProductCheckoutComponent implements OnInit {
 
   checkout() {
     this.shoppingCartService.saveItems(this.items).subscribe((response) => {});
-    // this.router.navigate(["/products/ordersuccess"]);
-    // this.shoppingCartService.clearProducts();
+    Swal.fire({
+      type: 'success',
+      title: 'Success',
+      text: 'You clicked the button!',
+      showConfirmButton: true,
+    });     this.router.navigate(["/products"]);
+     this.shoppingCartService.clearProducts();
   }
 
   removeFromCart(item: Item) {
