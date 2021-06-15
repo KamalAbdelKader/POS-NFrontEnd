@@ -20,15 +20,15 @@ export class ProductCartComponent implements OnInit {
   @Input('item') item: Item;
   @Input('extraItems') extraItems: Item[] = [];
 
-  imageUrl: string | ArrayBuffer = '';
+  // imageUrl: string | ArrayBuffer = '';
 
   constructor() {}
   ngOnInit() {
-    this.imageUrl = 'data:image/png;base64,' + this.item['pic_1'];
+    // this.imageUrl = 'data:image/png;base64,' + this.item['pic_1'];
   }
 
   get_ImageUrl(item: Item) {
-    return getImageUrl(item);
-    // return 'data:image/png;base64,' + item.image;
+    // return getImageUrl(item);
+    return 'data:image/png;base64,' + item.image;
   }
 }

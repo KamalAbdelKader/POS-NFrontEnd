@@ -26,7 +26,8 @@ export class CartComponent implements OnInit {
   }
 
   get_ImageUrl(item: Item) {
-    return getImageUrl(item);
+    // return getImageUrl(item);
+    return 'data:image/png;base64,' + item.image;
   }
 
 
