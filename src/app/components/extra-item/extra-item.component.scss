@@ -1,0 +1,22 @@
+*.btn:focus {
+  box-shadow: none !important;
+  background-color: transparent;
+}
+
+// .btn-secondary:hover,
+// .btn-secondary:focus,
+// .btn-secondary:active,
+// .btn-secondary.active {
+//   border-color: #f73164 !important;
+//   color: #f73164 !important;
+//   background-color: transparent !important;
+// }
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus,
+.btn-outline-secondary:active,
+.btn-outline-secondary.active {
+  border-color: #f73164 !important;
+  color: #f73164 !important;
+  background-color: transparent !important;
+}

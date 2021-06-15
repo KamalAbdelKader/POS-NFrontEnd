@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
 import { ProductRoutingModule } from './product-routing.module';
 import { QuickViewComponent } from '../quick-view/quick-view.component';
+import { ExtraItemComponent } from '../extra-item/extra-item.component';
 import { ProductCheckoutComponent } from '../product-checkout/product-checkout.component';
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ProductCheckoutComponent } from '../product-checkout/product-checkout.c
     QuickViewComponent,
     ProductQuantityComponent,
     ProductCategoryComponent,
-    ProductCheckoutComponent
+    ProductCheckoutComponent,
+    ExtraItemComponent
   ],
   exports: [ProductQuantityComponent]
 })

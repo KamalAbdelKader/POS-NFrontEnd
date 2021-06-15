@@ -1,0 +1,10 @@
+<button
+  class="btn"
+  [id]="extraItem.name"
+  [name]="extraItem.name"
+  [ngClass]="clicked == true ? 'btn-secondary' : 'btn-outline-secondary'"
+  type="button"
+  (click)="onClick()"
+>
+  {{ extraItem.name }}
+</button>
