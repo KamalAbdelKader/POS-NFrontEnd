@@ -53,9 +53,15 @@ export class ShoppingCartService extends DataService {
     this.productChange();
   }
 
-  removeFromCart(item: Item, itemList: Item[]): void {
-    if (item && ObjectHasValue(item)) {
-      this.itemList = itemList.filter((prod) => prod.id !== item.id);
+  removeFromCart(item: Item, itemList: Item[], cartMainItem: Item = null): void {
+    let mainItem: Item = null;
+    if(ObjectHasValue(cartMainItem)) {
+      mainItem = this.itemList.find(it => it.id == cartMainItem.id); 
+      mainItem.extraItems = itemList.filter((prod) => prod.id !== item.id);
+    } else {
+      if (ObjectHasValue(item)) {
+        this.itemList = itemList.filter((prod) => prod.id !== item.id);
+      }
     }
     this.productChange();
   }
@@ -70,7 +76,8 @@ export class ShoppingCartService extends DataService {
     cartItem: Item,
     _item: Item,
     change: number,
-    itemList: Item[]
+    itemList: Item[],
+    cartMainItem: Item = null
   ) {
     if (
       cartItem &&
@@ -79,7 +86,7 @@ export class ShoppingCartService extends DataService {
     ) {
       cartItem.quantity += change;
       if (cartItem.quantity == 0) {
-        this.removeFromCart(cartItem, itemList);
+        this.removeFromCart(cartItem, itemList, cartMainItem);
       }
     } else if (_item && change > 0) {
       const prod = this.setCartProduct(_item, change);
@@ -101,7 +108,7 @@ export class ShoppingCartService extends DataService {
       cartItem.extraItems = [];
     }
 
-    this.updateData(extraItemCart, extraItem, change, cartItem.extraItems);
+    this.updateData(extraItemCart, extraItem, change, cartItem.extraItems, cartItem);
 
     if (cartItem.extraItems && cartItem.extraItems.length > 0) {
       cartItem.extraItems = cartItem.extraItems.filter((it) => it.quantity > 0);
