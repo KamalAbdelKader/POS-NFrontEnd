@@ -2,14 +2,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
+import { AppConfig } from '../../config/setting.service';
 import { Urls } from '../../model/urls';
+// import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export abstract class DataService {
-  // incase the url need to call from json file in asset folder
-  // protected domain = AppConfig.settings.apiServer;
-  protected domain = environment.url;
+  // in case the url need to call from json file in asset folder
+  protected domain = AppConfig.settings.apiServer;
+  // protected domain = environment.url;
   protected url: Urls;
   constructor(public http: HttpClient) {
     this.url = new Urls();
