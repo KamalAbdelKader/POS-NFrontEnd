@@ -71,7 +71,11 @@ export class QuickViewComponent implements OnInit {
   }
 
   addToCart(item: Item) {
-    this.shoppingService.updateItem(item, 1);
+    const quantity = this.shoppingService.getQuantity(item);
+    if(quantity == 0 ) {
+      this.shoppingService.updateItem(item, 1);
+    }
+    this.modalService.dismissAll();
   }
 
   get_ImageUrl(item: Item) {
