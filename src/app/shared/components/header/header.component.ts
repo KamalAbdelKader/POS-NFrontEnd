@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   public elem: any;
   public dark: boolean = this.layout.config.settings.layout_version == 'dark-only' ? true : false;
-
+  openCart = true;
   constructor(public layout: LayoutService,
     public navServices: NavService, 
     @Inject(DOCUMENT) private document: any
@@ -21,6 +21,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.elem = document.documentElement;
+  }
+
+  mouseHover(active: boolean) {
+    this.openCart = active
   }
 
   sidebarToggle() {

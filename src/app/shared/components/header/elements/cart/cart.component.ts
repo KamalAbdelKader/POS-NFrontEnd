@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getImageUrl } from 'src/app/shared/helper/image';
 import { Item } from 'src/app/shared/model/item';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
 
@@ -8,13 +8,21 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
+  host: {
+    '(document:click)': 'onClick($event)',
+  },
 })
 export class CartComponent implements OnInit {
-  public openCart: boolean = false;
+  @Input() openCart: boolean = false;
   items: Item[] = [];
-  constructor(private shoppingCartService: ShoppingCartService, private router: Router) {}
+  constructor(
+    private shoppingCartService: ShoppingCartService,
+    private router: Router,
+    private _eref: ElementRef
+  ) {}
 
   ngOnInit() {
+    this.openCart = true;
     this.shoppingCartService.currentItemsList.subscribe((items) => {
       this.items = items;
     });
@@ -30,20 +38,31 @@ export class CartComponent implements OnInit {
     return 'data:image/png;base64,' + item.image;
   }
 
-
   clearCart() {
+    this.openCart = false;
     this.shoppingCartService.clearProducts();
   }
 
   getTotalPrice() {
     return this.shoppingCartService.getTotalPrice();
   }
-  
+
   removeFromCart(item: Item) {
-    this.shoppingCartService.removeFromCart(item, this.items)
+    this.shoppingCartService.removeFromCart(item, this.items);
   }
 
   getQuantity(item: Item) {
     return this.shoppingCartService.getQuantity(item);
+  }
+
+  navigate() {
+    this.openCart = false;
+    this.router.navigate(['products/checkout']);
+  }
+
+  onClick(event: any) {
+    if(!this._eref.nativeElement.contains(event.target)) {
+      this.openCart = true;
+    }
   }
 }
