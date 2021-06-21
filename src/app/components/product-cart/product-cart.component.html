@@ -1,14 +1,14 @@
 <div class="card" *ngIf="item.name" >
-    <div class="product-box">
-      <div class="product-img"><img class="img-fluid" style="width: 100%; height: 200px;" [src]="get_ImageUrl(item)" alt="">
+    <div class="product-box" (click)="QuickView.openModal()">
+      <div class="product-img" ><img class="img-fluid" style="width: 100%; height: 200px;" [src]="get_ImageUrl(item)" alt="">
         <div class="product-hover">
           <ul>
             <!-- <li>
               <button class="btn" type="button"><i class="icon-shopping-cart"></i></button>
             </li> -->
-            <li>
+            <!-- <li>
               <button class="btn" type="button" (click)="QuickView.openModal()"><i class="icon-shopping-cart"></i></button>
-            </li>
+            </li> -->
             <!-- <li>
               <button class="btn" type="button"><i class="icofont icofont-law-alt-2"></i></button>
             </li> -->
