@@ -1160,7 +1160,7 @@
     &.sidebaron {
       .product-grid {
         .product-wrapper-grid {
-          margin-left: 0%; 
+          margin-left: 32%; 
         }
       }
 
@@ -4330,7 +4330,7 @@
   .feature-products { 
     .filter-toggle {
       padding: 8px 15px;
-      background-color: $white;
+      background-color: $transparent-color;
       margin-left: 10px;
       border-radius: 5px;
     }
