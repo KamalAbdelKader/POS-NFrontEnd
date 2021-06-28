@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.openCart = true;
+    this.openCart = false;
     this.shoppingCartService.currentItemsList.subscribe((items) => {
       this.items = items;
     });

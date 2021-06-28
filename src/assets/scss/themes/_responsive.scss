@@ -3185,7 +3185,7 @@
   }
 }
 
-@media only screen and (max-width: 0px) {
+@media only screen and (max-width: 767.98px) {
 
   .grid-pie-chart {
     &.flot-chart-container {
@@ -4328,10 +4328,11 @@
 
   // product page
   .feature-products { 
-    .select2-drpdwn-product {
-      float: left;
-      margin-right: 10px;
-      margin-top: 8px;
+    .filter-toggle {
+      padding: 8px 15px;
+      background-color: $transparent-color;
+      margin-left: 10px;
+      border-radius: 5px;
     }
 
     span {
@@ -4380,7 +4381,7 @@
     transition: 0.3s;
     height: 0;
     position: absolute;
-    z-index: 9;
+    z-index: 1;
     width: 300px;
 
     &.open {
@@ -7615,7 +7616,7 @@
   .sidebar-wrapper {
     .back-btn {
       display: none;
-    }
+    } 
   }
 }
 
