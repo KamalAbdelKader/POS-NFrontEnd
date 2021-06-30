@@ -47,10 +47,11 @@
                         ></app-product-quantity>
                       </td>
                       <td>
-                        <span style="cursor: pointer;" (click)="removeFromCart(item)">
-                          <i
-                            data-feather="x-circle"
-                          ></i>
+                        <span
+                          style="cursor: pointer"
+                          (click)="removeFromCart(item)"
+                        >
+                          <i data-feather="x-circle"></i>
                         </span>
                       </td>
                       <td>
@@ -66,7 +67,9 @@
                         />
                       </td>
                       <td>
-                        <span class="badge badge-secondary pull-left">Extra</span>
+                        <span class="badge badge-secondary pull-left"
+                          >Extra</span
+                        >
                         <div class="product-name">
                           <a href="javascript:void(0);">{{ extraItem.name }}</a>
                         </div>
@@ -80,10 +83,11 @@
                         ></app-product-quantity>
                       </td>
                       <td>
-                        <span style="cursor: pointer;" (click)="removeExtraFromCart(item, extraItem)">
-                          <i
-                            data-feather="x-circle"
-                          ></i>
+                        <span
+                          style="cursor: pointer"
+                          (click)="removeExtraFromCart(item, extraItem)"
+                        >
+                          <i data-feather="x-circle"></i>
                         </span>
                       </td>
                       <td>
@@ -103,18 +107,18 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-right" colspan="5">
-                      <a
-                        class="btn btn-secondary cart-btn-transform"
-                        routerLink="/"
-                        >continue shopping</a
-                      >
-                    </td>
                     <td>
                       <a
                         class="btn btn-success cart-btn-transform"
                         (click)="checkout()"
                         >check out</a
+                      >
+                    </td>
+                    <td class="text-center" colspan="1">
+                      <a
+                        class="btn btn-secondary cart-btn-transform"
+                        routerLink="/"
+                        >continue shopping</a
                       >
                     </td>
                   </tr>
