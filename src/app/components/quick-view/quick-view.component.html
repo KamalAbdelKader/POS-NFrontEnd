@@ -1,5 +1,10 @@
 <ng-template #quickView let-modal>
-  <div class="modal-content" style="overflow: auto;">
+  <div
+    class="modal-content"
+    style="overflow: auto"
+    [ngClass]="layout.config.settings.layout_type"
+    [class]="layout.config.settings.layout_version"
+  >
     <div class="modal-header product-modal">
       <div class="product-box row">
         <div class="product-img col-md-6">
@@ -20,14 +25,21 @@
           <div class="product-size" *ngIf="quantity > 0">
             <ul>
               <li *ngFor="let eitem of extraItems">
-                <app-extra-item [item]="item" [extraItem]="eitem"></app-extra-item>
+                <app-extra-item
+                  [item]="item"
+                  [extraItem]="eitem"
+                ></app-extra-item>
               </li>
             </ul>
-          </div> 
+          </div>
           <div class="product-qnty">
             <app-product-quantity [item]="item"></app-product-quantity>
             <div class="addcart-btn">
-              <button class="btn btn-primary mr-1" (click)="addToCart(item)" type="button">
+              <button
+                class="btn btn-primary mr-1"
+                (click)="addToCart(item)"
+                type="button"
+              >
                 Add to Cart
               </button>
               <!-- <button class="btn btn-primary" type="button">

@@ -1,23 +1,29 @@
-import { Item } from "./../model/item";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Item } from './../model/item';
+import { ShortItem } from './../model/shortItem';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
+  ArrayIsNotEmpty,
   CloneObject,
   ConvertObjectToString,
   IsNullOrEmptyString,
   ObjectHasValue,
-} from "../helper/helper";
-import { DataService } from "./base/data.service";
-import { SessionService } from "./session.service";
+} from '../helper/helper';
+import { DataService } from './base/data.service';
+import { SessionService } from './session.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ShoppingCartService extends DataService {
   private itemList: Item[] = [];
   private itemListSource = new BehaviorSubject<Item[]>([]);
   private shoppingCartUrl: string;
+
+  private _itemList: Item[] = [];
+  private _extraItemList: Item[] = [];
+
   /**
    * Observable of current product list in user cart
    */
@@ -29,23 +35,38 @@ export class ShoppingCartService extends DataService {
   }
 
   private productChange(): void {
-    const obj = ConvertObjectToString(this.itemList);
+    const converted: ShortItem[] = this.convertItem();
+    const obj = ConvertObjectToString(converted);
     this.sessionService.setProducts(obj);
+    this.itemList = this.convertShortItemsToItems(converted);
     this.itemListSource.next(this.itemList.filter((prod) => prod.quantity > 0));
+  }
+
+  private convertItem(): ShortItem[] {
+    return this.itemList.map((item) => {
+      return {
+        id: item.id,
+        quantity: item.quantity,
+        extra: item.extraItems?.map((eitem) => {
+        return { id: eitem.id, quantity: item.quantity, };
+        }),
+      };
+    }) as ShortItem[];
   }
 
   /**
    * Get user stored Products from local storage
    */
-  getItems(): void {
+  getItems(): Item[] {
     const productsString = this.sessionService.getProducts();
     if (!IsNullOrEmptyString(productsString)) {
-      this.itemList = JSON.parse(productsString);
+      const converted = JSON.parse(productsString);
+      return this.convertShortItemsToItems(converted);
     }
-    this.productChange();
+    return [];
   }
 
-  /** Set Product datasource from the api
+  /** Set Product data-source from the api
    * in case the user logged in and already have products
    */
   setProducts(item: Item[]): void {
@@ -53,10 +74,14 @@ export class ShoppingCartService extends DataService {
     this.productChange();
   }
 
-  removeFromCart(item: Item, itemList: Item[], cartMainItem: Item = null): void {
+  removeFromCart(
+    item: Item,
+    itemList: Item[],
+    cartMainItem: Item = null
+  ): void {
     let mainItem: Item = null;
-    if(ObjectHasValue(cartMainItem)) {
-      mainItem = this.itemList.find(it => it.id == cartMainItem.id); 
+    if (ObjectHasValue(cartMainItem)) {
+      mainItem = this.itemList.find((it) => it.id == cartMainItem.id);
       mainItem.extraItems = itemList.filter((prod) => prod.id !== item.id);
     } else {
       if (ObjectHasValue(item)) {
@@ -67,6 +92,7 @@ export class ShoppingCartService extends DataService {
   }
 
   updateItem(_item: Item, change: number): void {
+
     const cartItem = this.getItemFromCart(_item);
     this.updateData(cartItem, _item, change, this.itemList);
     this.productChange();
@@ -94,11 +120,11 @@ export class ShoppingCartService extends DataService {
     }
   }
 
-  private getItemFromCart(_item: Item) {
+  private getItemFromCart(_item: Item): Item {
     return this.itemList.find((prod) => prod.id == _item.id);
   }
 
-  updateExtraItems(_item: Item, extraItem: Item, change: number) {
+  updateExtraItems(_item: Item, extraItem: Item, change: number): void {
     let extraItemCart: Item = null;
     const cartItem = this.getItemFromCart(_item);
 
@@ -108,7 +134,13 @@ export class ShoppingCartService extends DataService {
       cartItem.extraItems = [];
     }
 
-    this.updateData(extraItemCart, extraItem, change, cartItem.extraItems, cartItem);
+    this.updateData(
+      extraItemCart,
+      extraItem,
+      change,
+      cartItem.extraItems,
+      cartItem
+    );
 
     if (cartItem.extraItems && cartItem.extraItems.length > 0) {
       cartItem.extraItems = cartItem.extraItems.filter((it) => it.quantity > 0);
@@ -118,7 +150,7 @@ export class ShoppingCartService extends DataService {
 
   getQuantity(_item: Item): number {
     const item = this.itemList.find((it) => _item.id == it.id);
-    return item ? item.quantity : 0;
+    return (item && item.quantity) ? item.quantity : 0;
   }
 
   getExtraQuantity(_item: Item, extraItem: Item): number {
@@ -140,7 +172,7 @@ export class ShoppingCartService extends DataService {
     return item ? item.quantity * item.endUser + totalExtra : 0;
   }
 
-  getTotalPrice() {
+  getTotalPrice(): number {
     let total = 0;
     this.itemList.forEach((it) => {
       total +=
@@ -149,7 +181,7 @@ export class ShoppingCartService extends DataService {
     return total;
   }
 
-  private calculateTotalExtraItem(it: Item, total: number) {
+  private calculateTotalExtraItem(it: Item, total: number): number {
     if (it.extraItems && it.extraItems.length > 0) {
       it.extraItems.forEach((i) => {
         total += i.quantity * i.endUser;
@@ -178,5 +210,34 @@ export class ShoppingCartService extends DataService {
       it.image = null;
     });
     return this.post(this.shoppingCartUrl, itemList);
+  }
+
+  setItemsAndExtraItems(items: Item[], extraItems: Item[]): void {
+    this._itemList = items;
+    this._extraItemList = extraItems;
+  }
+
+  convertShortItemsToItems(shortItem: ShortItem[]): Item[] {
+    const items: Item[] = [];
+    if (ArrayIsNotEmpty(shortItem) && ArrayIsNotEmpty(this._itemList)) {
+      shortItem.forEach((sItem) => {
+        const item = this._itemList.find((i) => i.id == sItem.id);
+        const exItems: Item[] = [];
+        if (ArrayIsNotEmpty(sItem.extra)) {
+          sItem.extra.forEach((ex) => {
+            const exitem = this._extraItemList.find((ei) => ei.id == ex.id);
+            exitem.quantity = ex.quantity;
+            exItems.push(exitem);
+          });
+        }
+
+        item.quantity = sItem.quantity;
+        item.extraItems = exItems;
+        items.push(item);
+      });
+      return items;
+    }
+
+    return [];
   }
 }

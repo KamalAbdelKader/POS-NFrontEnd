@@ -5,10 +5,15 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbModal,
+  ModalDismissReasons,
+  NgbModalOptions,
+} from '@ng-bootstrap/ng-bootstrap';
 import { CloneObject, ObjectHasValue } from 'src/app/shared/helper/helper';
 import { getImageUrl } from 'src/app/shared/helper/image';
 import { Item } from 'src/app/shared/model/item';
+import { LayoutService } from 'src/app/shared/services/layout.service';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
 
 @Component({
@@ -18,46 +23,45 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
 })
 export class QuickViewComponent implements OnInit {
   @ViewChild('quickView', { static: false }) QuickView: TemplateRef<any>;
+  // tslint:disable-next-line:no-input-rename
   @Input('item') item: Item;
+  // tslint:disable-next-line:no-input-rename
   @Input('extraItems') extraItems: Item[];
   public closeResult: string;
-  public modalOpen: boolean = false;
-  
-  
-  get quantity() { 
-    if(ObjectHasValue(this.item)) {
+  public modalOpen = false;
+
+  get quantity(): number {
+    if (ObjectHasValue(this.item)) {
       return this.shoppingService.getQuantity(this.item);
     }
+    return 0;
   }
 
   constructor(
+    public layout: LayoutService,
     private modalService: NgbModal,
     private shoppingService: ShoppingCartService
   ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  openModal() {
+  openModal(): void {
     this.modalOpen = true;
-    const model = this.modalService
-      .open(this.QuickView, {
-        size: 'lg',
-        ariaLabelledBy: 'modal-basic-title',
-        centered: true,
-        windowClass: 'Quickview',
-      });
+    const model = this.modalService.open(this.QuickView, {
+      size: 'lg',
+      ariaLabelledBy: 'modal-basic-title',
+      centered: true,
+      windowClass: 'Quickview',
+    });
 
-
-      model.result.then(
-        (result) => {
-          `Result ${result}`;
-        },
-        (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        }
-      );
-      
+    model.result.then(
+      (result) => {
+        `Result ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      }
+    );
   }
 
   private getDismissReason(reason: any): string {
@@ -70,16 +74,15 @@ export class QuickViewComponent implements OnInit {
     }
   }
 
-  addToCart(item: Item) {
+  addToCart(item: Item): void {
     const quantity = this.shoppingService.getQuantity(item);
-    if(quantity == 0 ) {
+    if (quantity == 0) {
       this.shoppingService.updateItem(item, 1);
     }
     this.modalService.dismissAll();
   }
 
-  get_ImageUrl(item: Item) {
-    // return getImageUrl(item);
+  get_ImageUrl(item: Item): string {
     return 'data:image/png;base64,' + item.image;
   }
 }

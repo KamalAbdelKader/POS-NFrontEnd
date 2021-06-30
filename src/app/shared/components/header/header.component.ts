@@ -6,47 +6,49 @@ import { LayoutService } from '../../services/layout.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
   public elem: any;
-  public dark: boolean = this.layout.config.settings.layout_version == 'dark-only' ? true : false;
+  public dark: boolean =
+    this.layout.config.settings.layout_version == 'dark-only' ? true : false;
   openCart = true;
-  constructor(public layout: LayoutService,
-    public navServices: NavService, 
+  constructor(
+    public layout: LayoutService,
+    public navServices: NavService,
     @Inject(DOCUMENT) private document: any
-  ) {
-  }
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.elem = document.documentElement;
   }
 
-  mouseHover(active: boolean) {
-    this.openCart = active
+  mouseHover(active: boolean): void {
+    this.openCart = active;
   }
 
-  sidebarToggle() {
+  sidebarToggle(): void {
     this.navServices.collapseSidebar = !this.navServices.collapseSidebar;
-    this.navServices.megaMenu  = false;
+    this.navServices.megaMenu = false;
     this.navServices.levelMenu = false;
   }
 
-  layoutToggle() {
+  layoutToggle(): void {
     this.dark = !this.dark;
-    this.layout.config.settings.layout_version = this.dark ? 'dark-only' : 'light';
+    this.layout.config.settings.layout_version = this.dark
+      ? 'dark-only'
+      : 'light';
   }
 
-  searchToggle() {
+  searchToggle(): void {
     this.navServices.search = true;
   }
 
-  languageToggle() {
+  languageToggle(): void {
     this.navServices.language = !this.navServices.language;
   }
 
-  toggleFullScreen() {
+  toggleFullScreen(): void {
     this.navServices.fullScreen = !this.navServices.fullScreen;
     if (this.navServices.fullScreen) {
       if (this.elem.requestFullscreen) {
@@ -76,6 +78,4 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
-
-
 }

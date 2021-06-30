@@ -9,16 +9,16 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
   styleUrls: ['./product-quantity.component.scss'],
 })
 export class ProductQuantityComponent implements OnInit {
-  
   @Input() header = 'Quantity';
-  @Input("item") item: Item;
-  @Input("extraItem") extraItem: Item;
-  
-  constructor(private shoppingService: ShoppingCartService) {}
-  ngOnInit() {
-  }
+  // tslint:disable-next-line:no-input-rename
+  @Input('item') item: Item;
+  // tslint:disable-next-line:no-input-rename
+  @Input('extraItem') extraItem: Item;
 
-  addToCart() {
+  constructor(private shoppingService: ShoppingCartService) {}
+  ngOnInit(): void {}
+
+  addToCart(): void {
     if (this.extraItem && ObjectHasValue(this.extraItem)) {
       this.shoppingService.updateExtraItems(this.item, this.extraItem, 1);
     } else {
@@ -26,7 +26,7 @@ export class ProductQuantityComponent implements OnInit {
     }
   }
 
-  removeFromCart() {
+  removeFromCart(): void {
     if (this.extraItem && ObjectHasValue(this.extraItem)) {
       this.shoppingService.updateExtraItems(this.item, this.extraItem, -1);
     } else {
@@ -34,7 +34,7 @@ export class ProductQuantityComponent implements OnInit {
     }
   }
 
-  getQuantity() {
+  getQuantity(): number {
     if (this.extraItem && ObjectHasValue(this.extraItem)) {
       return this.shoppingService.getExtraQuantity(this.item, this.extraItem);
     }
