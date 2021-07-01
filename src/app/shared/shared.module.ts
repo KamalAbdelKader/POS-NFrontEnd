@@ -55,7 +55,7 @@ import { NavService } from './services/nav.service';
     BookmarkComponent,
     CartComponent,
     MessageBoxComponent,
-    MyAccountComponent
+    MyAccountComponent,
   ],
   imports: [
     CommonModule,
@@ -64,12 +64,9 @@ import { NavService } from './services/nav.service';
     ReactiveFormsModule,
     NgbModule,
     DragulaModule.forRoot(),
-    TranslateModule
+    TranslateModule,
   ],
-  providers: [
-    NavService,
-    LayoutService
-  ],
+  providers: [NavService],
   exports: [
     NgbModule,
     FormsModule,
@@ -81,7 +78,7 @@ import { NavService } from './services/nav.service';
     TapToTopComponent,
     DisableKeyPressDirective,
     OnlyAlphabetsDirective,
-    OnlyNumbersDirective
+    OnlyNumbersDirective,
   ],
 })
-export class SharedModule { }
+export class SharedModule {}

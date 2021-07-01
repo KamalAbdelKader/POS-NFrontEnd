@@ -62,6 +62,10 @@ export class QuickViewComponent implements OnInit {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       }
     );
+
+    this.layout.config.settings.layout_version = this.layout.isDarkMode()
+    ? 'dark-only'
+    : 'light';
   }
 
   private getDismissReason(reason: any): string {

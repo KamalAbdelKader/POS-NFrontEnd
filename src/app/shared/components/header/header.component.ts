@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.elem = document.documentElement;
+    this.layout.setDarkMode(this.dark);
   }
 
   mouseHover(active: boolean): void {
@@ -35,6 +36,7 @@ export class HeaderComponent implements OnInit {
 
   layoutToggle(): void {
     this.dark = !this.dark;
+    this.layout.setDarkMode(this.dark);
     this.layout.config.settings.layout_version = this.dark
       ? 'dark-only'
       : 'light';

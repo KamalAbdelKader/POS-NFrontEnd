@@ -3,13 +3,12 @@ import { IsNullOrEmptyString } from '../helper/helper';
 import { EncrDecrService } from './encrDecrService.service';
 
 /** This service for handling local-storage variable
- * as encrapted and decrpted
+ * as encrypted and decrypted
  */
 @Injectable({
   providedIn: 'root',
 })
 export class SessionService {
-  
   private readonly _products = 'p___k';
   private readonly _dateTime = 'p___d';
   private readonly _userName = 'p___u';
@@ -24,7 +23,7 @@ export class SessionService {
     return this.getValue(this._products);
   }
 
-  setTime(arg0: Date) {
+  setTime(arg0: Date): void {
     const val = arg0.getDay().toString();
     this.setValue(this._dateTime, val);
   }
@@ -33,7 +32,7 @@ export class SessionService {
     return this.getValue(this._dateTime);
   }
 
-  setUserName(userName: string) {
+  setUserName(userName: string): void {
     const val = userName;
     this.setValue(this._userName, val);
   }
@@ -42,7 +41,7 @@ export class SessionService {
     return this.getValue(this._userName);
   }
 
-  clearUserData() {
+  clearUserData(): void {
     localStorage.removeItem(this._dateTime);
     localStorage.removeItem(this._userName);
   }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,8 @@ export class LayoutService {
     },
   };
 
+  private _dark = false;
+
   constructor() {
     if (this.config.settings.layout_type == 'rtl') {
       document
@@ -32,5 +35,12 @@ export class LayoutService {
       '--theme-secondary',
       this.config.color.secondary_color
     );
+  }
+
+  setDarkMode(change: boolean): void {
+    this._dark = change;
+  }
+  isDarkMode(): boolean {
+    return this._dark;
   }
 }

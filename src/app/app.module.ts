@@ -5,8 +5,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from "./shared/shared.module";
-import { AppConfig } from "./shared/config/setting.service";
+import { SharedModule } from './shared/shared.module';
+import { AppConfig } from './shared/config/setting.service';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
@@ -22,9 +22,10 @@ import { AppComponent } from './app.component';
 import { ItemService } from '../app/shared/services/item/item.service';
 import { CategoryService } from '../app/shared/services/category/category.service';
 import { ShoppingCartService } from './shared/services/shopping.service';
+import { LayoutService } from './shared/services/layout.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
@@ -59,6 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppConfig,
     ItemService,
     CategoryService,
+    LayoutService,
     ShoppingCartService,
     {
       provide: APP_INITIALIZER,

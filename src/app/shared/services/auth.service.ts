@@ -5,38 +5,38 @@ import { DataService } from './base/data.service';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService extends DataService {
   private loginUrl: string;
 
   constructor(http: HttpClient, private sessionService: SessionService) {
     super(http);
-    this.loginUrl = this.url.login.loginUrl
+    this.loginUrl = this.url.login.loginUrl;
   }
 
-  demoLogin(userNumber: string) {
-   return (userNumber == '123');
+  demoLogin(userNumber: string): boolean {
+    return userNumber == '123';
   }
 
   login(userNumber: string) {
-    return this.post(this.loginUrl, {userNumber});
+    return this.post(this.loginUrl, { userNumber });
   }
 
-  logOut() {
+  logOut(): void {
     this.sessionService.clearUserData();
     this.sessionService.clearAll();
   }
 
-  onLoginChange(isLogin: boolean, userNumber: string) {
-    if(isLogin) {
+  onLoginChange(isLogin: boolean, userNumber: string): void {
+    if (isLogin) {
       this.sessionService.setUserName(userNumber);
       this.sessionService.setTime(new Date());
     }
   }
 
-  isLogin() {
-    const getTime =  this.sessionService.getTime();
+  isLogin(): boolean {
+    const getTime = this.sessionService.getTime();
     return getTime == new Date().getDay().toString();
   }
 }
