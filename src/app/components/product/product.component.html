@@ -4,7 +4,7 @@
   [active_item]="'Product'"
 ></app-breadcrumb>
 <!-- Container-fluid starts-->
- <div class="container-fluid product-wrapper" [class.sidebaron]="openSidebar">
+<div class="container-fluid product-wrapper" [class.sidebaron]="openSidebar">
   <div class="product-grid">
     <div class="feature-products">
       <div class="row">
@@ -28,8 +28,11 @@
               <i data-feather="list"></i>
             </a>
           </div>
-          
-          <span class="d-none-productlist filter-toggle" (click)="sidebarToggle()">
+
+          <span
+            class="d-none-productlist filter-toggle"
+            (click)="sidebarToggle()"
+          >
             Filters
             <span class="ml-2">
               <i class="toggle-data" data-feather="chevron-down"></i>
@@ -87,7 +90,7 @@
 
       <div class="row">
         <div class="col-sm-3">
-          <div class="product-sidebar"  [class.open]="openSidebar">
+          <div class="product-sidebar" [class.open]="openSidebar">
             <div class="filter-section">
               <div class="card">
                 <div class="card-header" (click)="sidebarToggle()">
@@ -122,17 +125,30 @@
       </div>
     </div>
 
-    <div class="product-wrapper-grid" [class.list-view]="listView">
+    <div
+      class="product-wrapper-grid"
+      [class.list-view]="listView"
+      style="height: 100%"
+      infinite-scroll
+      [infiniteScrollThrottle]="throttle"
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      [fromRoot]="true"
+      (scrolled)="onScrollDown()"
+    >
       <div class="row">
+        <LoaderSpinner *ngIf="isLoading == true"></LoaderSpinner>
         <div
           *ngFor="let p of items; let i = index"
           [class]="'col-xs-12 col-md-4 col-sm-6 col-xl-' + col"
           [class.col-xl-12]="listView"
         >
-          <app-product-cart [item]="p" [extraItems]="extraItems"></app-product-cart>
+          <app-product-cart
+            [item]="p"
+            [extraItems]="extraItems"
+          ></app-product-cart>
         </div>
       </div>
     </div>
   </div>
 </div>
-

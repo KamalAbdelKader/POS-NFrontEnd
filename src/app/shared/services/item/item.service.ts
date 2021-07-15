@@ -1,11 +1,11 @@
-import { Observable } from "rxjs";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { DataService } from "../base/data.service";
-import { Item } from "../../model/item";
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { DataService } from '../base/data.service';
+import { Item } from '../../model/item';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ItemService extends DataService {
   private categoryitemUrl: string;
@@ -23,8 +23,9 @@ export class ItemService extends DataService {
     return this.post<any>(this.categoryitemUrl, obj);
   }
 
-  getAllitems(): Observable<Item[]> {
-    return this.get<Item[]>(this.itemUrl);
+  getAllitems(pageIndex = 0, pageSize = 0): Observable<Item[]> {
+    const url = `${this.itemUrl}?pageIndex=${pageIndex}&pageSize=${pageSize}`;
+    return this.get<Item[]>(url);
   }
 
   getExtraItems(): Observable<Item[]> {

@@ -24,7 +24,7 @@ import { CategoryService } from '../app/shared/services/category/category.servic
 import { ShoppingCartService } from './shared/services/shopping.service';
 import { LayoutService } from './shared/services/layout.service';
 
-export function HttpLoaderFactory(http: HttpClient) {
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 

@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   extraItems: Item[] = [];
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId: object,
     private itemService: ItemService,
     private itemChangeService: ItemChangeService,
     private shoppingService: ShoppingCartService,
@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.getItems();
     await this.getExtraItems();
     this.shoppingService.setItemsAndExtraItems(this.items, this.extraItems);
 
@@ -56,8 +55,4 @@ export class AppComponent implements OnInit {
     this.itemChangeService.extraItemsChange(this.extraItems);
   }
 
-  private async getItems(): Promise<void> {
-    this.items = await this.itemService.getAllitems().toPromise();
-    this.itemChangeService.itemChange(this.items);
-  }
 }

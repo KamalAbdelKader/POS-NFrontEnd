@@ -9,9 +9,11 @@ import { ProductRoutingModule } from './product-routing.module';
 import { QuickViewComponent } from '../quick-view/quick-view.component';
 import { ExtraItemComponent } from '../extra-item/extra-item.component';
 import { ProductCheckoutComponent } from '../product-checkout/product-checkout.component';
+import { LoaderSpinnerComponent } from '../loader/loaderSpinner.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, ProductRoutingModule],
+  imports: [CommonModule, SharedModule, ProductRoutingModule, InfiniteScrollModule],
   declarations: [
     ProductComponent,
     ProductCartComponent,
@@ -19,7 +21,8 @@ import { ProductCheckoutComponent } from '../product-checkout/product-checkout.c
     ProductQuantityComponent,
     ProductCategoryComponent,
     ProductCheckoutComponent,
-    ExtraItemComponent
+    ExtraItemComponent,
+    LoaderSpinnerComponent
   ],
   exports: [ProductQuantityComponent]
 })

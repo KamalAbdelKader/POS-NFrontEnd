@@ -20,8 +20,13 @@ export class ProductComponent implements OnInit {
   extraItems: Item[];
   categoryId: string;
   clicked = false;
-  
+  isLoading = false;
+  throttle = 300;
+  scrollDistance = 3;
+  scrollUpDistance = 2;
+
   @ViewChild('quickView') QuickView: QuickViewComponent;
+  pageIndex: number;
 
   constructor(
     private itemService: ItemService,
@@ -32,6 +37,7 @@ export class ProductComponent implements OnInit {
     this.items = [];
     this.extraItems = [];
     this.clicked = false;
+    this.pageIndex = 0;
   }
 
   ngOnInit(): void {
@@ -47,7 +53,7 @@ export class ProductComponent implements OnInit {
           .getItemsByCategoryGuid(this.categoryId)
           .toPromise();
       } else {
-        this.itemChangeService.currentItemListSource.subscribe((response) => this.items = response);
+        this.getAllItems();
       }
     });
   }
@@ -77,5 +83,20 @@ export class ProductComponent implements OnInit {
 
   gridColumn(val): void {
     this.col = val;
+  }
+
+  onScrollDown(): void {
+    this.pageIndex++;
+    this.isLoading = true;
+    this.getAllItems();
+    this.isLoading = false;
+  }
+
+  private async getAllItems(): Promise<void> {
+    const items = await this.itemService
+      .getAllitems(this.pageIndex, 8)
+      .toPromise();
+
+    this.items.push(...items);
   }
 }
