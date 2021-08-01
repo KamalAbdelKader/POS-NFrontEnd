@@ -1,10 +1,8 @@
-<button
-  class="btn"
-  [id]="extraItem.name"
-  [name]="extraItem.name"
-  [ngClass]="clicked == true ? 'btn-secondary' : 'btn-outline-secondary'"
-  type="button"
-  (click)="onClick()"
->
-  {{ extraItem.name }} | KWD {{extraItem.endUser | number:'1.3-3' }}
-</button>
+<div class="checkbox checkbox-solid-info">
+  <input [name]="extraItem.name" [id]="extraItem.name" (click)="onClick()" [checked]="clicked == true"  type="checkbox">
+  <label [for]="extraItem.name">
+    {{ extraItem.name }} | KWD {{extraItem.endUser | number:'1.3-3' }}
+  </label>
+</div>
+
+
