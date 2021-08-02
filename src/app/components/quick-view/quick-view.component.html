@@ -11,7 +11,7 @@
           <img class="img-fluid" [src]="get_ImageUrl(item)" alt="" />
         </div>
         <div class="product-details col-md-6 text-left">
-          <h4>{{ item.name }} {{ layout.config.settings.layout_version }} </h4>
+          <h4>{{ item.name }} </h4>
           <div class="product-price">
             {{ item.endUser | currency: "KWD" }}
             <!-- <del>$350.00 </del> -->
@@ -33,7 +33,7 @@
             </ul>
           </div>
           <div class="product-qnty">
-            <app-product-quantity [item]="item"></app-product-quantity>
+            <app-product-quantity  [item]="item"></app-product-quantity>
             <div class="addcart-btn">
               <button
                 class="btn btn-primary mr-1"
