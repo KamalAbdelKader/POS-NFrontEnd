@@ -29,7 +29,7 @@ export class ItemService extends DataService {
   }
 
   getExtraItems(id: number): Observable<Item[]> {
-    this.extraItemUrl += `?${id}`;
+    this.extraItemUrl += `?ParentItemId=${id}`;
     return this.get<Item[]>(this.extraItemUrl);
   }
 }
