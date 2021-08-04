@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
   );
 
   items: Item[] = [];
-  extraItems: Item[] = [];
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
@@ -40,19 +39,13 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.getExtraItems();
-    this.shoppingService.setItemsAndExtraItems(this.items, this.extraItems);
+    // this.shoppingService.setItems(this.items);
 
     // get Cart Data
     const savedProduct = this.shoppingService.getItems();
     if (ArrayIsNotEmpty(savedProduct)) {
       this.shoppingService.setProducts(savedProduct);
     }
-  }
-
-  private async getExtraItems(): Promise<void> {
-    this.extraItems = await this.itemService.getExtraItems().toPromise();
-    this.itemChangeService.extraItemsChange(this.extraItems);
   }
 
 }
