@@ -17,7 +17,6 @@ export class ProductComponent implements OnInit {
   public col = '3';
 
   items: Item[];
-  extraItems: Item[];
   categoryId: string;
   clicked = false;
   isLoading = false;
@@ -30,19 +29,17 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private itemService: ItemService,
-    private itemChangeService: ItemChangeService,
     public shoppingService: ShoppingCartService,
     private route: ActivatedRoute
   ) {
     this.items = [];
-    this.extraItems = [];
     this.clicked = false;
     this.pageIndex = 0;
   }
 
   ngOnInit(): void {
     this.getItems();
-    this.getExtraItems();
+    // this.getExtraItems();
   }
 
   private getItems(): void {
@@ -52,15 +49,10 @@ export class ProductComponent implements OnInit {
         this.items = await this.itemService
           .getItemsByCategoryGuid(this.categoryId)
           .toPromise();
+        this.shoppingService.setItems(this.items);
       } else {
         this.getAllItems();
       }
-    });
-  }
-
-  private getExtraItems(): void {
-    this.itemChangeService.currentExtraItemListSource.subscribe((response) => {
-      this.extraItems = [...response];
     });
   }
 
@@ -96,7 +88,7 @@ export class ProductComponent implements OnInit {
     const items = await this.itemService
       .getAllitems(this.pageIndex, 8)
       .toPromise();
-
     this.items.push(...items);
+    this.shoppingService.setItems(this.items);
   }
 }

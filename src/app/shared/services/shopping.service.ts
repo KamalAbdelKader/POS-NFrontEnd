@@ -212,12 +212,15 @@ export class ShoppingCartService extends DataService {
     return this.post(this.shoppingCartUrl, itemList);
   }
 
-  setItemsAndExtraItems(items: Item[], extraItems: Item[]): void {
+  setItems(items: Item[]): void {
     this._itemList = items;
+  }
+
+  setExtraItems(extraItems: Item[]): void {
     this._extraItemList = extraItems;
   }
 
-  convertShortItemsToItems(shortItem: ShortItem[]): Item[] {
+  private convertShortItemsToItems(shortItem: ShortItem[]): Item[] {
     const items: Item[] = [];
     if (ArrayIsNotEmpty(shortItem) && ArrayIsNotEmpty(this._itemList)) {
       shortItem.forEach((sItem) => {

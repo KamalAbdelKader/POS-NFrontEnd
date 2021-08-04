@@ -8,11 +8,10 @@ import {
 import {
   NgbModal,
   ModalDismissReasons,
-  NgbModalOptions,
 } from '@ng-bootstrap/ng-bootstrap';
-import { CloneObject, ObjectHasValue } from 'src/app/shared/helper/helper';
-import { getImageUrl } from 'src/app/shared/helper/image';
+import { ObjectHasValue } from 'src/app/shared/helper/helper';
 import { Item } from 'src/app/shared/model/item';
+import { ItemService } from 'src/app/shared/services/item/item.service';
 import { LayoutService } from 'src/app/shared/services/layout.service';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
 
@@ -25,8 +24,7 @@ export class QuickViewComponent implements OnInit {
   @ViewChild('quickView', { static: false }) QuickView: TemplateRef<any>;
   // tslint:disable-next-line:no-input-rename
   @Input('item') item: Item;
-  // tslint:disable-next-line:no-input-rename
-  @Input('extraItems') extraItems: Item[];
+  extraItems: Item[];
   public closeResult: string;
   public modalOpen = false;
 
@@ -40,12 +38,13 @@ export class QuickViewComponent implements OnInit {
   constructor(
     public layout: LayoutService,
     private modalService: NgbModal,
+    private itemService: ItemService,
     private shoppingService: ShoppingCartService
   ) {}
 
   ngOnInit(): void {}
 
-  openModal(): void {
+  async openModal(id: number): Promise<void> {
     this.modalOpen = true;
     const model = this.modalService.open(this.QuickView, {
       size: 'lg',
@@ -66,6 +65,9 @@ export class QuickViewComponent implements OnInit {
     this.layout.config.settings.layout_version = this.layout.isDarkMode()
     ? 'dark-only'
     : 'light';
+    this.extraItems = [];
+    this.extraItems = await this.itemService.getExtraItems(id).toPromise();
+    this.shoppingService.setExtraItems(this.extraItems);
   }
 
   private getDismissReason(reason: any): string {
