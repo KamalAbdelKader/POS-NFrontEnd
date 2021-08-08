@@ -1,5 +1,5 @@
 <div class="checkbox checkbox-solid-info">
-  <input [name]="extraItem.name" [id]="extraItem.name" (click)="onClick()" [checked]="clicked == true"  type="checkbox">
+  <input [name]="extraItem.name" [disabled]="disabled" [id]="extraItem.name" (click)="onClick()" [checked]="clicked == true"  type="checkbox">
   <label [for]="extraItem.name">
     {{ extraItem.name }} | KWD {{extraItem.endUser | number:'1.3-3' }}
   </label>

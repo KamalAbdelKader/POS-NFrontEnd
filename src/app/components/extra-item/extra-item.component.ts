@@ -9,24 +9,28 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
 export class ExtraItemComponent implements OnInit {
   @Input('extraItem') extraItem: Item = {} as Item;
   @Input('item') item: Item = {} as Item;
+  @Input('disabled') disabled = false;
   clicked = false;
   constructor(private shoppingService: ShoppingCartService) {}
 
   ngOnInit(): void {
-    const count = this.shoppingService.getExtraQuantity(this.item, this.extraItem);
-    if(count > 0) {
+    const count = this.shoppingService.getExtraQuantity(
+      this.item,
+      this.extraItem
+    );
+    if (count > 0) {
       this.clicked = true;
     }
   }
 
   onClick() {
-    this.clicked = !this.clicked;
-
-    if(this.clicked) {
-      this.shoppingService.updateExtraItems(this.item, this.extraItem, 1);
-    } else {
-      this.shoppingService.updateExtraItems(this.item, this.extraItem, -1);
+    if (!this.disabled) {
+      this.clicked = !this.clicked;
+      if (this.clicked) {
+        this.shoppingService.updateExtraItems(this.item, this.extraItem, 1);
+      } else {
+        this.shoppingService.updateExtraItems(this.item, this.extraItem, -1);
+      }
     }
-    
   }
 }

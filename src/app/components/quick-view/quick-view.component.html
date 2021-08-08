@@ -22,14 +22,15 @@
               {{ item.note }}
             </p>
           </div>
-          <div class="product-size" *ngIf="quantity > 0">
-            <ul>
-              <li *ngFor="let eitem of extraItems">
+          <div class="product-size product-size-width">
+            <ul  >
+              <li *ngFor="let eitem of extraItems; let i = index" [class.first-item]="(i == 0)" >
                 <app-extra-item
                   [item]="item"
+                  [disabled]="!(quantity > 0)"
                   [extraItem]="eitem"
                 ></app-extra-item>
-              </li>
+               </li>
             </ul>
           </div>
           <div class="product-qnty">
