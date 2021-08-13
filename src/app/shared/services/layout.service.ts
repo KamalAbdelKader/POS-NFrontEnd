@@ -9,7 +9,7 @@ export class LayoutService {
     settings: {
       layout: 'Dubai',
       layout_type: 'ltr',
-      layout_version: 'dark-only',
+      layout_version: 'light-only',
       sidebar_type: 'default-sidebar',
     },
     color: {

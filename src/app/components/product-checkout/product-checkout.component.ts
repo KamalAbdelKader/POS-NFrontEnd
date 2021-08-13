@@ -38,9 +38,10 @@ export class ProductCheckoutComponent implements OnInit {
   }
 
   checkout() {
+    console.log("checkout")
     this.shoppingCartService.saveItems(this.items).subscribe((response) => {
       response > 0
-        ? this.toastrService.success(
+        ? this.toastrService.success( 
             'Your order number is: ' + response,
             'Order Completed successfully'
           )

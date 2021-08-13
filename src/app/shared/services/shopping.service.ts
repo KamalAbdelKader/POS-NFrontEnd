@@ -209,6 +209,7 @@ export class ShoppingCartService extends DataService {
     itemList.forEach((it) => {
       it.image = null;
     });
+    console.log(itemList);
     return this.post(this.shoppingCartUrl, itemList);
   }
 

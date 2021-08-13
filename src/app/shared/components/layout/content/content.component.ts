@@ -12,7 +12,7 @@ import { fadeInAnimation } from '../../../data/router-animation/router-animation
   animations: [fadeInAnimation]
 })
 export class ContentComponent implements OnInit, AfterViewInit {
-  
+
   constructor(private route: ActivatedRoute, public navServices: NavService, 
     public layout: LayoutService) {
       this.route.queryParams.subscribe((params) => {
@@ -62,5 +62,6 @@ export class ContentComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     
   }
+
 
 }

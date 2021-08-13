@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="container-fluid" >
+    <div class="page-title">
+      <div class="row">
+        <div class="col-12">
+          <h3 style="text-align: center">Discover By Category</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="product-box">
+    <owl-carousel-o [options]="owlcarousel5Options">
+      <ng-template
+        carouselSlide
+        class="item"
+        [id]="c.guid"
+        *ngFor="let c of categories"
+      >
+        <img class="img-fluid"
+          [src]="get_ImageUrl(c)"
+          alt=""
+          routerLink="/products" 
+          [queryParams]="{ category: c.guid }"
+        />
+        <p style="text-align: center">{{ c.name }}</p>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</div>

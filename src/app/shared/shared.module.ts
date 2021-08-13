@@ -1,3 +1,4 @@
+import { CategorySliderComponent } from './components/category-slider/category-slider.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -15,6 +16,7 @@ import { FullComponent } from './components/layout/full/full.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TapToTopComponent } from './components/tap-to-top/tap-to-top.component';
+
 // Header Elements Components
 import { SearchComponent } from './components/header/elements/search/search.component';
 import { MegaMenuComponent } from './components/header/elements/mega-menu/mega-menu.component';
@@ -32,7 +34,7 @@ import { ShowOptionsDirective } from './directives/show-options.directive';
 // Services
 import { LayoutService } from './services/layout.service';
 import { NavService } from './services/nav.service';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -56,6 +58,7 @@ import { NavService } from './services/nav.service';
     CartComponent,
     MessageBoxComponent,
     MyAccountComponent,
+    CategorySliderComponent
   ],
   imports: [
     CommonModule,
@@ -65,6 +68,7 @@ import { NavService } from './services/nav.service';
     NgbModule,
     DragulaModule.forRoot(),
     TranslateModule,
+    CarouselModule
   ],
   providers: [NavService],
   exports: [
@@ -75,10 +79,12 @@ import { NavService } from './services/nav.service';
     LoaderComponent,
     BreadcrumbComponent,
     FeatherIconsComponent,
+    CarouselModule,
     TapToTopComponent,
     DisableKeyPressDirective,
     OnlyAlphabetsDirective,
     OnlyNumbersDirective,
+    CategorySliderComponent
   ],
 })
 export class SharedModule {}
