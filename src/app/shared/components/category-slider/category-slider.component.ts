@@ -10,11 +10,11 @@ import { Category } from './../../model/Category';
 export class CategorySliderComponent implements OnInit {
   categories: Category[] = [];
   owlcarousel5Options = {
-    margin: 5,
+    margin: 3,
     loop: false,
     autoWidth: true,
     autoHeight:true,
-    autoHeightClass: 'owl-height',
+    responsiveClass: true,
     items: 5,
     nav: false,
     responsive: {

@@ -31,7 +31,7 @@
             </a>
           </div>
 
-          <span
+          <!-- <span
             class="d-none-productlist filter-toggle"
             (click)="sidebarToggle()"
           >
@@ -39,7 +39,7 @@
             <span class="ml-2">
               <i class="toggle-data" data-feather="chevron-down"></i>
             </span>
-          </span>
+          </span> -->
           <div class="grid-options d-inline-block">
             <ul>
               <li (click)="gridColumn(6)">
@@ -76,7 +76,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-6 text-right">
+        <!-- <div class="col-md-6 text-right">
           <span class="f-w-600 m-r-5"
             >Showing Products 1 - 24 Of 200 Results</span
           >
@@ -87,12 +87,12 @@
               <option value="opt3">Highest Prices</option>
             </select>
           </div> -->
-        </div>
+        <!-- </div> --> 
       </div>
 
       <div class="row">
-        <div class="col-sm-3">
-          <div class="product-sidebar" [class.open]="openSidebar">
+        <div class="col-sm-12" style="width: 100%; max-width: 100%; padding: 0; ">
+          <!-- <div class="product-sidebar" [class.open]="openSidebar">
             <div class="filter-section">
               <div class="card">
                 <div class="card-header" (click)="sidebarToggle()">
@@ -110,12 +110,12 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-9 col-sm-12">
+        </div> -->
+        <div class="col-md-12 col-sm-12" >
           <form>
             <div class="form-group m-0">
               <input
-                class="form-control"
+                class="form-control" style="padding-top: .5;"
                 type="search"
                 placeholder="Search.."
                 data-original-title=""
