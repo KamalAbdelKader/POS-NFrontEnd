@@ -13,7 +13,7 @@ export class CategorySliderComponent implements OnInit {
     margin: 3,
     loop: false,
     autoWidth: true,
-    autoHeight:true,
+    autoHeight: true,
     responsiveClass: true,
     items: 5,
     nav: false,
@@ -27,7 +27,7 @@ export class CategorySliderComponent implements OnInit {
         mergeFit: true,
       },
       992: {
-        items: 3, 
+        items: 3,
         mergeFit: true,
       },
     },
@@ -35,16 +35,15 @@ export class CategorySliderComponent implements OnInit {
 
   constructor(private categoryService: CategoryService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.categoryService
       .getCategoryies()
       .subscribe((categories: Category[]) => {
-        console.log(categories);
         this.categories = categories;
       });
   }
 
-  get_ImageUrl(category: Category) {
+  get_ImageUrl(category: Category): string {
     return 'data:image/png;base64,' + category.img;
   }
 }

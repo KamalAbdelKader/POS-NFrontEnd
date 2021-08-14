@@ -15,13 +15,14 @@ import { Item } from 'src/app/shared/model/item';
 export class ProductCartComponent implements OnInit {
   category$: any;
   @ViewChild('quickView', { static: false }) QuickView: TemplateRef<any>;
-  @Input('item') item: Item;
+  // tslint:disable-next-line:no-input-rename
+  @Input('item') item: Item = {} as Item;
 
   constructor() {}
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  get_ImageUrl(item: Item) {
+  get_ImageUrl(item: Item): string {
     return 'data:image/png;base64,' + item.image;
   }
 }

@@ -48,7 +48,7 @@ export class ShoppingCartService extends DataService {
         id: item.id,
         quantity: item.quantity,
         extra: item.extraItems?.map((eitem) => {
-        return { id: eitem.id, quantity: item.quantity, };
+          return { id: eitem.id, quantity: item.quantity };
         }),
       };
     }) as ShortItem[];
@@ -92,7 +92,6 @@ export class ShoppingCartService extends DataService {
   }
 
   updateItem(_item: Item, change: number): void {
-
     const cartItem = this.getItemFromCart(_item);
     this.updateData(cartItem, _item, change, this.itemList);
     this.productChange();
@@ -150,7 +149,7 @@ export class ShoppingCartService extends DataService {
 
   getQuantity(_item: Item): number {
     const item = this.itemList.find((it) => _item.id == it.id);
-    return (item && item.quantity) ? item.quantity : 0;
+    return item && item.quantity ? item.quantity : 0;
   }
 
   getExtraQuantity(_item: Item, extraItem: Item): number {
@@ -209,7 +208,6 @@ export class ShoppingCartService extends DataService {
     itemList.forEach((it) => {
       it.image = null;
     });
-    console.log(itemList);
     return this.post(this.shoppingCartUrl, itemList);
   }
 

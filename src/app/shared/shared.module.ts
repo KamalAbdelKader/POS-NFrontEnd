@@ -16,6 +16,7 @@ import { FullComponent } from './components/layout/full/full.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TapToTopComponent } from './components/tap-to-top/tap-to-top.component';
+import { ValidationComponent } from './components/validation/validation.component';
 
 // Header Elements Components
 import { SearchComponent } from './components/header/elements/search/search.component';
@@ -58,7 +59,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CartComponent,
     MessageBoxComponent,
     MyAccountComponent,
-    CategorySliderComponent
+    CategorySliderComponent,
+    ValidationComponent
   ],
   imports: [
     CommonModule,
@@ -84,7 +86,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     DisableKeyPressDirective,
     OnlyAlphabetsDirective,
     OnlyNumbersDirective,
-    CategorySliderComponent
+    CategorySliderComponent,
+    ValidationComponent
   ],
 })
 export class SharedModule {}

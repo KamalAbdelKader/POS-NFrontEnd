@@ -1,4 +1,5 @@
 import { ProductComponent } from './../product/product.component';
+import { TableNumberViewComponent } from './../table-number-view/table-number-view.component';
 import { ProductCategoryComponent } from './../product-category/product-category.component';
 import { ProductQuantityComponent } from './../product-quantity/product-quantity.component';
 import { ProductCartComponent } from './../product-cart/product-cart.component';
@@ -22,7 +23,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ProductCategoryComponent,
     ProductCheckoutComponent,
     ExtraItemComponent,
-    LoaderSpinnerComponent
+    LoaderSpinnerComponent,
+    TableNumberViewComponent
   ],
   exports: [ProductQuantityComponent]
 })

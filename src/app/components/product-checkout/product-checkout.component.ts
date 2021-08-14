@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Item } from 'src/app/shared/model/item';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
+import { TableNumberViewComponent } from '../table-number-view/table-number-view.component';
 declare var require;
 const Swal = require('sweetalert2');
 @Component({
@@ -13,52 +14,36 @@ const Swal = require('sweetalert2');
 export class ProductCheckoutComponent implements OnInit {
   items: Item[] = [];
   showMsg = false;
-  constructor(
-    private shoppingCartService: ShoppingCartService,
-    private router: Router,
-    private toastrService: ToastrService
-  ) {}
-  ngOnInit() {
+  constructor(private shoppingCartService: ShoppingCartService) {}
+
+  ngOnInit(): void {
     this.shoppingCartService.currentItemsList.subscribe((items) => {
       this.items = items;
     });
   }
 
-  get_ImageUrl(item: Item) {
+  get_ImageUrl(item: Item): string {
     // return getImageUrl(item);
     return 'data:image/png;base64,' + item.image;
   }
 
-  getTotalPrice() {
+  getTotalPrice(): number {
     return this.shoppingCartService.getTotalPrice();
   }
 
-  getTotalProductPrice(item: Item) {
+  getTotalProductPrice(item: Item): number {
     return this.shoppingCartService.getProductTotal(item);
   }
 
-  checkout() {
-    console.log("checkout")
-    this.shoppingCartService.saveItems(this.items).subscribe((response) => {
-      response > 0
-        ? this.toastrService.success( 
-            'Your order number is: ' + response,
-            'Order Completed successfully'
-          )
-        : this.toastrService.error(
-            '',
-            'Sorry something went wrong please try again.'
-          );
-      this.router.navigate(['/products']);
-      this.shoppingCartService.clearProducts();
-    });
+  checkout(view: TableNumberViewComponent): void {
+    view.openModal();
   }
 
-  removeFromCart(item: Item) {
+  removeFromCart(item: Item): void {
     this.shoppingCartService.removeFromCart(item, this.items);
   }
 
-  removeExtraFromCart(item: Item, extraItem: Item) {
+  removeExtraFromCart(item: Item, extraItem: Item): void {
     this.shoppingCartService.removeFromCart(extraItem, item.extraItems, item);
   }
 }

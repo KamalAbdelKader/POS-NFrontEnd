@@ -1,0 +1,45 @@
+<ng-template #quickView let-modal>
+  <div
+    class="modal-content"
+    style="overflow: auto"
+    [ngClass]="layout.config.settings.layout_type"
+    [class]="layout.config.settings.layout_version"
+  >
+    <div class="modal-header product-modal">
+      <div class="row" style="width: 100%">
+        <div class="col-sm-12">
+          <div class="card-header">
+            <h5>Table Number</h5>
+            <span> Please enter the numbers you want. </span>
+          </div>
+          <div class="card-body">
+            <form class="theme-form" [formGroup]="form">
+              <div class="form-group">
+                <label class="col-form-label pt-0" for="tablenumber"
+                  >Table Number</label
+                >
+                <input
+                  class="form-control"
+                  id="tablenumber"
+                  type="text"
+                  formControlName="tableNumber"
+                  placeholder="Enter Table Number"
+                /><small class="form-text text-muted" id="table_number">
+                  Please Enter Valid number</small
+                >
+              </div>
+              <app-validation [control]="tableNumber" [fieldName]="'Table Number'"></app-validation>
+            </form>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary mr-1" (click)="onSubmit()" [disabled]="form && form.invalid">Submit</button>
+            <button type="button" (click)="modal.dismiss('Cross click')" class="btn btn-secondary">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <button class="close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+  </div>
+</ng-template>
