@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -20,17 +15,18 @@ export class TableNumberViewComponent implements OnInit {
   @ViewChild('quickView', { static: false }) QuickView: TemplateRef<any>;
   public closeResult: string;
   form: FormGroup = {} as FormGroup;
-  items: Item[] = [] ;
+  items: Item[] = [];
   get tableNumber(): FormControl {
     return this.form.get('tableNumber') as FormControl;
   }
 
-  constructor(private modalService: NgbModal,
-              private shoppingCartService: ShoppingCartService,
-              private toastrService: ToastrService,
-              private router: Router,
-              public layout: LayoutService) {
-              }
+  constructor(
+    private modalService: NgbModal,
+    private shoppingCartService: ShoppingCartService,
+    private toastrService: ToastrService,
+    private router: Router,
+    public layout: LayoutService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.createForm();
@@ -40,7 +36,11 @@ export class TableNumberViewComponent implements OnInit {
   }
   createForm(): FormGroup {
     return new FormGroup({
-      tableNumber: new FormControl('', [Validators.required, Validators.max(6000), Validators.pattern(/^[0-9]+$/)])
+      tableNumber: new FormControl('', [
+        Validators.required,
+        Validators.max(6000),
+        Validators.pattern(/^[0-9]+$/),
+      ]),
     });
   }
 
@@ -62,8 +62,10 @@ export class TableNumberViewComponent implements OnInit {
 
   onSubmit(): void {
     // Call Api
-    // .....
-    this.getOrderNumber();
+    this.form.markAllAsTouched();
+    if (this.form && this.form.valid) {
+      this.getOrderNumber();
+    }
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -76,18 +78,21 @@ export class TableNumberViewComponent implements OnInit {
   }
 
   private getOrderNumber(): void {
-    this.shoppingCartService.saveItems(this.items).subscribe((response) => {
-      response > 0
-        ? this.toastrService.success(
-          'Your order number is: ' + response,
-          'Order Completed successfully'
-        )
-        : this.toastrService.error(
-          '',
-          'Sorry something went wrong please try again.'
-        );
-      this.router.navigate(['/products']);
-      this.shoppingCartService.clearProducts();
-    });
+    const tableNumber = +this.tableNumber.value;
+    this.shoppingCartService
+      .saveItems({ items: this.items, tableNumber })
+      .subscribe((response) => {
+        response > 0
+          ? this.toastrService.success(
+              'Your order number is: ' + response,
+              'Order Completed successfully'
+            )
+          : this.toastrService.error(
+              '',
+              'Sorry something went wrong please try again.'
+            );
+        this.router.navigate(['/products']);
+        this.shoppingCartService.clearProducts();
+      });
   }
 }

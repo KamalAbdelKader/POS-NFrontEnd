@@ -204,11 +204,14 @@ export class ShoppingCartService extends DataService {
     this.productChange();
   }
 
-  saveItems(itemList: Item[]): Observable<number> {
-    itemList.forEach((it) => {
+  saveItems(itemsObj: {
+    items: Item[];
+    tableNumber: number;
+  }): Observable<number> {
+    itemsObj?.items.forEach((it) => {
       it.image = null;
     });
-    return this.post(this.shoppingCartUrl, itemList);
+    return this.post(this.shoppingCartUrl, itemsObj);
   }
 
   setItems(items: Item[]): void {
