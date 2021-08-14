@@ -2,7 +2,7 @@
   <app-feather-icons [icon]="'shopping-cart'"></app-feather-icons>
   <span class="badge badge-pill badge-primary"> {{ items.length }} </span>
 </div>
-<ul class="cart-dropdown onhover-show-div" [class.active]="openCart" [ngStyle]="{'display': (openCart == false) ? 'none' : ''}">
+<ul class="cart-dropdown onhover-show-div" style="padding: 0px" [class.active]="openCart" [ngStyle]="{'display': (openCart == false) ? 'none' : ''}">
   <li>
     <h6 class="mb-0 f-20">Shoping Cart</h6>
     <app-feather-icons [icon]="'shopping-cart'"></app-feather-icons>
