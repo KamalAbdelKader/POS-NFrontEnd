@@ -1,3 +1,4 @@
+import { CategoryViewComponent } from './../category-view/category-view.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -35,7 +36,7 @@ export class ProductCheckoutComponent implements OnInit {
     return this.shoppingCartService.getProductTotal(item);
   }
 
-  checkout(view: TableNumberViewComponent): void {
+  checkout(view: CategoryViewComponent): void {
     view.openModal();
   }
 

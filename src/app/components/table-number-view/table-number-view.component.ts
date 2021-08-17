@@ -12,7 +12,6 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
   styleUrls: ['./table-number-view.component.scss'],
 })
 export class TableNumberViewComponent implements OnInit {
-  @ViewChild('quickView', { static: false }) QuickView: TemplateRef<any>;
   public closeResult: string;
   form: FormGroup = {} as FormGroup;
   items: Item[] = [];
@@ -42,22 +41,6 @@ export class TableNumberViewComponent implements OnInit {
         Validators.pattern(/^[0-9]+$/),
       ]),
     });
-  }
-
-  async openModal(): Promise<void> {
-    const model = this.modalService.open(this.QuickView, {
-      size: 'lg',
-      ariaLabelledBy: 'modal-basic-title',
-      centered: true,
-      windowClass: 'Quickview',
-    });
-
-    model.result.then(
-      (result) => `Result ${result}`,
-      (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      }
-    );
   }
 
   onSubmit(): void {

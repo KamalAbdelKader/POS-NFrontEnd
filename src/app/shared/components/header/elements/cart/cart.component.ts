@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Item } from 'src/app/shared/model/item';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
@@ -14,6 +14,8 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
 })
 export class CartComponent implements OnInit {
   @Input() openCart: boolean = false;
+  @ViewChild('quickView', { static: false }) QuickView: TemplateRef<any>;
+
   items: Item[] = [];
   constructor(
     private shoppingCartService: ShoppingCartService,

@@ -1,0 +1,56 @@
+<ng-template #categoryView let-modal>
+  <div
+    class="modal-content"
+    style="overflow: auto"
+    [ngClass]="layout.config.settings.layout_type"
+    [class]="layout.config.settings.layout_version"
+  >
+    <div class="modal-header product-modal">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-xl-6 box-col-12 xl-100">
+            <div class="card">
+              <div class="card-header">
+                <h5>Nav justification</h5>
+              </div>
+              <div class="card-body">
+                <ngb-tabset [justify]="'center'">
+                  <ngb-tab title="Dining">
+                    <ng-template ngbTabContent>
+                      <app-table-number-view></app-table-number-view>
+                    </ng-template>
+                  </ngb-tab>
+                  <ngb-tab>
+                    <ng-template ngbTabTitle><b>Delivery</b></ng-template>
+                    <ng-template ngbTabContent>
+                      <app-delivery-view></app-delivery-view>
+                    </ng-template>
+                  </ngb-tab>
+                  <ngb-tab title="Takeaway">
+                    <ng-template ngbTabContent>
+                      <p></p>
+                    </ng-template>
+                  </ngb-tab>
+                  <ngb-tab title="Car">
+                    <ng-template ngbTabContent>
+                      <p></p>
+                    </ng-template>
+                  </ngb-tab>
+                </ngb-tabset>
+
+                <div
+                  class="btn-group btn-group-toggle mt-2 tabset-group-btn-xs"
+                  ngbRadioGroup
+                  [(ngModel)]="currentJustify"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+  </div>
+</ng-template>

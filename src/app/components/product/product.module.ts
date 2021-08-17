@@ -1,3 +1,4 @@
+import { DeliveryViewComponent } from './../delivery-view/delivery-view.component';
 import { ProductComponent } from './../product/product.component';
 import { TableNumberViewComponent } from './../table-number-view/table-number-view.component';
 import { ProductCategoryComponent } from './../product-category/product-category.component';
@@ -12,9 +13,17 @@ import { ExtraItemComponent } from '../extra-item/extra-item.component';
 import { ProductCheckoutComponent } from '../product-checkout/product-checkout.component';
 import { LoaderSpinnerComponent } from '../loader/loaderSpinner.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MatTabsModule } from '@angular/material/tabs';
+import { CategoryViewComponent } from '../category-view/category-view.component';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, ProductRoutingModule, InfiniteScrollModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    ProductRoutingModule,
+    InfiniteScrollModule,
+    MatTabsModule
+  ],
   declarations: [
     ProductComponent,
     ProductCartComponent,
@@ -24,8 +33,10 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ProductCheckoutComponent,
     ExtraItemComponent,
     LoaderSpinnerComponent,
-    TableNumberViewComponent
+    TableNumberViewComponent,
+    CategoryViewComponent,
+    DeliveryViewComponent
   ],
-  exports: [ProductQuantityComponent]
+  exports: [ProductQuantityComponent],
 })
 export class ProductModule {}

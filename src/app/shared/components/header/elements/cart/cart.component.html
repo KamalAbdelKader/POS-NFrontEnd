@@ -7,7 +7,7 @@
     <h6 class="mb-0 f-20">Shoping Cart</h6>
     <app-feather-icons [icon]="'shopping-cart'"></app-feather-icons>
   </li>
-  <li class="mt-0" *ngFor="let item of items">
+  <li class="mt-0" *ngFor="let item of items" (click)="removeFromCart(item)">
     <div class="media">
       <img
         class="img-fluid rounded-circle mr-3 img-60"
@@ -46,3 +46,5 @@
     >
   </li>
 </ul>
+
+ 
