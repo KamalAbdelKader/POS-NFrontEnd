@@ -1,6 +1,7 @@
 import { DeliveryViewComponent } from './../delivery-view/delivery-view.component';
 import { ProductComponent } from './../product/product.component';
 import { TableNumberViewComponent } from './../table-number-view/table-number-view.component';
+import { TakeAwayComponent } from './../takeaway/take-away.component';
 import { ProductCategoryComponent } from './../product-category/product-category.component';
 import { ProductQuantityComponent } from './../product-quantity/product-quantity.component';
 import { ProductCartComponent } from './../product-cart/product-cart.component';
@@ -35,7 +36,8 @@ import { CategoryViewComponent } from '../category-view/category-view.component'
     LoaderSpinnerComponent,
     TableNumberViewComponent,
     CategoryViewComponent,
-    DeliveryViewComponent
+    DeliveryViewComponent,
+    TakeAwayComponent
   ],
   exports: [ProductQuantityComponent],
 })

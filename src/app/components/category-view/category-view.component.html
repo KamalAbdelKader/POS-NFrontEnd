@@ -8,14 +8,15 @@
     <div class="modal-header product-modal">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12 col-xl-6 box-col-12 xl-100">
+          <div class="col-sm-12 box-col-12 xl-100">
             <div class="card">
               <div class="card-header">
-                <h5>Nav justification</h5>
+                <h5>choose your types of delivery</h5>
               </div>
               <div class="card-body">
-                <ngb-tabset [justify]="'center'">
-                  <ngb-tab title="Dining">
+                <ngb-tabset [justify]="'fill'" #t="ngbTabset">
+                  <ngb-tab>
+                    <ng-template ngbTabTitle><b>Dining</b></ng-template>
                     <ng-template ngbTabContent>
                       <app-table-number-view></app-table-number-view>
                     </ng-template>
@@ -26,18 +27,19 @@
                       <app-delivery-view></app-delivery-view>
                     </ng-template>
                   </ngb-tab>
-                  <ngb-tab title="Takeaway">
+                  <ngb-tab>
+                    <ng-template ngbTabTitle><b>Car</b></ng-template>
                     <ng-template ngbTabContent>
                       <p></p>
                     </ng-template>
                   </ngb-tab>
-                  <ngb-tab title="Car">
+                  <ngb-tab>
+                    <ng-template ngbTabTitle><b>Takeaway</b></ng-template>
                     <ng-template ngbTabContent>
-                      <p></p>
+                      <app-take-away></app-take-away>
                     </ng-template>
                   </ngb-tab>
                 </ngb-tabset>
-
                 <div
                   class="btn-group btn-group-toggle mt-2 tabset-group-btn-xs"
                   ngbRadioGroup

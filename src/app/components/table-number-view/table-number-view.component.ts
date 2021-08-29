@@ -48,7 +48,7 @@ export class TableNumberViewComponent implements OnInit {
     this.form.markAllAsTouched();
     if (this.form && this.form.valid) {
       this.modalService.dismissAll();
-         this.getOrderNumber();
+      this.getOrderNumber();
     }
   }
   private getDismissReason(reason: any): string {
