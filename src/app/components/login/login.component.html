@@ -1,0 +1,39 @@
+<div class="login-main">
+  <form class="theme-form">
+    <h4>Sign in to account</h4>
+    <div class="form-group">
+      <label class="col-form-label">Email Address</label>
+      <input
+        class="form-control"
+        type="email"
+        required=""
+        placeholder="app@yourmail.com"
+      />
+    </div>
+    <div class="form-group">
+      <label class="col-form-label">Password</label>
+      <input
+        class="form-control"
+        [type]="show ? 'text' : 'password'"
+        name="login[password]"
+        required=""
+        placeholder="*********"
+      />
+      <div class="show-hide" (click)="showPassword()" *ngIf="!show">
+        <span class="show"></span>
+      </div>
+      <div class="show-hide" (click)="showPassword()" *ngIf="show">
+        <span class="Hide"></span>
+      </div>
+    </div>
+    <div class="form-group mb-0">
+      <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+    </div>
+    <p class="mt-4 mb-0">
+      Don't have account?
+      <a [routerLink]="''" (click)="onClick()" class="ml-2"
+        >Create Account</a
+      >
+    </p>
+  </form>
+</div>

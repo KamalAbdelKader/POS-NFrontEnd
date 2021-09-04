@@ -16,6 +16,8 @@ import { LoaderSpinnerComponent } from '../loader/loaderSpinner.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CategoryViewComponent } from '../category-view/category-view.component';
+import { LoginComponent } from '../login/login.component';
+import { RegisterComponent } from '../register/register.component';
 
 @NgModule({
   imports: [
@@ -37,7 +39,9 @@ import { CategoryViewComponent } from '../category-view/category-view.component'
     TableNumberViewComponent,
     CategoryViewComponent,
     DeliveryViewComponent,
-    TakeAwayComponent
+    TakeAwayComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   exports: [ProductQuantityComponent],
 })
