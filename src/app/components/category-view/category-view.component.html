@@ -16,9 +16,9 @@
               <div class="card-body">
                 <ngb-tabset [justify]="'fill'" #t="ngbTabset">
                   <ngb-tab>
-                    <ng-template ngbTabTitle><b>Dining</b></ng-template>
+                    <ng-template ngbTabTitle><b>Pick up</b></ng-template>
                     <ng-template ngbTabContent>
-                      <app-table-number-view></app-table-number-view>
+                      <app-pick-up></app-pick-up>
                     </ng-template>
                   </ngb-tab>
                   <ngb-tab>
@@ -27,19 +27,9 @@
                       <app-delivery-view></app-delivery-view>
                     </ng-template>
                   </ngb-tab>
-                  <ngb-tab>
-                    <ng-template ngbTabTitle><b>Car</b></ng-template>
-                    <ng-template ngbTabContent>
-                      <app-login></app-login>
-                    </ng-template>
-                  </ngb-tab>
-                  <ngb-tab>
-                    <ng-template ngbTabTitle><b>Takeaway</b></ng-template>
-                    <ng-template ngbTabContent>
-                      <app-take-away></app-take-away>
-                    </ng-template>
-                  </ngb-tab>
                 </ngb-tabset>
+
+
                 <div
                   class="btn-group btn-group-toggle mt-2 tabset-group-btn-xs"
                   ngbRadioGroup

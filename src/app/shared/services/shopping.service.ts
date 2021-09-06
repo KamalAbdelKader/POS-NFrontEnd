@@ -204,6 +204,7 @@ export class ShoppingCartService extends DataService {
     this.productChange();
   }
 
+  // Add Extra param for type Id
   saveItems(itemsObj: {
     items: Item[];
     tableNumber: number;

@@ -18,6 +18,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { CategoryViewComponent } from '../category-view/category-view.component';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
+import { PickUpComponent } from '../pick-up/pick-up.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { RegisterComponent } from '../register/register.component';
     DeliveryViewComponent,
     TakeAwayComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PickUpComponent
   ],
   exports: [ProductQuantityComponent],
 })
