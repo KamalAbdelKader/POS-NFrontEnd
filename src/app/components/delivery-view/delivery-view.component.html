@@ -1,33 +1,23 @@
 <div class="card">
   <div class="card-header">
-    <h5 class="pull-left">Delivery Address</h5>
+    <h5 class="pull-left">Delivery Address {{ types }}</h5>
   </div>
   <div class="card-body">
-    <ngb-tabset type="pills" class="tabbed-card">
-      <ngb-tab>
+    <ngb-tabset type="pills" class="tabbed-card" (tabChange)="setType($event)">
+      <ngb-tab [id]="5">
         <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary"
           ><i class="icofont icofont-ui-home"></i>Home</ng-template
         >
-        <ng-template ngbTabContent class="tab-content">
-          <div class="tab-pane fade show">
-          </div>
-        </ng-template>
       </ngb-tab>
-      <ngb-tab>
+      <ngb-tab [id]="4">
         <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary"
           ><i class="icofont icofont-briefcase"></i>Office</ng-template
         >
-        <ng-template ngbTabContent class="tab-content">
-          <div class="tab-pane fade show"></div>
-        </ng-template>
       </ngb-tab>
-      <ngb-tab>
+      <ngb-tab [id]="3">
         <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary">
           <i class="icofont icofont-car"></i>Car</ng-template
         >directions_car
-        <ng-template ngbTabContent class="tab-content">
-          <div class="tab-pane fade show"></div>
-        </ng-template>
       </ngb-tab>
     </ngb-tabset>
 
@@ -36,11 +26,21 @@
         <h3 class="h3">Account Information</h3>
         <div class="form-group">
           <label for="Name" class="col-form-label">Your Name</label>
-          <input id="Name" class="form-control" type="text" placeholder="your Name" />
+          <input
+            id="Name"
+            class="form-control"
+            type="text"
+            placeholder="your Name"
+          />
         </div>
         <div class="form-group">
           <label for="mail" class="col-form-label">Email Address</label>
-          <input id="mail" class="form-control" type="email" placeholder="Enter email" />
+          <input
+            id="mail"
+            class="form-control"
+            type="email"
+            placeholder="Enter email"
+          />
         </div>
         <div class="form-group">
           <label for="Number" class="col-form-label">Contact Number</label>
@@ -55,39 +55,78 @@
         <h3 class="h3">Address Information</h3>
         <div class="form-group">
           <label for="block" class="col-form-label">Block</label>
-          <input id="block" class="form-control" type="text" placeholder="Block" />
+          <input
+            id="block"
+            class="form-control"
+            type="text"
+            placeholder="Block"
+          />
         </div>
         <div class="form-group">
           <label for="street" class="col-form-label">Street</label>
-          <input id="street" class="form-control" type="text" placeholder="street" />
+          <input
+            id="street"
+            class="form-control"
+            type="text"
+            placeholder="street"
+          />
         </div>
         <div class="form-group">
           <label for="Building" class="col-form-label">Building</label>
-          <input id="Building" class="form-control" type="text" placeholder="Building" />
+          <input
+            id="Building"
+            class="form-control"
+            type="text"
+            placeholder="Building"
+          />
         </div>
-        <div class="form-group">
-          <label for="floor" class="col-form-label">Floor</label>
-          <input id="floor" class="form-control" type="text" placeholder="floor" />
-        </div>
-        <hr class="mt-4 mb-4" />
-        <h3 class="h3">Car Information</h3>
-        <div class="form-group">
-          <label for="company" class="col-form-label">Car</label>
-          <input id="company" class="form-control" type="text" placeholder="Company Name" />
-        </div>
-        <div class="form-group">
-          <label for="Color" class="col-form-label">Color</label>
-          <input id="Color" class="form-control" type="text" placeholder="Color" />
-        </div>
-        <div class="form-group">
-          <label for="website" class="col-form-label">Color</label>
-          <input id="website" class="form-control" type="text" placeholder="Website" />
-        </div>
+        <ng-template [ngIf]="types != 3">
+          <div class="form-group">
+            <label for="floor" class="col-form-label">Floor</label>
+            <input
+              id="floor"
+              class="form-control"
+              type="text"
+              placeholder="floor"
+            />
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="types == 3">
+          <hr class="mt-4 mb-4" />
+          <h3 class="h3">Car Information</h3>
+          <div class="form-group">
+            <label for="company" class="col-form-label">Car</label>
+            <input
+              id="company"
+              class="form-control"
+              type="text"
+              placeholder="Car"
+            />
+          </div>
+          <div class="form-group">
+            <label for="Color" class="col-form-label">Color</label>
+            <input
+              id="Color"
+              class="form-control"
+              type="text"
+              placeholder="Color"
+            />
+          </div>
+          <div class="form-group">
+            <label for="ColorNumber" class="col-form-label">Color Number</label>
+            <input
+              id="ColorNumber"
+              class="form-control"
+              type="text"
+              placeholder="Color Number"
+            />
+          </div>
+        </ng-template>
       </form>
     </div>
     <div class="card-footer">
       <button class="btn btn-primary mr-1">Submit</button>
-      <button class="btn btn-secondary">Cancel</button>
+      <button class="btn btn-secondary" (click)="closeAll()">Cancel</button>
     </div>
   </div>
 </div>

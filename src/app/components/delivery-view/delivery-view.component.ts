@@ -1,26 +1,26 @@
 import { LayoutService } from '../../shared/services/layout.service';
 import { Component, OnInit } from '@angular/core';
 import {
-  NgbModal,
   ModalDismissReasons,
+  NgbModal,
   NgbTabChangeEvent,
 } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup } from '@angular/forms';
-
+import { Types } from '../../shared/enums/types';
 @Component({
   selector: 'app-delivery-view',
   templateUrl: './delivery-view.component.html',
   styleUrls: ['./delivery-view.component.scss'],
 })
 export class DeliveryViewComponent implements OnInit {
-
   public closeResult: string;
   public modalOpen = false;
   form: FormGroup = new FormGroup({});
   currentJustify = 'start';
   currentOrientation = 'horizontal';
+  types = Types.Home;
 
-  constructor(public layout: LayoutService) {}
+  constructor(public layout: LayoutService, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.form = this.CreateForm();
@@ -28,17 +28,17 @@ export class DeliveryViewComponent implements OnInit {
 
   CreateForm(): FormGroup {
     return new FormGroup({
-          Name: new FormControl(''),
-          mail: new FormControl(''),
-          Number: new FormControl(''),
-          block: new FormControl(''),
-          street: new FormControl(''),
-          building: new FormControl(''),
-          floor: new FormControl(''),
-          type: new FormControl(''),
-          car: new FormControl(''),
-          color: new FormControl(''),
-          carNumber: new FormControl('')
+      Name: new FormControl(''),
+      mail: new FormControl(''),
+      Number: new FormControl(''),
+      block: new FormControl(''),
+      street: new FormControl(''),
+      building: new FormControl(''),
+      floor: new FormControl(''),
+      type: new FormControl(''),
+      car: new FormControl(''),
+      color: new FormControl(''),
+      carNumber: new FormControl(''),
     });
   }
 
@@ -58,6 +58,11 @@ export class DeliveryViewComponent implements OnInit {
     }
   }
 
+  setType(type: any): void {
+    this.types = type.nextId ;
+  }
 
-
+  closeAll(): void {
+    this.modalService.dismissAll();
+  }
 }
