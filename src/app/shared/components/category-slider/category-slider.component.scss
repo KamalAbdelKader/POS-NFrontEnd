@@ -1,7 +1,93 @@
-.card {
-    border-radius: 0px;
+.item {
+  width: 200.333px;
+}
+::ng-deep .c-wrapper .owl-item {
+  width: 100px !important;
+}
+.header-tittle {
+  border-bottom: 2px solid #ddd;
+  font-size: 19px;
 }
 
-.item {
-    width: 200.333px;
+.c-wrapper .c-header {
+  font-size: 15px;
+}
+::ng-deep .sliderImg img {
+  max-width: 100% !important;
+  margin: unset !important;
+}
+
+@keyframes waves-reverse {
+  0% {
+    background-position: 1600px;
+  }
+
+  100% {
+    background-position: 0;
+  }
+}
+@keyframes waves {
+  0% {
+    background-position: 0;
+  }
+
+  100% {
+    /* from width of the svg file */
+    background-position: 1600px;
+  }
+}
+.wave:before,
+.wave:after {
+  content: "";
+  width: 100%;
+  height: 65px;
+  background: url("../../../../assets/images/wave_white.svg");
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.wave:after {
+  opacity: 0.6;
+  animation-delay: -5s;
+  animation: waves 30s linear infinite;
+}
+.wave:before {
+  opacity: 0.4;
+  animation: waves-reverse 20s linear infinite;
+}
+
+.wave {
+  width: 100%;
+  background-attachment: fixed;
+  position: absolute;
+  width: 100%;
+  height: 65px;
+  top: -65px;
+  left: 0;
+  background: url("../../../../assets/images/wave_white.svg");
+  z-index: 99;
+  animation: waves 20s linear infinite;
+}
+.wave.hero {
+  top: auto;
+  bottom: 0;
+}
+.caption-carousel {
+  position: absolute;
+  top: 0;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.caption-carousel > div {
+  width: 50%;
+  background: #00000063;
+  text-align: center;
+  justify-content: center;
+  color: #fff;
+  padding: 10px;
+}
+.caption-carousel > div > p {
+  font-size: 13px;
+  line-height: 2;
 }

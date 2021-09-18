@@ -1,35 +1,44 @@
-<div class="card">
-  <div class="container-fluid">
-    <div class="page-title">
-      <div class="row">
-        <div class="col-12">
-          <h3 style="text-align: center">Discover By Category</h3>
+<div class="position-relative">
+  <owl-carousel-o [options]="sliderOptions">
+    <ng-template carouselSlide *ngFor="let img of Images">
+      <div class="sliderImg">
+        <img src="{{ img }}" />
+      </div>
+      <div class="caption-carousel d-flex justify-content-center">
+        <div>
+          <h3>header</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+            natus quis, iure, at, possimus corporis incidunt magnam quia
+            deserunt recusandae ut tempore aut amet assumenda? Reiciendis ipsa
+            eos ab fuga!
+          </p>
         </div>
       </div>
-    </div>
-  </div>
+    </ng-template>
+  </owl-carousel-o>
+  <div class="wave hero"></div>
+</div>
 
-  <div class="card">
-    <div class="product-box">
-      <owl-carousel-o [options]="owlcarousel5Options">
-        <ng-template
-          carouselSlide
-          class="item"
-          [id]="c.guid"
-          *ngFor="let c of categories"
-        >
-        <div class="product-img">
-          <img
-            class="img-fluid" 
-            [src]="get_ImageUrl(c)"
-            alt=""
-            routerLink="/products"
-            [queryParams]="{ category: c.guid }"
-          />
-        </div>
-          <p style="text-align: center">{{ c.name }}</p>
-        </ng-template>
-      </owl-carousel-o>
-    </div>
-  </div>
+<div class="container wrapper-card mt-4">
+  <h3 class="text-left header-tittle pb-2">Discover By Category</h3>
+  <owl-carousel-o [options]="owlcarousel5Options" class="c-wrapper">
+    <ng-template
+      carouselSlide
+      class="item"
+      [id]="c.guid"
+      *ngFor="let c of categories"
+    >
+      <div class="c-div-wrapper">
+        <img
+          class="img-fluid"
+          [src]="get_ImageUrl(c)"
+          alt=""
+          routerLink="/products"
+          [queryParams]="{ category: c.guid }"
+        />
+        <h3 class="text-center c-header">{{ c.name }}</h3>
+      </div>
+    </ng-template>
+  </owl-carousel-o>
 </div>

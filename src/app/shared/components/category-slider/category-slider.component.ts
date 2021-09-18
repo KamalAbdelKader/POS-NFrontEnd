@@ -9,30 +9,50 @@ import { Category } from './../../model/Category';
 })
 export class CategorySliderComponent implements OnInit {
   categories: Category[] = [];
+  Images = [
+    '../../../../assets/images/slider/banner-5.jpg',
+    '../../../../assets/images/slider/banner-4.jpg',
+    '../../../../assets/images/slider/banner-6.jpg',
+  ];
   owlcarousel5Options = {
     margin: 3,
     loop: false,
     autoWidth: true,
     autoHeight: true,
     responsiveClass: true,
-    items: 5,
     nav: false,
     responsive: {
       576: {
         items: 1,
-        mergeFit: true,
       },
       768: {
         items: 2,
-        mergeFit: true,
       },
       992: {
         items: 3,
-        mergeFit: true,
       },
     },
   };
 
+  sliderOptions = {
+    loop: true,
+    autoWidth: true,
+    autoHeight: true,
+    responsiveClass: true,
+    nav: false,
+    dots: false,
+    responsive: {
+      576: {
+        items: 1,
+      },
+      768: {
+        items: 1,
+      },
+      992: {
+        items: 1,
+      },
+    },
+  };
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
@@ -40,6 +60,7 @@ export class CategorySliderComponent implements OnInit {
       .getCategoryies()
       .subscribe((categories: Category[]) => {
         this.categories = categories;
+        console.log(this.categories);
       });
   }
 

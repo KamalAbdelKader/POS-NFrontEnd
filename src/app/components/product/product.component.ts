@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { fromEvent, Observable, Subscription } from 'rxjs';
 import { Item } from 'src/app/shared/model/item';
 import { ItemChangeService } from 'src/app/shared/services/item/item-change.service';
 import { ItemService } from 'src/app/shared/services/item/item.service';
@@ -23,9 +24,12 @@ export class ProductComponent implements OnInit {
   throttle = 300;
   scrollDistance = 3;
   scrollUpDistance = 2;
-
+  resizeObservable$: Observable<Event>;
+  resizeSubscription$: Subscription;
   @ViewChild('quickView') QuickView: QuickViewComponent;
   pageIndex: number;
+  isMobile = false;
+  // activeRoute: any;
 
   constructor(
     private itemService: ItemService,
@@ -38,6 +42,12 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // if (window.innerWidth < 658) {
+    //   this.toggleListView(true);
+    // } else {
+    //   this.toggleListView(false);
+    // }
+    this.detectDevice();
     this.getItems();
     // this.getExtraItems();
   }
@@ -90,5 +100,16 @@ export class ProductComponent implements OnInit {
       .toPromise();
     this.items.push(...items);
     this.shoppingService.setItems(this.items);
+  }
+  detectDevice() {
+    this.isMobile = window.innerWidth <= 992;
+
+    this.resizeObservable$ = fromEvent(window, 'resize');
+    this.resizeSubscription$ = this.resizeObservable$.subscribe(() => {
+      this.isMobile = window.innerWidth <= 992;
+    });
+    // this.activeRoute.queryParams.subscribe(() => {
+    //   this.isMobile = window.innerWidth <= 992;
+    // });
   }
 }

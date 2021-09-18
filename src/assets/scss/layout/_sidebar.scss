@@ -244,7 +244,7 @@
           margin-left: 25%;
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: right;
 
           > li {
             padding: 6px 10px;
@@ -633,8 +633,6 @@
   }
 
   .page-body-wrapper {
-    background-color: $body-color;
-
     .page-body {
       min-height: calc(100vh - #{$header-size});
       margin-top: $header-size;
@@ -1129,10 +1127,6 @@
       }
 
       .header-wrapper {
-        .logo-wrapper {
-          display: none;
-        }
-
         .toggle-sidebar {
           display: none;
         }
@@ -1765,10 +1759,10 @@
 
       .page-body {
         min-height: calc(100vh - 80px);
-        margin-top: 80px;
+        margin-top: 56px;
         // margin-left: 280px;
         // animation: pagebody 1000ms ease-in-out;
-      } 
+      }
     }
 
     &.dark-sidebar,

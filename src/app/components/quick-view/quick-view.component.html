@@ -11,9 +11,12 @@
           <img class="img-fluid" [src]="get_ImageUrl(item)" alt="" />
         </div>
         <div class="product-details col-md-6 text-left">
-          <h4>{{ item.name }} </h4>
+          <h4>{{ item.name }}</h4>
           <div class="product-price">
-            {{ item.endUser | currency: "KWD" }}
+            <div class="my-2">
+              {{ item.endUser | currency: "KWD" }}
+            </div>
+
             <!-- <del>$350.00 </del> -->
           </div>
           <div class="product-view">
@@ -23,18 +26,21 @@
             </p>
           </div>
           <div class="product-size product-size-width">
-            <ul  >
-              <li *ngFor="let eitem of extraItems; let i = index" [class.first-item]="(i == 0)" >
+            <ul>
+              <li
+                *ngFor="let eitem of extraItems; let i = index"
+                [class.first-item]="i == 0"
+              >
                 <app-extra-item
                   [item]="item"
                   [disabled]="!(quantity > 0)"
                   [extraItem]="eitem"
                 ></app-extra-item>
-               </li>
+              </li>
             </ul>
           </div>
           <div class="product-qnty">
-            <app-product-quantity  [item]="item"></app-product-quantity>
+            <app-product-quantity [item]="item"></app-product-quantity>
             <div class="addcart-btn">
               <button
                 class="btn btn-primary mr-1"
