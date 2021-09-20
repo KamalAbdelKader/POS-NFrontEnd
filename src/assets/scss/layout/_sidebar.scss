@@ -90,7 +90,7 @@
     max-width: 100vw;
     position: $main-header-position;
     top: $main-header-top;
-    z-index: $main-header-z-index;
+    z-index: 999;
     transition: $sidebar-transition;
     background-color: $white;
     box-shadow: $main-header-shadow;

@@ -10,6 +10,21 @@
   transform-style: preserve-3d;
 }
 
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+[type="text"].form-control:focus,
+[type="password"].form-control:focus,
+[type="email"].form-control:focus,
+[type="tel"].form-control:focus,
+[contenteditable].form-control:focus {
+  box-shadow: none !important;
+}
+
 :host {
   display: block;
   position: absolute;
@@ -25,6 +40,12 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif !important;
   background-color: #f8f8f8;
+}
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 .wrapper-card {
   background: #fff;

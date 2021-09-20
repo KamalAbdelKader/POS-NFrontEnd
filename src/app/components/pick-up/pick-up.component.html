@@ -1,14 +1,24 @@
-<ngb-tabset type="pills" [justify]="'start'" #t="ngbTabset">
-    <ngb-tab>
-      <ng-template ngbTabTitle><b>Dining</b></ng-template>
-      <ng-template ngbTabContent>
-        <app-table-number-view></app-table-number-view>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab>
-      <ng-template ngbTabTitle><b>Takeaway</b></ng-template>
-      <ng-template ngbTabContent>
-        <app-take-away></app-take-away>
-      </ng-template>
-    </ngb-tab>
-  </ngb-tabset>
+<label class="mr-3 cursor-pointer">
+  <input
+    [value]="1"
+    [(ngModel)]="sh"
+    name="sh"
+    type="radio"
+    [checked]="isChecked"
+  />
+  Dining
+</label>
+
+<label class="cursor-pointer">
+  <input
+    [value]="0"
+    [(ngModel)]="sh"
+    name="sh"
+    type="radio"
+    [checked]="!isChecked"
+  />
+  Takeaway
+</label>
+<app-table-number-view *ngIf="sh == 1"></app-table-number-view>
+
+<app-take-away *ngIf="sh == 0"></app-take-away>

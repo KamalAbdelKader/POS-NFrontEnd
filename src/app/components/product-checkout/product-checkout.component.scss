@@ -1,6 +1,14 @@
-
-
 .order-history table tbody tr td .main-product-name a {
-    font-size: 15px;
-    color: #da2c2c;
+  font-size: 15px;
+  color: #da2c2c;
+}
+
+::ng-deep .nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #ffffff;
+  background-color: #7366ff;
+  border-color: #7366ff;
+}
+::ng-deep .nav-tabs .nav-link {
+  color: #495057;
 }
