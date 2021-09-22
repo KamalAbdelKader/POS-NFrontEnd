@@ -15,7 +15,11 @@ export class CategorySliderComponent implements OnInit {
     '../../../../assets/images/slider/banner-6.jpg',
   ];
   owlcarousel5Options = {
-    margin: 3,
+    margin: 20,
+    animateOut: 'slideOutDown',
+    animateIn: 'flipInX',
+    stagePadding: 30,
+    smartSpeed: 450,
     loop: false,
     autoWidth: true,
     autoHeight: true,

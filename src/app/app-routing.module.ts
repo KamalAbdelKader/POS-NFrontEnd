@@ -14,10 +14,10 @@ const routes: Routes = [
     component: ContentComponent,
     children: content
   },
-  {
-    path: '**',
-    redirectTo: ''
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: ''
+  // }
 ];
 
 @NgModule({

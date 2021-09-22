@@ -23,6 +23,7 @@ export class ProductCartComponent implements OnInit {
   }
 
   get_ImageUrl(item: Item): string {
+    console.log(item);
     return 'data:image/png;base64,' + item.image;
   }
 }
