@@ -5,12 +5,34 @@ import { ToastrService } from 'ngx-toastr';
 import { Item } from 'src/app/shared/model/item';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
 import { TableNumberViewComponent } from '../table-number-view/table-number-view.component';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+
 declare var require;
 const Swal = require('sweetalert2');
 @Component({
   selector: 'app-product-checkout',
   templateUrl: './product-checkout.component.html',
   styleUrls: ['./product-checkout.component.scss'],
+  animations: [
+    // the fade-in/fade-out animation.
+    trigger('FadeAnimation', [
+      state('in', style({ opacity: 1 })),
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(500),
+      ]),
+      transition(
+        ':leave',
+        animate(500, style({ opacity: 0 }))
+      ),
+    ]),
+  ],
 })
 export class ProductCheckoutComponent implements OnInit {
   items: Item[] = [];

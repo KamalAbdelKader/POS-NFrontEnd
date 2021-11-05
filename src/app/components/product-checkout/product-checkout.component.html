@@ -3,6 +3,150 @@
   [items]="[]"
   [active_item]="'Cart'"
 ></app-breadcrumb>
+<div class="wrap cf">
+  <div class="heading cf">
+    <h1>My Cart</h1>
+    <a   routerLink="/"  class="continue">Continue Shopping</a>
+  </div>
+  <div class="cart">
+
+    <div></div>
+    <ul class="cartWrap">
+      <ng-container [@FadeAnimation]="'in'"  *ngFor="let item of items">
+        <li class="items even">
+          <div class="infoWrap">
+            <div class="cartSection">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img
+                      class="img-fluid rounded-circle mr-3 img-60 itemImg"
+                      [src]="get_ImageUrl(item)"
+                      [alt]="item.name"
+                    />
+                    <span class="itemNumber"
+                      >Price:
+
+                      {{ item.endUser | currency: "KWD" }}
+                    </span>
+                    <h3>
+                      <div class="main-product-name">
+                        <a href="javascript:void(0);">{{ item.name }}</a>
+                      </div>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <app-product-quantity
+                      [item]="item"
+                      [header]="''"
+                    ></app-product-quantity>
+                  </div>
+                  <div class="col-md-4 row">
+                    <div
+                      class="
+                        col-md-6
+                        align-self-center
+                        d-flex
+                        justify-content-center
+                      "
+                    >
+                      <div class="prodTotal cartSection">
+                        <p>
+                          {{
+                            getTotalProductPrice(item) | currency: "KWD":true
+                          }}
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="
+                        col-md-6
+                        align-self-center
+                        d-flex
+                        justify-content-center
+                      "
+                    >
+                      <div  >
+                        <span
+                          style="cursor: pointer"
+                          (click)="removeFromCart(item)"
+
+                          class="remove"
+                        >
+                          <i class="fa fa-trash text-danger"  aria-hidden="true"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row"  [@FadeAnimation]="'in'"    *ngFor="let extraItem of item.extraItems">
+                  <div class="col-md-3 row d-block">
+                    <img
+                      class="img-fluid rounded-circle"
+                      width="20%"
+                      height="50%"
+                      [src]="get_ImageUrl(extraItem)"
+                      [alt]="extraItem.name"
+                    />
+                    <span class="badge badge-secondary align-self-center"
+                      >Extra</span
+                    >
+                    <div class="d-block">
+                      <a class="itemName" href="javascript:void(0);">{{
+                        extraItem.name
+                      }}</a>
+                      <span class="itemNumber align-self-center"
+                        >Price:
+                        <p style="font-weight: bold">
+                          {{ extraItem.endUser | currency: "KWD" }}
+                        </p>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 row">
+                    <div class="col-md-8">
+                      <app-product-quantity
+                        [item]="item"
+                        [extraItem]="extraItem"
+                        [header]="''"
+                      ></app-product-quantity>
+                    </div>
+                    <div class="col-md-4 align-self-center">
+                      <span
+                        style="cursor: pointer"
+                        (click)="removeExtraFromCart(item, extraItem)"
+
+                        class="remove removeExtra"
+                      >
+                        <i class="fa fa-trash text-danger  "   aria-hidden="true"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  <div class="subtotal cf">
+    <ul>
+      <li class="totalRow">
+        <span class="label">Subtotal</span><span class="value"> {{ getTotalPrice() | currency: "KWD" }}</span>
+      </li>
+      <li class="totalRow final">
+        <span class="label">Total Price</span><span class="value">
+          {{ getTotalPrice() | currency: "KWD" }}
+        </span>
+      </li>
+      <li class="totalRow">
+        <a href="javascript:void(0);" class="btn continue" (click)="checkout(view)">Submit </a>
+      </li>
+    </ul>
+  </div>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
@@ -109,6 +253,7 @@
                   <tr>
                     <td>
                       <a
+                      href="javascript:void(0);"
                         class="btn btn-success cart-btn-transform"
                         (click)="checkout(view)"
                         >Submit</a
