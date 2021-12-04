@@ -1,10 +1,6 @@
 <ng-template #categoryView let-modal>
-  <div
-    class="modal-content"
-    style="overflow: auto"
-    [ngClass]="layout.config.settings.layout_type"
-    [class]="layout.config.settings.layout_version"
-  >
+  <div class="modal-content" style="overflow: auto" [ngClass]="layout.config.settings.layout_type"
+    [class]="layout.config.settings.layout_version">
     <div class="modal-header product-modal">
       <div class="container">
         <div class="row">
@@ -30,11 +26,8 @@
                   </ngb-tab>
                 </ngb-tabset>
 
-                <div
-                  class="btn-group btn-group-toggle mt-2 tabset-group-btn-xs"
-                  ngbRadioGroup
-                  [(ngModel)]="currentJustify"
-                ></div>
+                <div class="btn-group btn-group-toggle mt-2 tabset-group-btn-xs" ngbRadioGroup
+                  [(ngModel)]="currentJustify"></div>
               </div>
             </div>
           </div>

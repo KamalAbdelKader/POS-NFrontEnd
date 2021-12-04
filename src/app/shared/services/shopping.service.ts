@@ -17,12 +17,18 @@ import { SessionService } from './session.service';
   providedIn: 'root',
 })
 export class ShoppingCartService extends DataService {
-  private itemList: Item[] = [];
-  private itemListSource = new BehaviorSubject<Item[]>([]);
-  private shoppingCartUrl: string;
-
+ 
   private _itemList: Item[] = [];
   private _extraItemList: Item[] = [];
+
+
+  private itemList: Item[] = [];
+  private itemListSource = new BehaviorSubject<Item[]>([]);
+
+  // urls
+  private shoppingCartUrl: string;
+  private savingAsTakeAwayUrl: string;
+
 
   /**
    * Observable of current product list in user cart
@@ -32,6 +38,7 @@ export class ShoppingCartService extends DataService {
   constructor(private sessionService: SessionService, httpClient: HttpClient) {
     super(httpClient);
     this.shoppingCartUrl = this.url.shoppingCart.saveItems;
+    this.savingAsTakeAwayUrl = this.url.shoppingCart.takeAway;
   }
 
   private productChange(): void {
@@ -214,6 +221,18 @@ export class ShoppingCartService extends DataService {
     });
     return this.post(this.shoppingCartUrl, itemsObj);
   }
+
+
+  // Add Extra param for type Id
+  saveAsTakeAway(itemsObj: {
+    items: Item[];
+  }): Observable<number> {
+    itemsObj?.items.forEach((it) => {
+      it.image = null;
+    });
+    return this.post(this.savingAsTakeAwayUrl, itemsObj);
+  }
+
 
   setItems(items: Item[]): void {
     this._itemList = items;

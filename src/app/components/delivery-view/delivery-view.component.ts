@@ -1,12 +1,11 @@
 import { LayoutService } from '../../shared/services/layout.service';
 import { Component, OnInit } from '@angular/core';
 import {
-  NgbModal,
   ModalDismissReasons,
   NgbTabChangeEvent,
 } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, FormGroup } from '@angular/forms';
-
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Types } from '../../shared/enums/types';
 @Component({
   selector: 'app-delivery-view',
   templateUrl: './delivery-view.component.html',
@@ -16,29 +15,43 @@ export class DeliveryViewComponent implements OnInit {
 
   public closeResult: string;
   public modalOpen = false;
+  type: Types = Types.Home;
+  types = Types;
   form: FormGroup = new FormGroup({});
   currentJustify = 'start';
   currentOrientation = 'horizontal';
 
-  constructor(public layout: LayoutService) {}
+  constructor(public layout: LayoutService) { }
 
   ngOnInit(): void {
     this.form = this.CreateForm();
   }
 
+  onChange(type: number): void {
+    this.type = type;
+    this.getControl('type').setValue(this.type);
+
+    if (this.type == Types.Car) {
+      this.getControl('car').setValidators(Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)]));
+    } else {
+      this.getControl('car').clearValidators();
+    }
+  }
+
   CreateForm(): FormGroup {
     return new FormGroup({
-          Name: new FormControl(''),
-          mail: new FormControl(''),
-          Number: new FormControl(''),
-          block: new FormControl(''),
-          street: new FormControl(''),
-          building: new FormControl(''),
-          floor: new FormControl(''),
-          type: new FormControl(''),
-          car: new FormControl(''),
-          color: new FormControl(''),
-          carNumber: new FormControl('')
+      name: new FormControl('', [Validators.required]),
+      mail: new FormControl('', Validators.email),
+      number: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(13)])),
+      block: new FormControl('', Validators.minLength(3)),
+      street: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
+      building: new FormControl('', Validators.minLength(3)),
+      floor: new FormControl('', Validators.minLength(1)),
+      type: new FormControl(this.types.Home),
+      car: new FormControl(''),
+      carId: new FormControl(''),
+      color: new FormControl(''),
+      carNumber: new FormControl('')
     });
   }
 
@@ -58,6 +71,17 @@ export class DeliveryViewComponent implements OnInit {
     }
   }
 
+  getControl(controlName: string): AbstractControl {
+    return this.form.get(controlName);
+  }
 
+
+  onSave(): void {
+    this.form.markAllAsTouched();
+    if (this.form.valid) {
+      // call API form.value
+    }
+
+  }
 
 }

@@ -64,7 +64,6 @@ export class CategorySliderComponent implements OnInit {
       .getCategoryies()
       .subscribe((categories: Category[]) => {
         this.categories = categories;
-        console.log(this.categories);
       });
   }
 

@@ -1,10 +1,7 @@
 import { CategoryViewComponent } from './../category-view/category-view.component';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Item } from 'src/app/shared/model/item';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
-import { TableNumberViewComponent } from '../table-number-view/table-number-view.component';
 declare var require;
 const Swal = require('sweetalert2');
 @Component({

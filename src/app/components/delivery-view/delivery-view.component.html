@@ -3,28 +3,26 @@
     <h5 class="pull-left">Delivery Address</h5>
   </div>
   <div class="card-body">
-    <ngb-tabset type="pills" class="tabbed-card">
-      <ngb-tab>
-        <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary"
-          ><i class="icofont icofont-ui-home"></i>Home</ng-template
-        >
+    <ngb-tabset (tabChange)="onChange($event.nextId)" type="pills" class="tabbed-card">
+      <ngb-tab [id]="types.Home">
+        <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary"><i
+            class="icofont icofont-ui-home"></i>Home</ng-template>
         <ng-template ngbTabContent class="tab-content">
           <div class="tab-pane fade show">
           </div>
         </ng-template>
       </ngb-tab>
-      <ngb-tab>
-        <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary"
-          ><i class="icofont icofont-briefcase"></i>Office</ng-template
-        >
+      <ngb-tab [id]="types.Office">
+        <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary"><i
+            class="icofont icofont-briefcase"></i>Office</ng-template>
         <ng-template ngbTabContent class="tab-content">
           <div class="tab-pane fade show"></div>
         </ng-template>
       </ngb-tab>
-      <ngb-tab>
+      <ngb-tab [id]="types.Car">
         <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary">
-          <i class="icofont icofont-car"></i>Car</ng-template
-        >directions_car
+          <i class="icofont icofont-car"></i>Car
+        </ng-template>directions_car
         <ng-template ngbTabContent class="tab-content">
           <div class="tab-pane fade show"></div>
         </ng-template>
@@ -32,61 +30,76 @@
     </ngb-tabset>
 
     <div class="tab-pane fade show">
-      <form class="theme-form mega-form">
+      <form class="theme-form mega-form" [formGroup]="form">
         <h3 class="h3">Account Information</h3>
         <div class="form-group">
-          <label for="Name" class="col-form-label">Your Name</label>
-          <input id="Name" class="form-control" type="text" placeholder="your Name" />
+          <label for="Name" class="col-form-label">Name <span style="color: red;">*</span></label>
+          <input id="Name" formControlName="name" class="form-control" type="text" placeholder="your Name" />
+          <app-validation
+          [control]="getControl('name')"
+          [fieldName]="'Name'"
+        ></app-validation>
         </div>
         <div class="form-group">
           <label for="mail" class="col-form-label">Email Address</label>
           <input id="mail" class="form-control" type="email" placeholder="Enter email" />
         </div>
         <div class="form-group">
-          <label for="Number" class="col-form-label">Contact Number</label>
-          <input
-            id="Number"
-            class="form-control"
-            type="Number"
-            placeholder="Enter contact number"
-          />
+          <label for="Number" class="col-form-label">Contact Number <span style="color: red;">*</span></label>
+          <input id="Number" formControlName="number" class="form-control" type="Number" placeholder="Enter contact number" />
+          <app-validation
+          [control]="getControl('number')"
+          [fieldName]="'Contact Number'"
+        ></app-validation>
         </div>
         <hr class="mt-4 mb-4" />
         <h3 class="h3">Address Information</h3>
         <div class="form-group">
           <label for="block" class="col-form-label">Block</label>
-          <input id="block" class="form-control" type="text" placeholder="Block" />
+          <input id="block" formControlName="block" class="form-control" type="text" placeholder="Block" />
         </div>
         <div class="form-group">
-          <label for="street" class="col-form-label">Street</label>
-          <input id="street" class="form-control" type="text" placeholder="street" />
+          <label for="street" class="col-form-label">Street <span style="color: red;">*</span></label>
+          <input id="street" formControlName="street" class="form-control" type="text" placeholder="street" />
+          <app-validation
+          [control]="getControl('street')"
+          [fieldName]="'Street'"
+        ></app-validation>
         </div>
         <div class="form-group">
           <label for="Building" class="col-form-label">Building</label>
-          <input id="Building" class="form-control" type="text" placeholder="Building" />
+          <input id="Building" formControlName="building" class="form-control" type="text" placeholder="Building" />
         </div>
         <div class="form-group">
           <label for="floor" class="col-form-label">Floor</label>
-          <input id="floor" class="form-control" type="text" placeholder="floor" />
+          <input id="floor" formControlName="floor" class="form-control" type="text" placeholder="floor" />
         </div>
-        <hr class="mt-4 mb-4" />
-        <h3 class="h3">Car Information</h3>
-        <div class="form-group">
-          <label for="company" class="col-form-label">Car</label>
-          <input id="company" class="form-control" type="text" placeholder="Company Name" />
-        </div>
-        <div class="form-group">
-          <label for="Color" class="col-form-label">Color</label>
-          <input id="Color" class="form-control" type="text" placeholder="Color" />
-        </div>
-        <div class="form-group">
-          <label for="website" class="col-form-label">Color</label>
-          <input id="website" class="form-control" type="text" placeholder="Website" />
-        </div>
+
+        <ng-container *ngIf="type == types.Car">
+          <hr class="mt-4 mb-4" />
+          <h3 class="h3">Car Information</h3>
+          <div class="form-group">
+            <label for="Car" class="col-form-label">Car <span style="color: red;">*</span></label>
+            <input id="Car" formControlName="car" class="form-control" type="text" placeholder="Car Number" />
+            <app-validation
+            [control]="getControl('car')"
+            [fieldName]="'car'"
+          ></app-validation>
+          </div>
+          <div class="form-group">
+            <label for="Color" class="col-form-label">Color</label>
+            <input id="Color" formControlName="color" class="form-control" type="text" placeholder="Color" />
+          </div>
+          <div class="form-group">
+            <label for="CarId" class="col-form-label">Car Id </label>
+            <input id="CarId" formControlName="carId" class="form-control" type="text" placeholder="Car Id" />
+          </div>
+        </ng-container>
+
       </form>
     </div>
     <div class="card-footer">
-      <button class="btn btn-primary mr-1">Submit</button>
+      <button (click)="onSave()" class="btn btn-primary mr-1">Submit</button>
       <button class="btn btn-secondary">Cancel</button>
     </div>
   </div>
