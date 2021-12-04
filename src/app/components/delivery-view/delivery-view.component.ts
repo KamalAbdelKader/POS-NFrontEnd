@@ -2,6 +2,7 @@ import { LayoutService } from '../../shared/services/layout.service';
 import { Component, OnInit } from '@angular/core';
 import {
   ModalDismissReasons,
+  NgbModal,
   NgbTabChangeEvent,
 } from '@ng-bootstrap/ng-bootstrap';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -29,6 +30,7 @@ export class DeliveryViewComponent implements OnInit {
   items: Item[];
 
   constructor(private router: Router,
+              private modelService: NgbModal,
               public layout: LayoutService,
               private toastrService: ToastrService,
               private shoppingCartService: ShoppingCartService) { }
@@ -105,16 +107,19 @@ export class DeliveryViewComponent implements OnInit {
       userInfo.OrderTypeId = this.form.value.type;
       userInfo.UserInfo = this.form.value as UserInfo;
       this.shoppingCartService.saveAsUserInfo(userInfo).subscribe(response => {
-        response > 0
-          ? this.toastrService.success(
-            `Order Completed successfully - Order Number ${response}`
-          )
-          : this.toastrService.error(
+        if (response > 0) {
+          this.toastrService.success(
+            `Order Completed successfully Order Number ${response}`
+          );
+          this.modelService.dismissAll();
+          this.router.navigate(['/products']);
+          this.shoppingCartService.clearProducts();
+        } else {
+          this.toastrService.error(
             '',
             'Sorry something went wrong please try again.'
           );
-        this.router.navigate(['/products']);
-        this.shoppingCartService.clearProducts();
+        }
       });
     }
 

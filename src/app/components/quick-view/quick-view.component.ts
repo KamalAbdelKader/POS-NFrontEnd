@@ -40,9 +40,9 @@ export class QuickViewComponent implements OnInit {
     private modalService: NgbModal,
     private itemService: ItemService,
     private shoppingService: ShoppingCartService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   async openModal(id: number): Promise<void> {
     this.modalOpen = true;
@@ -63,8 +63,8 @@ export class QuickViewComponent implements OnInit {
     );
 
     this.layout.config.settings.layout_version = this.layout.isDarkMode()
-    ? 'dark-only'
-    : 'light';
+      ? 'dark-only'
+      : 'light';
     this.extraItems = [];
     this.extraItems = await this.itemService.getExtraItems(id).toPromise();
     this.shoppingService.setExtraItems(this.extraItems);

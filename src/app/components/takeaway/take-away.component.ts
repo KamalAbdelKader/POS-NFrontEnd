@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Item } from 'src/app/shared/model/item';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
@@ -13,6 +14,7 @@ export class TakeAwayComponent implements OnInit {
   constructor(
     private router: Router,
     private toastrService: ToastrService,
+    private modelService: NgbModal,
     private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
@@ -30,16 +32,19 @@ export class TakeAwayComponent implements OnInit {
     this.shoppingCartService
       .saveAsTakeAway({ items: this.items })
       .subscribe((response) => {
-        response > 0
-          ? this.toastrService.success(
+        if (response > 0) {
+          this.toastrService.success(
             'Order Completed successfully'
-          )
-          : this.toastrService.error(
+          );
+          this.modelService.dismissAll();
+          this.router.navigate(['/products']);
+          this.shoppingCartService.clearProducts();
+        } else {
+          this.toastrService.error(
             '',
             'Sorry something went wrong please try again.'
           );
-        this.router.navigate(['/products']);
-        this.shoppingCartService.clearProducts();
+        }
       });
   }
 }
