@@ -12,15 +12,15 @@ export class Category {
   userAccess: string;
 
   constructor() {
-    this.name = "";
-    this.guid = "";
-    this.guid_User = "";
-    this.parent_Guid = "";
+    this.name = '';
+    this.guid = '';
+    this.guid_User = '';
+    this.parent_Guid = '';
     this.img = [];
-    this.is_Sale = "";
-    this.printer = "";
+    this.is_Sale = '';
+    this.printer = '';
     this.sort1 = null;
-    this.en_Name = "";
-    this.question_Sandwich = "";
+    this.en_Name = '';
+    this.question_Sandwich = '';
   }
 }

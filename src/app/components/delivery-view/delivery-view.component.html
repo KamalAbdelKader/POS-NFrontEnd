@@ -34,21 +34,25 @@
         <h3 class="h3">Account Information</h3>
         <div class="form-group">
           <label for="Name" class="col-form-label">Name <span style="color: red;">*</span></label>
-          <input id="Name" formControlName="name" class="form-control" type="text" placeholder="your Name" />
+          <input id="Name" formControlName="Name" class="form-control" type="text" placeholder="your Name" />
           <app-validation
-          [control]="getControl('name')"
+          [control]="getControl('Name')"
           [fieldName]="'Name'"
         ></app-validation>
         </div>
         <div class="form-group">
           <label for="mail" class="col-form-label">Email Address</label>
-          <input id="mail" class="form-control" type="email" placeholder="Enter email" />
+          <input id="mail" formControlName="Email" class="form-control" type="email" placeholder="Enter email" />
+          <app-validation
+          [control]="getControl('mail')"
+          [fieldName]="'Email'"
+        ></app-validation>
         </div>
         <div class="form-group">
           <label for="Number" class="col-form-label">Contact Number <span style="color: red;">*</span></label>
-          <input id="Number" formControlName="number" class="form-control" type="Number" placeholder="Enter contact number" />
+          <input id="Number" formControlName="Number" class="form-control" type="Number" placeholder="Enter contact number" />
           <app-validation
-          [control]="getControl('number')"
+          [control]="getControl('Number')"
           [fieldName]="'Contact Number'"
         ></app-validation>
         </div>
@@ -56,43 +60,51 @@
         <h3 class="h3">Address Information</h3>
         <div class="form-group">
           <label for="block" class="col-form-label">Block</label>
-          <input id="block" formControlName="block" class="form-control" type="text" placeholder="Block" />
+          <input id="block" formControlName="Block" class="form-control" type="text" placeholder="Block" />
+          <app-validation
+          [control]="getControl('Block')"
+          [fieldName]="'Block'"
+        ></app-validation>
         </div>
         <div class="form-group">
           <label for="street" class="col-form-label">Street <span style="color: red;">*</span></label>
-          <input id="street" formControlName="street" class="form-control" type="text" placeholder="street" />
+          <input id="street" formControlName="Street" class="form-control" type="text" placeholder="street" />
           <app-validation
-          [control]="getControl('street')"
+          [control]="getControl('Street')"
           [fieldName]="'Street'"
         ></app-validation>
         </div>
         <div class="form-group">
           <label for="Building" class="col-form-label">Building</label>
-          <input id="Building" formControlName="building" class="form-control" type="text" placeholder="Building" />
+          <input id="Building" formControlName="Building" class="form-control" type="text" placeholder="Building" />
+          <app-validation
+          [control]="getControl('Building')"
+          [fieldName]="'Building'"
+        ></app-validation>
         </div>
         <div class="form-group">
           <label for="floor" class="col-form-label">Floor</label>
-          <input id="floor" formControlName="floor" class="form-control" type="text" placeholder="floor" />
+          <input id="floor" formControlName="Floor" class="form-control" type="text" placeholder="floor" />
         </div>
 
         <ng-container *ngIf="type == types.Car">
           <hr class="mt-4 mb-4" />
           <h3 class="h3">Car Information</h3>
           <div class="form-group">
-            <label for="Car" class="col-form-label">Car <span style="color: red;">*</span></label>
-            <input id="Car" formControlName="car" class="form-control" type="text" placeholder="Car Number" />
+            <label for="Car" class="col-form-label">Car Model <span style="color: red;">*</span></label>
+            <input id="Car" formControlName="CarModel" class="form-control" type="text" placeholder="Car Number" />
             <app-validation
-            [control]="getControl('car')"
-            [fieldName]="'car'"
+            [control]="getControl('CarModel')"
+            [fieldName]="'Car Model'"
           ></app-validation>
           </div>
           <div class="form-group">
             <label for="Color" class="col-form-label">Color</label>
-            <input id="Color" formControlName="color" class="form-control" type="text" placeholder="Color" />
+            <input id="Color" formControlName="CarColor" class="form-control" type="text" placeholder="Color" />
           </div>
           <div class="form-group">
-            <label for="CarId" class="col-form-label">Car Id </label>
-            <input id="CarId" formControlName="carId" class="form-control" type="text" placeholder="Car Id" />
+            <label for="CarId" class="col-form-label">Car Number</label>
+            <input id="CarId" formControlName="CarNumber" class="form-control" type="text" placeholder="Car Id" />
           </div>
         </ng-container>
 

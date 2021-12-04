@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { DataService } from "../base/data.service";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { DataService } from '../base/data.service';
 import { SessionService } from '../session.service';
-import { Category } from '../../model/Category';
+import { Category } from '../../model/category';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class CategoryService extends DataService {
   private categoryUrl: string;

@@ -12,12 +12,13 @@ import {
 } from '../helper/helper';
 import { DataService } from './base/data.service';
 import { SessionService } from './session.service';
+import { ShoppingCartDeliveryModel } from '../model/shoppingCartDeliveryModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingCartService extends DataService {
- 
+
   private _itemList: Item[] = [];
   private _extraItemList: Item[] = [];
 
@@ -28,6 +29,7 @@ export class ShoppingCartService extends DataService {
   // urls
   private shoppingCartUrl: string;
   private savingAsTakeAwayUrl: string;
+  private savingAsUserInfoUrl: string;
 
 
   /**
@@ -39,6 +41,7 @@ export class ShoppingCartService extends DataService {
     super(httpClient);
     this.shoppingCartUrl = this.url.shoppingCart.saveItems;
     this.savingAsTakeAwayUrl = this.url.shoppingCart.takeAway;
+    this.savingAsUserInfoUrl = this.url.shoppingCart.userInfo;
   }
 
   private productChange(): void {
@@ -231,6 +234,15 @@ export class ShoppingCartService extends DataService {
       it.image = null;
     });
     return this.post(this.savingAsTakeAwayUrl, itemsObj);
+  }
+
+  saveAsUserInfo(
+    item: ShoppingCartDeliveryModel
+  ): Observable<number> {
+    item?.Items.forEach((it) => {
+      it.image = null;
+    });
+    return this.post(this.savingAsUserInfoUrl, item);
   }
 
 

@@ -1,5 +1,5 @@
-<div
-  *ngIf="control && control?.touched && control?.invalid"
+<ng-container
+  *ngIf="control && (control?.touched || control?.invalid)"
   class="alert alert-danger my-2"
 >
   <span *ngIf="control?.errors?.required">
@@ -18,4 +18,4 @@
     max {{ fieldName }} {{ control?.errors?.max.max }} ( you entered
     {{ control?.errors?.max.actual }})
   </span>
-</div>
+</ng-container>
