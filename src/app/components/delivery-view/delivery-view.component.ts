@@ -12,7 +12,7 @@ import { UserInfo } from 'src/app/shared/model/userInfo';
 import { ShoppingCartDeliveryModel } from 'src/app/shared/model/shoppingCartDeliveryModel';
 import { Item } from 'src/app/shared/model/item';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr/toastr/toastr.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-delivery-view',
   templateUrl: './delivery-view.component.html',
