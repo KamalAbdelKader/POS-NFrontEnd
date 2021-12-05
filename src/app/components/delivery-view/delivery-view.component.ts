@@ -11,8 +11,8 @@ import { UserInfo } from 'src/app/shared/model/userInfo';
 import { ShoppingCartDeliveryModel } from 'src/app/shared/model/shoppingCartDeliveryModel';
 import { Item } from 'src/app/shared/model/item';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr/toastr/toastr.service';
-@Component({
+import { ToastrService } from 'ngx-toastr';
+ @Component({
   selector: 'app-delivery-view',
   templateUrl: './delivery-view.component.html',
   styleUrls: ['./delivery-view.component.scss'],
@@ -21,7 +21,7 @@ export class DeliveryViewComponent implements OnInit {
 
   public closeResult: string;
   public modalOpen = false;
-  type: Types = Types.Home;
+  OrderTypeId: Types = Types.Home;
   types = Types;
   form: FormGroup = new FormGroup({});
   currentJustify = 'start';
@@ -41,10 +41,10 @@ export class DeliveryViewComponent implements OnInit {
   }
 
   onChange(type: number): void {
-    this.type = type;
-    this.getControl('type').setValue(this.type);
+    this.OrderTypeId = type;
+    this.getControl('type').setValue(this.OrderTypeId);
 
-    if (this.type == Types.Car) {
+    if (this.OrderTypeId == Types.Car) {
       this.getControl('CarModel').setValidators(Validators.compose(
         [Validators.required,
         Validators.minLength(3),
@@ -67,9 +67,7 @@ export class DeliveryViewComponent implements OnInit {
       Street: new FormControl('', [Validators.required, Validators.minLength(3)]),
       Building: new FormControl('', Validators.minLength(3)),
       Floor: new FormControl('', Validators.minLength(1)),
-      type: new FormControl(this.types.Home),
       CarModel: new FormControl(''),
-      carId: new FormControl(''),
       CarColor: new FormControl(''),
       CarNumber: new FormControl('')
     });
@@ -102,8 +100,9 @@ export class DeliveryViewComponent implements OnInit {
       // call API form.value
       const userInfo = new ShoppingCartDeliveryModel();
       userInfo.Items = this.items;
-      userInfo.OrderTypeId = this.form.value.type;
+      userInfo.OrderTypeId = this.OrderTypeId;
       userInfo.UserInfo = this.form.value as UserInfo;
+      console.log(userInfo);
       this.shoppingCartService.saveAsUserInfo(userInfo).subscribe(response => {
         response > 0
           ? this.toastrService.success(
