@@ -21,8 +21,9 @@ export class ProductCheckoutComponent implements OnInit {
   }
 
   get_ImageUrl(item: Item): string {
-    // return getImageUrl(item);
-    return 'data:image/png;base64,' + item.image;
+    const image = (item.image && item.image.length >0) ? 'data:image/png;base64,' + item.image:
+    './assets/images/no-image-available.png'
+    return image;
   }
 
   getTotalPrice(): number {

@@ -107,6 +107,7 @@ export class DeliveryViewComponent implements OnInit {
       console.log(userInfo);
       this.shoppingCartService.saveAsUserInfo(userInfo).subscribe(response => {
         if (response > 0) {
+          debugger;
           this.toastrService.success(
             `Order Completed successfully Order Number ${response}`
           );
