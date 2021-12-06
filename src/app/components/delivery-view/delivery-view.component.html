@@ -3,26 +3,31 @@
     <h5 class="pull-left">Delivery Address</h5>
   </div>
   <div class="card-body">
-    <ngb-tabset (tabChange)="onChange($event.nextId)" type="pills" class="tabbed-card">
+    <ngb-tabset
+      (tabChange)="onChange($event.nextId)"
+      type="pills"
+      class="tabbed-card"
+    >
       <ngb-tab [id]="types.Home">
-        <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary"><i
-            class="icofont icofont-ui-home"></i>Home</ng-template>
+        <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary"
+          ><i class="icofont icofont-ui-home"></i>Home</ng-template
+        >
         <ng-template ngbTabContent class="tab-content">
-          <div class="tab-pane fade show">
-          </div>
+          <div class="tab-pane fade show"></div>
         </ng-template>
       </ngb-tab>
       <ngb-tab [id]="types.Office">
-        <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary"><i
-            class="icofont icofont-briefcase"></i>Office</ng-template>
+        <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary"
+          ><i class="icofont icofont-briefcase"></i>Office</ng-template
+        >
         <ng-template ngbTabContent class="tab-content">
           <div class="tab-pane fade show"></div>
         </ng-template>
       </ngb-tab>
       <ngb-tab [id]="types.Car">
         <ng-template ngbTabTitle class="pull-right nav nav-pills nav-primary">
-          <i class="icofont icofont-car"></i>Car
-        </ng-template>directions_car
+          <i class="icofont icofont-car"></i>Car </ng-template
+        >directions_car
         <ng-template ngbTabContent class="tab-content">
           <div class="tab-pane fade show"></div>
         </ng-template>
@@ -31,83 +36,152 @@
 
     <div class="tab-pane fade show">
       <form class="theme-form mega-form" [formGroup]="form">
-        <h3 class="h3">Account Information</h3>
-        <div class="form-group">
-          <label for="Name" class="col-form-label">Name <span style="color: red;">*</span></label>
-          <input id="Name" formControlName="Name" class="form-control" type="text" placeholder="your Name" />
-          <app-validation
-          [control]="getControl('Name')"
-          [fieldName]="'Name'"
-        ></app-validation>
-        </div>
-        <div class="form-group">
-          <label for="mail" class="col-form-label">Email Address</label>
-          <input id="mail" formControlName="Email" class="form-control" type="email" placeholder="Enter email" />
-          <app-validation
-          [control]="getControl('mail')"
-          [fieldName]="'Email'"
-        ></app-validation>
-        </div>
-        <div class="form-group">
-          <label for="Number" class="col-form-label">Contact Number <span style="color: red;">*</span></label>
-          <input id="Number" formControlName="Number" class="form-control" placeholder="Enter contact number" />
-          <app-validation
-          [control]="getControl('Number')"
-          [fieldName]="'Contact Number'"
-        ></app-validation>
-        </div>
-        <hr class="mt-4 mb-4" />
-        <h3 class="h3">Address Information</h3>
-        <div class="form-group">
-          <label for="block" class="col-form-label">Block</label>
-          <input id="block" formControlName="Block" class="form-control" type="text" placeholder="Block" />
-          <app-validation
-          [control]="getControl('Block')"
-          [fieldName]="'Block'"
-        ></app-validation>
-        </div>
-        <div class="form-group">
-          <label for="street" class="col-form-label">Street <span style="color: red;">*</span></label>
-          <input id="street" formControlName="Street" class="form-control" type="text" placeholder="street" />
-          <app-validation
-          [control]="getControl('Street')"
-          [fieldName]="'Street'"
-        ></app-validation>
-        </div>
-        <div class="form-group">
-          <label for="Building" class="col-form-label">Building</label>
-          <input id="Building" formControlName="Building" class="form-control" type="text" placeholder="Building" />
-          <app-validation
-          [control]="getControl('Building')"
-          [fieldName]="'Building'"
-        ></app-validation>
-        </div>
-        <div class="form-group">
-          <label for="floor" class="col-form-label">Floor</label>
-          <input id="floor" formControlName="Floor" class="form-control" type="text" placeholder="floor" />
-        </div>
-
+        <ng-container *ngIf="OrderTypeId !== types.Car">
+          <h3 class="h3">Account Information</h3>
+          <div class="form-group">
+            <label for="Name" class="col-form-label"
+              >Name <span style="color: red">*</span></label
+            >
+            <input
+              id="Name"
+              formControlName="Name"
+              class="form-control"
+              type="text"
+              placeholder="your Name"
+            />
+            <app-validation
+              [control]="getControl('Name')"
+              [fieldName]="'Name'"
+            ></app-validation>
+          </div>
+          <div class="form-group">
+            <label for="mail" class="col-form-label">Email Address</label>
+            <input
+              id="mail"
+              formControlName="Email"
+              class="form-control"
+              type="email"
+              placeholder="Enter email"
+            />
+            <app-validation
+              [control]="getControl('mail')"
+              [fieldName]="'Email'"
+            ></app-validation>
+          </div>
+          <div class="form-group">
+            <label for="Number" class="col-form-label"
+              >Contact Number <span style="color: red">*</span></label
+            >
+            <input
+              id="Number"
+              formControlName="Number"
+              class="form-control"
+              placeholder="Enter contact number"
+            />
+            <app-validation
+              [control]="getControl('Number')"
+              [fieldName]="'Contact Number'"
+            ></app-validation>
+          </div>
+          <hr class="mt-4 mb-4" />
+          <h3 class="h3">Address Information</h3>
+          <div class="form-group">
+            <label for="block" class="col-form-label">Block</label>
+            <input
+              id="block"
+              formControlName="Block"
+              class="form-control"
+              type="text"
+              placeholder="Block"
+            />
+            <app-validation
+              [control]="getControl('Block')"
+              [fieldName]="'Block'"
+            ></app-validation>
+          </div>
+          <div class="form-group">
+            <label for="street" class="col-form-label"
+              >Street <span style="color: red">*</span></label
+            >
+            <input
+              id="street"
+              formControlName="Street"
+              class="form-control"
+              type="text"
+              placeholder="street"
+            />
+            <app-validation
+              [control]="getControl('Street')"
+              [fieldName]="'Street'"
+            ></app-validation>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="OrderTypeId !== types.Car">
+          <div class="form-group">
+            <label for="Building" class="col-form-label">Building</label>
+            <input
+              id="Building"
+              formControlName="Building"
+              class="form-control"
+              type="text"
+              placeholder="Building"
+            />
+            <app-validation
+              [control]="getControl('Building')"
+              [fieldName]="'Building'"
+            ></app-validation>
+          </div>
+          <div class="form-group">
+            <label for="floor" class="col-form-label">Floor</label>
+            <input
+              id="floor"
+              formControlName="Floor"
+              class="form-control"
+              type="text"
+              placeholder="floor"
+            />
+          </div>
+        </ng-container>
         <ng-container *ngIf="OrderTypeId == types.Car">
           <hr class="mt-4 mb-4" />
           <h3 class="h3">Car Information</h3>
           <div class="form-group">
-            <label for="Car" class="col-form-label">Car Model <span style="color: red;">*</span></label>
-            <input id="Car" formControlName="CarModel" class="form-control" type="text" placeholder="Car Number" />
+            <label for="Car" class="col-form-label"
+              >Car Model <span style="color: red">*</span></label
+            >
+            <input
+              id="Car"
+              formControlName="CarModel"
+              class="form-control"
+              type="text"
+              placeholder="Car Number"
+            />
             <app-validation
-            [control]="getControl('CarModel')"
-            [fieldName]="'Car Model'"
-          ></app-validation>
+              [control]="getControl('CarModel')"
+              [fieldName]="'Car Model'"
+            ></app-validation>
           </div>
           <div class="form-group">
             <label for="Color" class="col-form-label">Color</label>
-            <input id="Color" formControlName="CarColor" class="form-control" type="text" placeholder="Color" />
+            <input
+              id="Color"
+              formControlName="CarColor"
+              class="form-control"
+              type="text"
+              placeholder="Color"
+            />
           </div>
           <div class="form-group">
             <label for="CarId" class="col-form-label">Car Number</label>
-            <input id="CarId" formControlName="CarNumber" class="form-control" type="text" placeholder="Car Id" />
+            <input
+              id="CarId"
+              formControlName="CarNumber"
+              class="form-control"
+              type="text"
+              placeholder="Car Id"
+            />
           </div>
         </ng-container>
-
       </form>
     </div>
     <div class="card-footer">
