@@ -32,7 +32,7 @@ export class Urls {
 
   private cartController = 'API/ShoppingCartApi/';
   shoppingCart = {
-    saveItems: `${this.cartController}save-cart-request`,
+    saveItems: `${this.cartController}save-cart-request-dining`,
     takeAway: `${this.cartController}save-cart-request-takeaway`,
     userInfo: `${this.cartController}save-cart-request-delivery`
   };
