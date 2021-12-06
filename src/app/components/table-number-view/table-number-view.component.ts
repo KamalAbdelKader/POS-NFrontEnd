@@ -45,12 +45,16 @@ export class TableNumberViewComponent implements OnInit {
 
   onSubmit(): void {
     // Call Api
+    debugger;
     this.form.markAllAsTouched();
     if (this.form && this.form.valid) {
       this.modalService.dismissAll();
       this.getOrderNumber();
     }
   }
+
+  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -68,8 +72,8 @@ export class TableNumberViewComponent implements OnInit {
       .subscribe((response) => {
         response > 0
           ? this.toastrService.success(
-              'Your order number is: ' + response,
-              'Order Completed successfully'
+            `Order Completed successfully # ${response}`
+
             )
           : this.toastrService.error(
               '',

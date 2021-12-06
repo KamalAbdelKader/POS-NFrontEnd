@@ -34,7 +34,7 @@ export class TakeAwayComponent implements OnInit {
       .subscribe((response) => {
         if (response > 0) {
           this.toastrService.success(
-            'Order Completed successfully'
+            `Order Completed Successfully # ${response}`
           );
           this.modelService.dismissAll();
           this.router.navigate(['/products']);

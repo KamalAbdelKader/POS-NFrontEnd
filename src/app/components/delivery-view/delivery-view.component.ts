@@ -109,7 +109,7 @@ export class DeliveryViewComponent implements OnInit {
         if (response > 0) {
           debugger;
           this.toastrService.success(
-            `Order Completed successfully Order Number ${response}`
+            `Order Completed Successfully # ${response}`
           );
           this.modelService.dismissAll();
           this.router.navigate(['/products']);
