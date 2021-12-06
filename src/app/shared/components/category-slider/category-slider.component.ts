@@ -68,6 +68,8 @@ export class CategorySliderComponent implements OnInit {
   }
 
   get_ImageUrl(category: Category): string {
-    return 'data:image/png;base64,' + category.img;
-  }
+    const image = (category.img && category.img.length >0) ? 'data:image/png;base64,' + category.img:
+    './assets/images/no-image-available.png'
+    return image;
+  } 
 }

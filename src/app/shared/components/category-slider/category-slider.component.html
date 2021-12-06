@@ -42,10 +42,10 @@
       <div class="item_version_2">
         <a routerLink="/products" [queryParams]="{ category: c.guid }">
           <figure>
-            <span>98</span>
+            <!-- <span>98</span> -->
             <!-- [src]="get_ImageUrl(c)" -->
             <img
-              src="home-page/img/home_cat_pizza.jpg"
+              [src]="get_ImageUrl(c)"
               alt=""
               class="owl-lazy"
               width="350"
