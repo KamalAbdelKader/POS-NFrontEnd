@@ -2,27 +2,21 @@
   <app-feather-icons [icon]="'shopping-cart'"></app-feather-icons>
   <span class="badge badge-pill badge-primary"> {{ items.length }} </span>
 </div>
-<ul class="cart-dropdown onhover-show-div" style="padding: 0px" [class.active]="openCart" [ngStyle]="{'display': (openCart == false) ? 'none' : ''}">
+<ul class="cart-dropdown onhover-show-div" style="padding: 0px; overflow-y: auto;
+max-height: 600px;" [class.active]="openCart" [ngStyle]="{'display': (openCart == false) ? 'none' : ''}">
   <li>
     <h6 class="mb-0 f-20">Shoping Cart</h6>
     <app-feather-icons [icon]="'shopping-cart'"></app-feather-icons>
   </li>
   <li class="mt-0" *ngFor="let item of items" (click)="removeFromCart(item)">
     <div class="media">
-      <img
-        class="img-fluid rounded-circle mr-3 img-60"
-        [src]="get_ImageUrl(item)"
-        [alt]="item.name"
-      />
+      <img class="img-fluid rounded-circle mr-3 img-60" [src]="get_ImageUrl(item)" [alt]="item.name" />
       <div class="media-body">
         <span> {{ item.name }}</span>
         <p>{{ item.unit1 }}</p>
- 
-        <app-product-quantity
-          [item]="item"
-          [header]="''"
-        ></app-product-quantity>
-        <h6 class="text-right text-muted">KWD {{ item.endUser | number:'1.2-2':'en-US'}} x  {{ getQuantity(item) }}</h6>
+
+        <app-product-quantity [item]="item" [header]="''"></app-product-quantity>
+        <h6 class="text-right text-muted">KWD {{ item.endUser | number:'1.2-2':'en-US'}} x {{ getQuantity(item) }}</h6>
       </div>
       <div class="close-circle">
         <a (click)="removeFromCart(item)">
@@ -41,10 +35,6 @@
   </li>
   <li>
     <a class="btn btn-block btn-primary view-cart" (click)="navigate()"> Checkout </a>
-    <a class="btn btn-block btn-secondary view-cart" (click)="clearCart()"
-      >Clear All</a
-    >
+    <a class="btn btn-block btn-secondary view-cart" (click)="clearCart()">Clear All</a>
   </li>
 </ul>
-
- 

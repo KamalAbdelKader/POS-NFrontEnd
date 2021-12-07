@@ -13,7 +13,7 @@ import { ShoppingCartDeliveryModel } from 'src/app/shared/model/shoppingCartDeli
 import { Item } from 'src/app/shared/model/item';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
- @Component({
+@Component({
   selector: 'app-delivery-view',
   templateUrl: './delivery-view.component.html',
   styleUrls: ['./delivery-view.component.scss'],
@@ -30,10 +30,10 @@ export class DeliveryViewComponent implements OnInit {
   items: Item[];
 
   constructor(private router: Router,
-              private modelService: NgbModal,
-              public layout: LayoutService,
-              private toastrService: ToastrService,
-              private shoppingCartService: ShoppingCartService) { }
+    private modelService: NgbModal,
+    public layout: LayoutService,
+    private toastrService: ToastrService,
+    private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
     this.form = this.CreateForm();
