@@ -57,6 +57,7 @@ export class ShoppingCartService extends DataService {
       return {
         id: item.id,
         quantity: item.quantity,
+        note: item.note,
         extra: item.extraItems?.map((eitem) => {
           return { id: eitem.id, quantity: item.quantity };
         }),
@@ -104,6 +105,13 @@ export class ShoppingCartService extends DataService {
   updateItem(_item: Item, change: number): void {
     const cartItem = this.getItemFromCart(_item);
     this.updateData(cartItem, _item, change, this.itemList);
+    this.productChange();
+  }
+
+  update(item: Item): void {
+    const cartItem = this.getItemFromCart(item);
+    
+    cartItem.note = item.note;
     this.productChange();
   }
 

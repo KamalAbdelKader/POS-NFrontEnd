@@ -22,7 +22,8 @@
           <div class="product-view">
             <h6 class="f-w-600">Product Details</h6>
             <p class="mb-0">
-              {{ item.note }}
+              <!-- {{ item.note }} -->
+              <textarea  [disabled]="!(quantity > 0)" (blur)="setNote($event.target.value)" placeholder="Note" name="" id="" cols="30" rows="10"></textarea>
             </p>
           </div>
           <div class="product-size product-size-width">
