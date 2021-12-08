@@ -42,7 +42,11 @@ export class QuickViewComponent implements OnInit {
     private shoppingService: ShoppingCartService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    if(!this.item.note) {
+      this.item.note = this.shoppingService.getItemFromCart(this.item)?.note;
+    }
+  }
 
   async openModal(id: number): Promise<void> {
     this.modalOpen = true;

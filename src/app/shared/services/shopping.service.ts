@@ -136,7 +136,7 @@ export class ShoppingCartService extends DataService {
     }
   }
 
-  private getItemFromCart(_item: Item): Item {
+  getItemFromCart(_item: Item): Item {
     return this.itemList.find((prod) => prod.id == _item.id);
   }
 
@@ -270,7 +270,7 @@ export class ShoppingCartService extends DataService {
         if (ArrayIsNotEmpty(sItem.extra)) {
           sItem.extra.forEach((ex) => {
             const exitem = this._extraItemList.find((ei) => ei.id == ex.id);
-            if(exitem) {
+            if (exitem) {
               exitem.quantity = ex.quantity;
               exitem.note = ex.note;
               exItems.push(exitem);
