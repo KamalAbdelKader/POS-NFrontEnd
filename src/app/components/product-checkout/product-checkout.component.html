@@ -18,6 +18,7 @@
                   <tr>
                     <th>Product</th>
                     <th>Name</th>
+                    <th>Note</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Action</th>
@@ -39,6 +40,7 @@
                           <a href="javascript:void(0);">{{ item.name }}</a>
                         </div>
                       </td>
+                      <td>{{ item.note }}</td>
                       <td>{{ item.endUser | currency: "KWD" }}</td>
                       <td>
                         <app-product-quantity
@@ -74,6 +76,7 @@
                           <a href="javascript:void(0);">{{ extraItem.name }}</a>
                         </div>
                       </td>
+                      <td>{{ extraItem.note }}</td>
                       <td>{{ extraItem.endUser | currency: "KWD" }}</td>
                       <td>
                         <app-product-quantity

@@ -59,7 +59,7 @@ export class ShoppingCartService extends DataService {
         quantity: item.quantity,
         note: item.note,
         extra: item.extraItems?.map((eitem) => {
-          return { id: eitem.id, quantity: item.quantity };
+          return { id: eitem.id, quantity: item.quantity, note: eitem.note };
         }),
       };
     }) as ShortItem[];
@@ -110,7 +110,6 @@ export class ShoppingCartService extends DataService {
 
   update(item: Item): void {
     const cartItem = this.getItemFromCart(item);
-    
     cartItem.note = item.note;
     this.productChange();
   }
@@ -271,12 +270,16 @@ export class ShoppingCartService extends DataService {
         if (ArrayIsNotEmpty(sItem.extra)) {
           sItem.extra.forEach((ex) => {
             const exitem = this._extraItemList.find((ei) => ei.id == ex.id);
-            exitem.quantity = ex.quantity;
-            exItems.push(exitem);
+            if(exitem) {
+              exitem.quantity = ex.quantity;
+              exitem.note = ex.note;
+              exItems.push(exitem);
+            }
           });
         }
 
         item.quantity = sItem.quantity;
+        item.note = sItem.note;
         item.extraItems = exItems;
         items.push(item);
       });
