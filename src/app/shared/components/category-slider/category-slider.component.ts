@@ -1,6 +1,7 @@
 import { CategoryService } from './../../services/category/category.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../model/category';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category-slider',
@@ -9,6 +10,8 @@ import { Category } from '../../model/category';
 })
 export class CategorySliderComponent implements OnInit {
   categories: Category[] = [];
+  allCategoriesImag = '../../../../assets/images/slider/AllCategory.jfif';
+  category = '../../../../assets/images/slider/Category.jfif';
   Images = [
     '../../../../assets/images/slider/banner-5.jpg',
     '../../../../assets/images/slider/banner-4.jpg',
@@ -57,7 +60,7 @@ export class CategorySliderComponent implements OnInit {
       },
     },
   };
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService, private router: Router) { }
 
   ngOnInit(): void {
     this.categoryService
@@ -68,8 +71,16 @@ export class CategorySliderComponent implements OnInit {
   }
 
   get_ImageUrl(category: Category): string {
-    const image = (category.img && category.img.length >0) ? 'data:image/png;base64,' + category.img:
-    './assets/images/no-image-available.png'
+    const image = (category.img && category.img.length > 0) ? 'data:image/png;base64,' + category.img :
+      './assets/images/no-image-available.png';
     return image;
-  } 
+  }
+  // 
+  route(category = ''): void {
+    if (category) {
+      this.router.navigateByUrl(`/products?category=${category}`);
+    } else {
+      this.router.navigate(['/products']);
+    }
+  }
 }

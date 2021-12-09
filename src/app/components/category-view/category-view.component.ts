@@ -20,14 +20,14 @@ export class CategoryViewComponent implements OnInit {
 
   public closeResult: string;
   public modalOpen = false;
-  
+
   currentJustify = 'start';
   currentOrientation = 'horizontal';
- 
 
-  constructor(private layout: LayoutService, private modalService: NgbModal) {}
 
-  ngOnInit(): void {}
+  constructor(private layout: LayoutService, private modalService: NgbModal) { }
+
+  ngOnInit(): void { }
 
   async openModal(): Promise<void> {
     const model = this.modalService.open(this.categoryView, {
@@ -59,11 +59,11 @@ export class CategoryViewComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
-  } 
-  
+  }
+
   public beforeChange($event: NgbTabChangeEvent) {
-      if ($event.nextId === 'tab-preventchange2') {
-        $event.preventDefault();
-      }
+    if ($event.nextId === 'tab-preventchange2') {
+      $event.preventDefault();
+    }
   }
 }

@@ -24,38 +24,33 @@
   <div class="main_title center">
     <span><em></em></span>
     <h2>Popular Categories</h2>
-    <p> <!-- description--> </p>
+    <p>
+      <!-- description-->
+    </p>
   </div>
-  <owl-carousel-o
-    [options]="owlcarousel5Options"
-    class="owl-theme categories_carousel"
-  >
-    <ng-template
-      carouselSlide
-      class="item owl-lazy"
-      [id]="c.guid"
-      [width]="211"
-      [marginL]="20"
-      *ngFor="let c of categories"
-    >
+  <owl-carousel-o [options]="owlcarousel5Options" class="owl-theme categories_carousel">
 
+    <ng-template carouselSlide class="item owl-lazy" [width]="211" [marginL]="20">
       <div class="item_version_2">
-        <a routerLink="/products" [queryParams]="{ category: c.guid }">
+        <a href="" (click)="route()">
           <figure>
-            <!-- <span>98</span> -->
-            <!-- [src]="get_ImageUrl(c)" -->
-            <img
-              [src]="get_ImageUrl(c)"
-              alt=""
-              class="owl-lazy"
-              width="350"
-              height="450"
-              [owlRouterLink]="['/products']"
-              [queryParams]="{ category: c.guid }"
-            />
+            <img [src]="allCategoriesImag" alt="" class="owl-lazy" width="350" height="450"
+              [owlRouterLink]="['/products']" />
+            <div class="info">
+              <h3>All Categories</h3>
+            </div>
+          </figure>
+        </a>
+      </div>
+    </ng-template>
+    <ng-template carouselSlide [width]="211" [marginL]="20" [id]="c.guid" *ngFor="let c of categories">
+      <div class="item_version_2">
+        <a (click)="route(c.guid)">
+          <figure>
+            <img [src]="category" alt="" class="owl-lazy" width="350" height="450"
+              [owlRouterLink]="['/products']" [queryParams]="{ category: c.guid }" />
             <div class="info">
               <h3>{{ c.name }}</h3>
-              <!-- <small>Avg price $40</small> -->
             </div>
           </figure>
         </a>

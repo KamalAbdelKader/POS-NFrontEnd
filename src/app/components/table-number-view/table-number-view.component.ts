@@ -25,7 +25,7 @@ export class TableNumberViewComponent implements OnInit {
     private toastrService: ToastrService,
     private router: Router,
     public layout: LayoutService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.form = this.createForm();
@@ -45,7 +45,6 @@ export class TableNumberViewComponent implements OnInit {
 
   onSubmit(): void {
     // Call Api
-    debugger;
     this.form.markAllAsTouched();
     if (this.form && this.form.valid) {
       this.modalService.dismissAll();
@@ -53,7 +52,7 @@ export class TableNumberViewComponent implements OnInit {
     }
   }
 
-  
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -74,11 +73,11 @@ export class TableNumberViewComponent implements OnInit {
           ? this.toastrService.success(
             `Order Completed successfully # ${response}`
 
-            )
+          )
           : this.toastrService.error(
-              '',
-              'Sorry something went wrong please try again.'
-            );
+            '',
+            'Sorry something went wrong please try again.'
+          );
         this.router.navigate(['/products']);
         this.shoppingCartService.clearProducts();
       });
