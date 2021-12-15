@@ -5,7 +5,12 @@ import {
   NgbModal,
   NgbTabChangeEvent,
 } from '@ng-bootstrap/ng-bootstrap';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Types } from '../../shared/enums/types';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
 import { UserInfo } from 'src/app/shared/model/userInfo';
@@ -19,7 +24,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./delivery-view.component.scss'],
 })
 export class DeliveryViewComponent implements OnInit {
-
   public closeResult: string;
   public modalOpen = false;
   OrderTypeId: Types = Types.Home;
@@ -29,14 +33,18 @@ export class DeliveryViewComponent implements OnInit {
   currentOrientation = 'horizontal';
   items: Item[];
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private modelService: NgbModal,
     public layout: LayoutService,
     private toastrService: ToastrService,
-    private shoppingCartService: ShoppingCartService) { }
+    private shoppingCartService: ShoppingCartService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.CreateForm();
+    this.setTypesExpectCarValidators();
+
     this.shoppingCartService.currentItemsList.subscribe((items) => {
       this.items = items;
     });
@@ -47,33 +55,65 @@ export class DeliveryViewComponent implements OnInit {
     this.getControl('type').setValue(this.OrderTypeId);
 
     if (this.OrderTypeId == Types.Car) {
-      this.getControl('CarModel').setValidators(Validators.compose(
-        [Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30)]));
+      this.setCarValidators();
     } else {
-      this.getControl('CarModel').clearValidators();
+      this.setTypesExpectCarValidators();
     }
+    this.form.updateValueAndValidity();
+  }
+
+  private setCarValidators() {
+    this.removeValidators();
+    this.getControl('CarModel').setValidators(
+      Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(30),
+      ])
+    );
+  }
+
+  private setTypesExpectCarValidators() {
+    this.removeValidators();
+    this.getControl('Name').setValidators(Validators.required);
+    this.getControl('Email').setValidators(Validators.email);
+    this.getControl('Building').setValidators(Validators.minLength(3));
+    this.getControl('Floor').setValidators(Validators.minLength(1));
+    this.getControl('Street').setValidators(
+      Validators.compose([Validators.required, Validators.minLength(3)])
+    );
+    this.getControl('Number').setValidators(
+      Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(11),
+        Validators.pattern(/^965/),
+      ])
+    );
   }
 
   CreateForm(): FormGroup {
     return new FormGroup({
-      Name: new FormControl('', [Validators.required]),
-      Email: new FormControl('', Validators.email),
-      Number: new FormControl('', [Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(11),
-      Validators.pattern(/^965/)
-      ]),
+      Name: new FormControl(''),
+      Email: new FormControl(''),
+      Number: new FormControl(''),
+      type: new FormControl(''),
       Block: new FormControl(''),
-      Street: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      Building: new FormControl('', Validators.minLength(3)),
-      Floor: new FormControl('', Validators.minLength(1)),
+      Street: new FormControl(''),
+      Building: new FormControl(''),
+      Floor: new FormControl(''),
       CarModel: new FormControl(''),
       CarColor: new FormControl(''),
-      CarNumber: new FormControl('')
+      CarNumber: new FormControl(''),
     });
   }
+  public removeValidators() {
+    for (const key in this.form.controls) {
+      this.form.get(key).clearValidators();
+      this.form.get(key).updateValueAndValidity();
+    }
+  }
+
   // 965 + 8 numbers
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -95,8 +135,8 @@ export class DeliveryViewComponent implements OnInit {
     return this.form.get(controlName);
   }
 
-
   onSave(): void {
+    debugger;
     this.form.markAllAsTouched();
     if (this.form.valid) {
       // call API form.value
@@ -105,22 +145,23 @@ export class DeliveryViewComponent implements OnInit {
       userInfo.OrderTypeId = this.OrderTypeId;
       userInfo.UserInfo = this.form.value as UserInfo;
       console.log(userInfo);
-      this.shoppingCartService.saveAsUserInfo(userInfo).subscribe(response => {
-        if (response > 0) {
-          this.toastrService.success(
-            `Order Completed Successfully # ${response}`
-          );
-          this.modelService.dismissAll();
-          this.router.navigate(['/products']);
-          this.shoppingCartService.clearProducts();
-        } else {
-          this.toastrService.error(
-            '',
-            'Sorry something went wrong please try again.'
-          );
-        }
-      });
+      this.shoppingCartService
+        .saveAsUserInfo(userInfo)
+        .subscribe((response) => {
+          if (response > 0) {
+            this.toastrService.success(
+              `Order Completed Successfully # ${response}`
+            );
+            this.modelService.dismissAll();
+            this.router.navigate(['/products']);
+            this.shoppingCartService.clearProducts();
+          } else {
+            this.toastrService.error(
+              '',
+              'Sorry something went wrong please try again.'
+            );
+          }
+        });
     }
-
   }
 }
