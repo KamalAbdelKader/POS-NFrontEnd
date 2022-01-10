@@ -4,11 +4,11 @@
   [class]="layout.config.settings.layout_version"
 >
   <div class="page-wrapper" id="canvas-bookmark" [ngClass]="layoutClass">
-    <app-header></app-header>
+    <app-header style="direction: ltr;"></app-header>
   
 
     <!-- Page Body Start-->
-    <div class="page-body-wrapper">
+    <div class="page-body-wrapper" [ngClass]="{'active': layoutType == 'rtl'}">
       <!-- <div class="sidebar-wrapper"
            [attr.sidebar-layout]="layout.config.settings.sidebar_type"
            [class.close_icon]="navServices.collapseSidebar">

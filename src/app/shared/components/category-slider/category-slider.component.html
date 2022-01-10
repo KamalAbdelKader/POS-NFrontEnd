@@ -1,62 +1,64 @@
-<div class="position-relative">
-  <owl-carousel-o [options]="sliderOptions">
-    <ng-template carouselSlide *ngFor="let img of Images">
-      <div class="sliderImg">
-        <img src="{{ img }}" />
-      </div>
-      <div class="caption-carousel d-flex justify-content-center">
-        <div>
-          <h3>header</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-            natus quis, iure, at, possimus corporis incidunt magnam quia
-            deserunt recusandae ut tempore aut amet assumenda? Reiciendis ipsa
-            eos ab fuga!
-          </p>
+<div [ngClass]="{'active': layoutType == 'rtl'}">
+  <div class="position-relative">
+    <owl-carousel-o [options]="sliderOptions">
+      <ng-template carouselSlide *ngFor="let img of Images">
+        <div class="sliderImg">
+          <img src="{{ img }}" />
         </div>
-      </div>
-    </ng-template>
-  </owl-carousel-o>
-  <div class="wave hero"></div>
-</div>
-
-<div class="container" style="margin: auto;">
-  <div class="main_title center">
-    <span><em></em></span>
-    <h2>Popular Categories</h2>
-    <p>
-      <!-- description-->
-    </p>
+        <div class="caption-carousel d-flex justify-content-center">
+          <div>
+            <h3>header</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+              natus quis, iure, at, possimus corporis incidunt magnam quia
+              deserunt recusandae ut tempore aut amet assumenda? Reiciendis ipsa
+              eos ab fuga!
+            </p>
+          </div>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+    <div class="wave hero"></div>
   </div>
-  <owl-carousel-o [options]="owlcarousel5Options" class="owl-theme categories_carousel">
-
-    <ng-template carouselSlide class="item owl-lazy" [width]="211" [marginL]="20">
-      <div class="item_version_2">
-        <a href="" (click)="route()">
-          <figure>
-            <img [src]="allCategoriesImag" alt="" class="owl-lazy" width="350" height="450"
-              [owlRouterLink]="['/products']" />
-            <div class="info">
-              <h3>All Categories</h3>
-            </div>
-          </figure>
-        </a>
-      </div>
-    </ng-template>
-    <ng-template carouselSlide [width]="211" [marginL]="20" [id]="c.guid" *ngFor="let c of categories">
-      <div class="item_version_2">
-        <a (click)="route(c.guid)">
-          <figure>
-            <img [src]="category" alt="" class="owl-lazy" width="350" height="450"
-              [owlRouterLink]="['/products']" [queryParams]="{ category: c.guid }" />
-            <div class="info">
-              <h3>{{ c.name }}</h3>
-            </div>
-          </figure>
-        </a>
-      </div>
-    </ng-template>
-  </owl-carousel-o>
+  
+  <div class="container" style="margin: auto;">
+    <div class="main_title center">
+      <span><em></em></span>
+      <h2>Popular Categories</h2>
+      <p>
+        <!-- description-->
+      </p>
+    </div>
+    <owl-carousel-o [options]="owlcarousel5Options" class="owl-theme categories_carousel">
+  
+      <ng-template carouselSlide class="item owl-lazy" [width]="211" [marginL]="20">
+        <div class="item_version_2">
+          <a href="" (click)="route()">
+            <figure>
+              <img [src]="allCategoriesImag" alt="" class="owl-lazy" width="350" height="450"
+                [owlRouterLink]="['/products']" />
+              <div class="info">
+                <h3>All Categories</h3>
+              </div>
+            </figure>
+          </a>
+        </div>
+      </ng-template>
+      <ng-template carouselSlide [width]="211" [marginL]="20" [id]="c.guid" *ngFor="let c of categories">
+        <div class="item_version_2">
+          <a (click)="route(c.guid)">
+            <figure>
+              <img [src]="category" alt="" class="owl-lazy" width="350" height="450"
+                [owlRouterLink]="['/products']" [queryParams]="{ category: c.guid }" />
+              <div class="info">
+                <h3>{{ c.name }}</h3>
+              </div>
+            </figure>
+          </a>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
 </div>
 
 <!-- <div class="container wrapper-card mt-4">

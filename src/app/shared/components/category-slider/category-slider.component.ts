@@ -2,6 +2,7 @@ import { CategoryService } from './../../services/category/category.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../model/category';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-category-slider',
@@ -60,7 +61,11 @@ export class CategorySliderComponent implements OnInit {
       },
     },
   };
-  constructor(private categoryService: CategoryService, private router: Router) { }
+  layoutType = 'ltr';
+  constructor(private categoryService: CategoryService,
+    private router: Router,
+    private transService: TranslateService,
+  ) { }
 
   ngOnInit(): void {
     this.categoryService
@@ -68,6 +73,10 @@ export class CategorySliderComponent implements OnInit {
       .subscribe((categories: Category[]) => {
         this.categories = categories;
       });
+
+    this.transService.onLangChange.subscribe(lan => {
+      this.layoutType = lan.lang === 'ar' ? 'rtl' : 'ltr';
+    });
   }
 
   get_ImageUrl(category: Category): string {
@@ -75,7 +84,7 @@ export class CategorySliderComponent implements OnInit {
       './assets/images/no-image-available.png';
     return image;
   }
-  // 
+  //
   route(category = ''): void {
     if (category) {
       this.router.navigateByUrl(`/products?category=${category}`);

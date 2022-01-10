@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { Item } from 'src/app/shared/model/item';
 import { ItemChangeService } from 'src/app/shared/services/item/item-change.service';
@@ -31,6 +32,7 @@ export class ProductComponent implements OnInit {
   isMobile = false;
   // activeRoute: any;
 
+  layoutType = 'ltr';
   constructor(
     private itemService: ItemService,
     public shoppingService: ShoppingCartService,
@@ -42,6 +44,7 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+ 
     // if (window.innerWidth < 658) {
     //   this.toggleListView(true);
     // } else {
@@ -101,7 +104,8 @@ export class ProductComponent implements OnInit {
     this.items.push(...items);
     this.shoppingService.setItems(this.items);
   }
-  detectDevice() {
+
+  detectDevice(): void {
     this.isMobile = window.innerWidth <= 992;
 
     this.resizeObservable$ = fromEvent(window, 'resize');

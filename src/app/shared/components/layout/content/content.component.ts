@@ -12,29 +12,8 @@ import { fadeInAnimation } from '../../../data/router-animation/router-animation
   animations: [fadeInAnimation],
 })
 export class ContentComponent implements OnInit, AfterViewInit {
-  constructor(
-    private route: ActivatedRoute,
-    public navServices: NavService,
-    public layout: LayoutService
-  ) {
-    this.route.queryParams.subscribe((params) => {
-      this.layout.config.settings.layout = params.layout
-        ? params.layout
-        : this.layout.config.settings.layout;
-    });
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      feather.replace();
-    });
-  }
-
-  public getRouterOutletState(outlet) {
-    return outlet.isActivated ? outlet.activatedRoute : '';
-  }
-
-  get layoutClass() {
+  layoutType = 'ltr';
+  get layoutClass(): string {
     switch (this.layout.config.settings.layout) {
       case 'Dubai':
         return 'compact-wrapper';
@@ -69,5 +48,31 @@ export class ContentComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngOnInit() {}
+  constructor(
+    private route: ActivatedRoute,
+    public navServices: NavService,
+    public layout: LayoutService
+  ) {
+    this.route.queryParams.subscribe((params) => {
+      this.layout.config.settings.layout = params.layout
+        ? params.layout
+        : this.layout.config.settings.layout;
+
+      this.layoutType = this.layout.config.settings.layout;
+    });
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      feather.replace();
+    });
+  }
+
+  public getRouterOutletState(outlet): any {
+    return outlet.isActivated ? outlet.activatedRoute : '';
+  }
+
+
+
+  ngOnInit(): void { }
 }
