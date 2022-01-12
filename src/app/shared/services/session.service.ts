@@ -12,8 +12,17 @@ export class SessionService {
   private readonly _products = 'p___k';
   private readonly _dateTime = 'p___d';
   private readonly _userName = 'p___u';
+  private readonly _selectedLanguage = 'p___la';
 
   constructor(private encrDecrService: EncrDecrService) {}
+
+  setLanguages(value: string): void {
+    this.setValue(this._selectedLanguage, value);
+  }
+
+  getLanguages(): string {
+    return this.getValue(this._selectedLanguage);
+  }
 
   setProducts(value: string): void {
     this.setValue(this._products, value);
@@ -58,6 +67,9 @@ export class SessionService {
     switch (key) {
       case this._products:
         this.setlocalValue(this._products, value);
+        break;
+      case this._selectedLanguage:
+        this.setlocalValue(this._selectedLanguage, value);
         break;
       case this._dateTime:
         this.setlocalValue(this._dateTime, value);

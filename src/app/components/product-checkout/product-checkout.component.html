@@ -1,14 +1,14 @@
 <app-breadcrumb
-  [title]="'Cart'"
+  [title]="('MainPage.Cart' | translate)"
   [items]="[]"
-  [active_item]="'Cart'"
+  [active_item]="('MainPage.Cart' | translate)"
 ></app-breadcrumb>
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h5>Cart</h5>
+          <h5>{{'MainPage.Cart' | translate}}</h5>
         </div>
         <div class="card-body">
           <div class="row">
@@ -16,13 +16,13 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th>Product</th>
-                    <th>Name</th>
-                    <th>Note</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
-                    <th>Total</th>
+                    <th>{{'MainPage.Product' | translate}}</th>
+                    <th>{{'MainPage.Name' | translate}}</th>
+                    <th>{{'MainPage.Note1' | translate}}</th>
+                    <th>{{'MainPage.Price' | translate}}</th>
+                    <th>{{'MainPage.Quantity' | translate}}</th>
+                    <th>{{'MainPage.Action' | translate}}</th>
+                    <th>{{'MainPage.Total' | translate}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -70,7 +70,7 @@
                       </td>
                       <td>
                         <span class="badge badge-secondary pull-left"
-                          >Extra</span
+                          >{{'MainPage.Extra' | translate}} </span
                         >
                         <div class="product-name">
                           <a href="javascript:void(0);">{{ extraItem.name }}</a>
@@ -102,7 +102,7 @@
                   <tr>
                     <td class="total-amount">
                       <h6 class="m-0 text-center">
-                        <span class="f-w-600">Total Price :</span>
+                        <span class="f-w-600">{{ 'MainPage.OrderTotal' | translate }} :</span>
                       </h6>
                     </td>
                     <td>
@@ -114,14 +114,14 @@
                       <a
                         class="btn btn-success cart-btn-transform"
                         (click)="checkout(view)"
-                        >Submit</a
+                        >{{ 'MainPage.Submit' | translate }}</a
                       >
                     </td>
                     <td class="text-center" colspan="1">
                       <a
                         class="btn btn-secondary cart-btn-transform"
                         routerLink="/"
-                        >continue shopping</a
+                        >{{ 'MainPage.ContinueShopping' | translate }}</a
                       >
                     </td>
                   </tr>

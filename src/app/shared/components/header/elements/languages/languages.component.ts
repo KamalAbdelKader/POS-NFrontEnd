@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { SessionService } from 'src/app/shared/services/session.service';
 import { NavService, Menu } from '../../../../services/nav.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { NavService, Menu } from '../../../../services/nav.service';
 })
 export class LanguagesComponent implements OnInit {
 
-  public language: boolean = false;
+  public language = false;
 
   public languages: any[] = [{
     language: 'English',
@@ -18,38 +19,41 @@ export class LanguagesComponent implements OnInit {
     icon: 'us'
   },
   {
-    language: 'Español',
-    code: 'es',
-    icon: 'es'
-  },
-  {
-    language: 'Français',
-    code: 'fr',
-    icon: 'fr'
-  },
-  {
-    language: 'Português',
-    code: 'pt',
-    type: 'BR',
-    icon: 'pt'
-  }]
+    language: 'Arabic',
+    code: 'ar',
+    type: 'AR',
+    icon: 'ae'
+  }];
 
-  public selectedLanguage: any = {
+  public _selectedLanguage: any = {
     language: 'English',
     code: 'en',
     type: 'US',
     icon: 'us'
-  }
-  
+  };
+
+  public selectedLanguage: any = {};
+
   constructor(private translate: TranslateService,
-    public navServices: NavService) { }
+              private sessionService: SessionService,
+              public navServices: NavService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    const code = this.sessionService.getLanguages();
+    if (code) {
+      this.selectedLanguage = this.languages.find(lan => lan.code == code);
+      this.translate.use(this.selectedLanguage.code);
+    } else {
+      this.selectedLanguage = this._selectedLanguage;
+      this.sessionService.setLanguages(this._selectedLanguage.code);
+      this.translate.use(this._selectedLanguage.code);
+    }
   }
 
-  changeLanguage(lang) {
-    this.translate.use(lang.code)
+  changeLanguage(lang: any): void {
+    this.translate.use(lang.code);
     this.selectedLanguage = lang;
+    this.sessionService.setLanguages(lang.code);
   }
 
 }

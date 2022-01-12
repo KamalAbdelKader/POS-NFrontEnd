@@ -20,10 +20,10 @@
             <!-- <del>$350.00 </del> -->
           </div>
           <div class="product-view">
-            <h6 class="f-w-600">Product Details</h6>
+            <h6 class="f-w-600">{{"MainPage.ProductDetails" | translate}}</h6>
             <p class="mb-0">
               <!-- {{ item.note }} -->
-              <textarea  [disabled]="!(quantity > 0)" (blur)="setNote($event.target.value)" placeholder="Note" name="" id="" cols="30" rows="10">{{ item.note }}</textarea>
+              <textarea  [disabled]="!(quantity > 0)" (blur)="setNote($event.target.value)" [placeholder]="('MainPage.Note' | translate)" name="" id="" cols="30" rows="10">{{ item.note }}</textarea>
             </p>
           </div>
           <div class="product-size product-size-width">
@@ -41,14 +41,14 @@
             </ul>
           </div>
           <div class="product-qnty d-flex justify-content-between">
-            <app-product-quantity [item]="item"></app-product-quantity>
+            <app-product-quantity [header]="('MainPage.Quantity' | translate)" [item]="item"></app-product-quantity>
             <div class="addcart-btn">
               <button
                 class="btn btn-primary mr-1"
                 (click)="addToCart(item)"
                 type="button"
               >
-                Add to Cart
+              {{ "MainPage.AddToCart" | translate }}
               </button>
               <!-- <button class="btn btn-primary" type="button">
                 View Details

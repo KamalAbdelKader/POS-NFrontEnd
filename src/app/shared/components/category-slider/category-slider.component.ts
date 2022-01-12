@@ -75,7 +75,7 @@ export class CategorySliderComponent implements OnInit {
       './assets/images/no-image-available.png';
     return image;
   }
-  // 
+  //
   route(category = ''): void {
     if (category) {
       this.router.navigateByUrl(`/products?category=${category}`);

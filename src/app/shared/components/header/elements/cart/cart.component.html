@@ -5,7 +5,7 @@
 <ul class="cart-dropdown onhover-show-div" style="padding: 0px; overflow-y: auto;
 max-height: 600px;" [class.active]="openCart" [ngStyle]="{'display': (openCart == false) ? 'none' : ''}">
   <li>
-    <h6 class="mb-0 f-20">Shoping Cart</h6>
+    <h6 class="mb-0 f-20">{{'MainPage.ShoppingCart' | translate}}</h6>
     <app-feather-icons [icon]="'shopping-cart'"></app-feather-icons>
   </li>
   <li class="mt-0" *ngFor="let item of items" (click)="removeFromCart(item)">
@@ -28,13 +28,13 @@ max-height: 600px;" [class.active]="openCart" [ngStyle]="{'display': (openCart =
   <li>
     <div class="total">
       <h6 class="mb-2 mt-0 text-muted">
-        Order Total :
+        {{ "MainPage.OrderTotal" | translate}} :
         <span class="f-right f-20"> KWD {{ getTotalPrice() | number:'1.2-2':'en-US'}} </span>
       </h6>
     </div>
   </li>
   <li>
-    <a class="btn btn-block btn-primary view-cart" (click)="navigate()"> Checkout </a>
-    <a class="btn btn-block btn-secondary view-cart" (click)="clearCart()">Clear All</a>
+    <a class="btn btn-block btn-primary view-cart" (click)="navigate()"> {{ 'MainPage.Checkout' | translate }} </a>
+    <a class="btn btn-block btn-secondary view-cart" (click)="clearCart()">{{ 'MainPage.ClearAll' | translate }}</a>
   </li>
 </ul>
