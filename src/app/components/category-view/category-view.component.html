@@ -11,16 +11,16 @@
               </h5>
 
               <div class="card-body">
-                <ngb-tabset [justify]="'fill'" #t="ngbTabset">
+                <ngb-tabset class="rtl-pull-right" [justify]="'fill'" #t="ngbTabset">
                   <ngb-tab>
                     <ng-template ngbTabTitle><b>Pick up</b></ng-template>
                     <ng-template ngbTabContent>
-                      <app-pick-up></app-pick-up>
+                      <app-pick-up  ></app-pick-up>
                     </ng-template>
                   </ngb-tab>
                   <ngb-tab>
                     <ng-template ngbTabTitle><b>Delivery</b></ng-template>
-                    <ng-template ngbTabContent>
+                    <ng-template ngbTabContent class="rtl-view-content">
                       <app-delivery-view></app-delivery-view>
                     </ng-template>
                   </ngb-tab>
