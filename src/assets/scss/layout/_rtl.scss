@@ -175,10 +175,10 @@
               }
             }
           }
-        }          
+        }
       .page-body{
         margin-left: unset;
-        margin-right: 280px;
+        // margin-right: 280px;
       }
       .sidebar-wrapper{
         text-align: right;
@@ -864,7 +864,7 @@
     float: right;
     text-align: right;
   }
-  
+
   .starter-main {
     .card-body {
       ul {
@@ -2345,9 +2345,9 @@
     }
     &.compact-wrapper {
       .page-header {
-        margin-right: 280px;
-        margin-left: unset;
-        width: calc(100% - 280px);
+        // margin-right: 280px;
+        // margin-left: unset;
+        // width: calc(100% - 280px);
         &.close_icon{
           margin-right: 100px;
           margin-left : unset;
@@ -2393,7 +2393,7 @@
         }
       }
     }
-  }  
+  }
 
 
 
@@ -2468,7 +2468,7 @@
                 padding: 7px 32px 7px 0;
                 &:before{
                   right: 10px;
-                  left: 0; 
+                  left: 0;
                 }
               }
             }
@@ -3727,8 +3727,8 @@
   .page-wrapper {
     .page-body-wrapper {
       footer {
-        margin-right: 280px;
-        margin-left: unset;
+        // margin-right: 280px;
+        // margin-left: unset;
         p {
           i {
             margin-right: 5px;
@@ -4200,7 +4200,7 @@
     }
   }
   @media only screen and (max-width: 1199px){
-    .link-section>div>h6:before {   
+    .link-section>div>h6:before {
       right: unset;
       left: 10px;
     }
@@ -4482,7 +4482,7 @@
             &.close_icon {
               transform: translate(285px);
             }
-          } 
+          }
         }
       }
     }
@@ -4996,7 +4996,12 @@ html[dir="rtl"] {
       margin-left: 16px;
     }
   }
+  .nav-menus-left {
+    justify-content: left !important;
+  }
+
 }
+
 
 /**=====================
     60. RTL CSS Ends

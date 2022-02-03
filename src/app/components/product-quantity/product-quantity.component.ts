@@ -25,7 +25,7 @@ export class ProductQuantityComponent implements OnInit {
       this.shoppingService.updateItem(this.item, 1);
     }
   }
-
+  
   removeFromCart(): void {
     if (this.extraItem && ObjectHasValue(this.extraItem)) {
       this.shoppingService.updateExtraItems(this.item, this.extraItem, -1);

@@ -9,6 +9,7 @@ import {
   NgbModal,
   ModalDismissReasons,
 } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 import { ObjectHasValue } from 'src/app/shared/helper/helper';
 import { Item } from 'src/app/shared/model/item';
 import { ItemService } from 'src/app/shared/services/item/item.service';
@@ -39,6 +40,7 @@ export class QuickViewComponent implements OnInit {
     public layout: LayoutService,
     private modalService: NgbModal,
     private itemService: ItemService,
+    private translateService: TranslateService,
     private shoppingService: ShoppingCartService
   ) { }
 
@@ -46,6 +48,10 @@ export class QuickViewComponent implements OnInit {
     if(!this.item.note) {
       this.item.note = this.shoppingService.getItemFromCart(this.item)?.note;
     }
+
+        // this.translateService.onLangChange.subscribe(val => {
+        //   val.lang
+        // })
   }
 
   async openModal(id: number): Promise<void> {

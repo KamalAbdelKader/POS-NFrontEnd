@@ -1,7 +1,7 @@
 <!-- Page Header Start-->
 <div class="page-header" [class.close_icon]="navServices.collapseSidebar">
-  <div class="header-wrapper row m-0">
-    <app-search></app-search>
+  <div class="header-wrapper row m-0 justify-content-between">
+    <!-- <app-search></app-search> -->
     <div class="header-logo-wrapper">
       <div class="logo-wrapper">
         <a routerLink="/">
@@ -30,7 +30,7 @@
       <app-mega-menu></app-mega-menu>
     </div> -->
     <div class="nav-right col-8 pull-right right-header p-0">
-      <ul class="nav-menus">
+      <ul class="nav-menus nav-menus-left m-0">
         <li class="language-nav" (click)="languageToggle()">
           <app-languages></app-languages>
         </li>
