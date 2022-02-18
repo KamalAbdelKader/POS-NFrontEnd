@@ -179,10 +179,10 @@
   "Bouns Pages & Apps.": "Bouns Pages & Apps.",
   "Gallery": "Gallery",
   "MainPage": {
-	  "PopularCategory": "Popular Categories",
-	  "AllCategories":"All Categories",
+    "PopularCategory": "Popular Categories",
+    "AllCategories": "All Categories",
     "Product": "Product",
-    "AddToCart":"Add To Cart",
+    "AddToCart": "Add To Cart",
     "ShoppingCart": "Shopping Cart",
     "Checkout": "Checkout",
     "ClearAll": "Clear All",
@@ -199,6 +199,34 @@
     "Extra": "Extra",
     "ContinueShopping": "Continue Shopping",
     "Submit": "Submit",
-    "deliveryType":"Choose your types of delivery"
+    "Cancel": "Cancel",
+    "deliveryType": "Choose your types of delivery"
+  },
+  "categoryType": {
+    "delivery": "Delivery",
+    "pickUp": "Pick Up"
+  },
+  "delivery": {
+    "title": "Delivery Address",
+    "Home":"Home",
+    "Office":"Office",
+    "Car":"Car",
+    "AccountInfo":"Account Information",
+    "Name": "Name",
+    "YourName": "Your Name",
+    "EmailAddress": "Email Address",
+    "EnterEmail": "Enter Email",
+    "ContactNumber": "Contact Number",
+    "AddressInformation": "Address Information",
+    "Block": "Block",
+    "Street": "Street",
+    "Building": "Building",
+    "Floor": "Floor",
+    "CarInformation": "Car Information",
+    "CarNumber": "Car Number",
+    "Color": "Color",
+    "CarId": "Car Id",
+    "CarModel": "Car Model",
+    "required":"Please fill in this field"
   }
 }

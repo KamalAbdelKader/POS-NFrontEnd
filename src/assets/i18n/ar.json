@@ -199,7 +199,34 @@
     "Extra": "إضافات",
     "ContinueShopping": "متابعه التسوق",
     "Submit": "إرسال",
+    "Cancel": "إلغاء",
     "deliveryType":"اختر أنواع التوصيل الخاصة بك"
-
+  },
+  "categoryType": {
+    "delivery": "دليفري",
+    "pickUp": "pickUp"
+  },
+  "delivery": {
+    "title": "عنوان التسليم",
+    "Home":"المنزل",
+    "Office":"المكتب",
+    "Car":"السيارة",
+    "AccountInfo":"معلومات الحساب",
+    "Name": "الاسم",
+    "YourName": "الاسم",
+    "EmailAddress": "البريد الإلكتروني",
+    "EnterEmail": "البريد الإلكتروني",
+    "ContactNumber": "رقم الاتصال",
+    "AddressInformation": "معلومات العنوان",
+    "Block": "Block",
+    "Street": "شارع",
+    "Building": "Building",
+    "Floor": "Floor",
+    "CarInformation": "معلومات السيارة",
+    "CarNumber": "رقم السياره",
+    "Color": "اللون",
+    "CarId": "رقم السيارة",
+    "CarModel": "نوع السيارة",
+    "required":"يرجى ملء هذا الحقل"
   }
 }
