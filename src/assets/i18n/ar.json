@@ -198,13 +198,23 @@
     "Total": "الحساب الكلي",
     "Extra": "إضافات",
     "ContinueShopping": "متابعه التسوق",
-    "Submit": "إرسال",
+    "Submit": "إتمام الطلب",
+    "Submitbtn":"إرسال طلبك",
     "Cancel": "إلغاء",
     "deliveryType":"اختر أنواع التوصيل الخاصة بك"
   },
+  "dining": {
+    "tableNumber": "رقم الطاولة",
+    "enter": "ادخل رقم الطاولة"
+  },
+  "takeaway": {
+    "message": "ما عليك سوي الضغط علي زر \"إرسال\" للحصول علي طلبك"
+  },
   "categoryType": {
-    "delivery": "دليفري",
-    "pickUp": "pickUp"
+    "delivery": "توصيل",
+    "pickUp": "إستلام",
+    "takeaway": "سريع",
+    "dining":"طاولة"
   },
   "delivery": {
     "title": "عنوان التسليم",
@@ -218,10 +228,10 @@
     "EnterEmail": "البريد الإلكتروني",
     "ContactNumber": "رقم الاتصال",
     "AddressInformation": "معلومات العنوان",
-    "Block": "Block",
+    "Block": "منطقه",
     "Street": "شارع",
-    "Building": "Building",
-    "Floor": "Floor",
+    "Building": "عقار",
+    "Floor": "دور",
     "CarInformation": "معلومات السيارة",
     "CarNumber": "رقم السياره",
     "Color": "اللون",

@@ -199,12 +199,22 @@
     "Extra": "Extra",
     "ContinueShopping": "Continue Shopping",
     "Submit": "Submit",
+    "Submitbtn":"Submit",
     "Cancel": "Cancel",
     "deliveryType": "Choose your types of delivery"
   },
+  "dining": {
+    "tableNumber": "Table Number",
+    "enter": "Enter Table Number"
+  },
+  "takeaway": {
+    "message": "Simply Enter the Submit Button to get your order"
+  },
   "categoryType": {
     "delivery": "Delivery",
-    "pickUp": "Pick Up"
+    "pickUp": "Pick Up",
+    "takeaway": "Takeaway",
+    "dining":"Dining"
   },
   "delivery": {
     "title": "Delivery Address",
@@ -225,7 +235,7 @@
     "CarInformation": "Car Information",
     "CarNumber": "Car Number",
     "Color": "Color",
-    "CarId": "Car Id",
+    "CarId": "Car Number",
     "CarModel": "Car Model",
     "required":"Please fill in this field"
   }

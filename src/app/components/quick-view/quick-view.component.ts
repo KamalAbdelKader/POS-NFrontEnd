@@ -120,6 +120,7 @@ export class QuickViewComponent extends BaseComponent implements OnInit, AfterVi
 
   ngAfterViewInit(): void {
     if (this.QuickView && this.QuickView.elementRef && this.QuickView.elementRef.nativeElement) {
+      debugger
       this.QuickView.elementRef.nativeElement.parentElement.blur();
     }
   }

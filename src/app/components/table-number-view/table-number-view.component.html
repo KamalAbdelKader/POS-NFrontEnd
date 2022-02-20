@@ -8,17 +8,18 @@
       <form class="theme-form mt-3" [formGroup]="form">
         <div class="form-group">
           <label class="col-form-label pt-0" for="tablenumber"
-            >Table Number</label
+            >{{'dining.tableNumber' | translate }}</label
           >
           <input
             class="form-control"
             id="tablenumber"
             type="text"
             formControlName="tableNumber"
-            placeholder="Enter Table Number"
-          /><small class="form-text text-muted" id="table_number">
+            [placeholder]="('dining.enter' | translate)"
+          />
+          <!-- <small class="form-text text-muted" id="table_number">
             Please enter the numbers you want.
-          </small>
+          </small> -->
         </div>
         <app-validation
           [control]="tableNumber"
@@ -31,7 +32,7 @@
         (click)="onSubmit()"
         [disabled]="form && form.invalid"
       >
-        Submit
+      {{'MainPage.Submitbtn' | translate }}
       </button>
     </div>
   </div>

@@ -6,7 +6,7 @@
     type="radio"
     [checked]="isChecked"
   />
-  Dining
+  {{'categoryType.dining' | translate }}
 </label>
 
 <label class="cursor-pointer">
@@ -17,7 +17,7 @@
     type="radio"
     [checked]="!isChecked"
   />
-  Takeaway
+  {{'categoryType.takeaway' | translate }}
 </label>
 <app-table-number-view *ngIf="sh == 1"></app-table-number-view>
 
