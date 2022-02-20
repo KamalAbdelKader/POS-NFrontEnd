@@ -11,7 +11,7 @@
           <img class="img-fluid" [src]="get_ImageUrl(item)" alt="" />
         </div>
         <div class="product-details col-md-6 text-left">
-          <h4>{{ item.name }}</h4>
+          <h4>{{ (isArabicLan()) ? item.latin_Name : item.name }}</h4>
           <div class="product-price">
             <div class="my-2">
               {{ item.endUser | currency: "KWD" }}

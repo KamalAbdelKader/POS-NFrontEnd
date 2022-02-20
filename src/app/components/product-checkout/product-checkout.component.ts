@@ -2,6 +2,8 @@ import { CategoryViewComponent } from './../category-view/category-view.componen
 import { Component, OnInit } from '@angular/core';
 import { Item } from 'src/app/shared/model/item';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
+import { BaseComponent } from 'src/app/shared/components/base/base.component';
+import { LanguagesService } from 'src/app/shared/services/languages.service';
 declare var require;
 const Swal = require('sweetalert2');
 @Component({
@@ -9,10 +11,12 @@ const Swal = require('sweetalert2');
   templateUrl: './product-checkout.component.html',
   styleUrls: ['./product-checkout.component.scss'],
 })
-export class ProductCheckoutComponent implements OnInit {
+export class ProductCheckoutComponent extends BaseComponent implements OnInit {
   items: Item[] = [];
   showMsg = false;
-  constructor(private shoppingCartService: ShoppingCartService) { }
+  constructor(private shoppingCartService: ShoppingCartService, protected lanService: LanguagesService) {
+    super(lanService);
+   }
 
   ngOnInit(): void {
     this.shoppingCartService.currentItemsList.subscribe((items) => {

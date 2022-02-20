@@ -23,7 +23,7 @@
     </div>
     <div class="product-details">
       <!-- <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div> -->
-      <h4>{{ item.name }}</h4>
+      <h4>{{ (isArabicLan()) ? item.latin_Name : item.name }}</h4>
       <p>{{ item.unit1 }}</p>
       <div class="product-price">
         <div class="my-2">

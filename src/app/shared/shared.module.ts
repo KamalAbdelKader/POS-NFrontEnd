@@ -33,9 +33,9 @@ import { OnlyAlphabetsDirective } from './directives/only-alphabets.directive';
 import { OnlyNumbersDirective } from './directives/only-numbers.directive';
 import { ShowOptionsDirective } from './directives/show-options.directive';
 // Services
-import { LayoutService } from './services/layout.service';
 import { NavService } from './services/nav.service';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BaseComponent } from './components/base/base.component';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -60,7 +60,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     MessageBoxComponent,
     MyAccountComponent,
     CategorySliderComponent,
-    ValidationComponent
+    ValidationComponent,
+    BaseComponent
   ],
   imports: [
     CommonModule,

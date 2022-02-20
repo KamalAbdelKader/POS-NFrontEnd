@@ -47,4 +47,4 @@ import { PickUpComponent } from '../pick-up/pick-up.component';
   ],
   exports: [ProductQuantityComponent],
 })
-export class ProductModule {}
+export class ProductModule { }

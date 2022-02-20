@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   Input,
   OnInit,
@@ -10,9 +11,11 @@ import {
   ModalDismissReasons,
 } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { BaseComponent } from 'src/app/shared/components/base/base.component';
 import { ObjectHasValue } from 'src/app/shared/helper/helper';
 import { Item } from 'src/app/shared/model/item';
 import { ItemService } from 'src/app/shared/services/item/item.service';
+import { LanguagesService } from 'src/app/shared/services/languages.service';
 import { LayoutService } from 'src/app/shared/services/layout.service';
 import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
 
@@ -21,7 +24,7 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
   templateUrl: './quick-view.component.html',
   styleUrls: ['./quick-view.component.scss'],
 })
-export class QuickViewComponent implements OnInit {
+export class QuickViewComponent extends BaseComponent implements OnInit, AfterViewInit {
   @ViewChild('quickView', { static: false }) QuickView: TemplateRef<any>;
   // tslint:disable-next-line:no-input-rename
   @Input('item') item: Item;
@@ -40,18 +43,21 @@ export class QuickViewComponent implements OnInit {
     public layout: LayoutService,
     private modalService: NgbModal,
     private itemService: ItemService,
-    private translateService: TranslateService,
-    private shoppingService: ShoppingCartService
-  ) { }
+    private shoppingService: ShoppingCartService,
+    protected lanService: LanguagesService
+  ) {
+    super(lanService);
+   }
+
 
   ngOnInit(): void {
-    if(!this.item.note) {
+    if (!this.item.note) {
       this.item.note = this.shoppingService.getItemFromCart(this.item)?.note;
     }
 
-        // this.translateService.onLangChange.subscribe(val => {
-        //   val.lang
-        // })
+    // this.translateService.onLangChange.subscribe(val => {
+    //   val.lang
+    // })
   }
 
   async openModal(id: number): Promise<void> {
@@ -109,5 +115,12 @@ export class QuickViewComponent implements OnInit {
     const image = (item.image && item.image.length > 0) ? 'data:image/png;base64,' + item.image :
       './assets/images/no-image-available.png';
     return image;
+  }
+
+
+  ngAfterViewInit(): void {
+    if (this.QuickView && this.QuickView.elementRef && this.QuickView.elementRef.nativeElement) {
+      this.QuickView.elementRef.nativeElement.parentElement.blur();
+    }
   }
 }
