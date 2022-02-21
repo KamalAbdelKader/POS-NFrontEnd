@@ -7,8 +7,10 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import {
   AbstractControl,
+  ControlContainer,
   FormControl,
   FormGroup,
+  FormGroupDirective,
   Validators,
 } from '@angular/forms';
 import { Types } from '../../shared/enums/types';
@@ -22,6 +24,7 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-delivery-view',
   templateUrl: './delivery-view.component.html',
   styleUrls: ['./delivery-view.component.scss'],
+  viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }],
 })
 export class DeliveryViewComponent implements OnInit {
   public closeResult: string;
@@ -32,14 +35,15 @@ export class DeliveryViewComponent implements OnInit {
   currentJustify = 'start';
   currentOrientation = 'horizontal';
   items: Item[];
-
+  public keyword = 'CarModel';
+  cars = ['Land Cruser', 'Patrol', 'Taho', 'Camery', 'Pathfinder', 'Prado', 'Range Rover'];
   constructor(
     private router: Router,
     private modelService: NgbModal,
     public layout: LayoutService,
     private toastrService: ToastrService,
     private shoppingCartService: ShoppingCartService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.form = this.CreateForm();
@@ -62,8 +66,9 @@ export class DeliveryViewComponent implements OnInit {
     this.form.updateValueAndValidity();
   }
 
-  private setCarValidators() {
+  private setCarValidators(): void {
     this.removeValidators();
+    this.getControl('CarModel').setValue('Land Cruser');
     this.getControl('CarModel').setValidators(
       Validators.compose([
         Validators.required,
@@ -73,12 +78,13 @@ export class DeliveryViewComponent implements OnInit {
     );
   }
 
-  private setTypesExpectCarValidators() {
+  private setTypesExpectCarValidators(): void {
     this.removeValidators();
     this.getControl('Name').setValidators(Validators.required);
     this.getControl('Email').setValidators(Validators.email);
     this.getControl('Building').setValidators(Validators.minLength(3));
     this.getControl('Floor').setValidators(Validators.minLength(1));
+    this.getControl('CarModel').setValue('');
     this.getControl('Street').setValidators(
       Validators.compose([Validators.required, Validators.minLength(3)])
     );
@@ -107,7 +113,7 @@ export class DeliveryViewComponent implements OnInit {
       CarNumber: new FormControl(''),
     });
   }
-  public removeValidators() {
+  public removeValidators(): void {
     for (const key in this.form.controls) {
       this.form.get(key).clearValidators();
       this.form.get(key).updateValueAndValidity();
@@ -136,7 +142,6 @@ export class DeliveryViewComponent implements OnInit {
   }
 
   onSave(): void {
-    debugger;
     this.form.markAllAsTouched();
     if (this.form.valid) {
       // call API form.value
@@ -163,5 +168,9 @@ export class DeliveryViewComponent implements OnInit {
           }
         });
     }
+  }
+
+  cancel(): void {
+    this.modelService.dismissAll();
   }
 }
