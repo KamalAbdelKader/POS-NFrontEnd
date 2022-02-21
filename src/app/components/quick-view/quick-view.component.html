@@ -19,11 +19,11 @@
 
             <!-- <del>$350.00 </del> -->
           </div>
-          <div class="product-view">
+          <div class="product-view" (click)="onClickNote()">
             <h6 class="f-w-600">{{"MainPage.ProductDetails" | translate}}</h6>
-            <p class="mb-0">
+            <p class="mb-0" >
               <!-- {{ item.note }} -->
-              <textarea  [disabled]="!(quantity > 0)" (blur)="setNote($event.target.value)" [placeholder]="('MainPage.Note' | translate)" name="" id="" cols="30" rows="10">{{ item.note }}</textarea>
+              <textarea [disabled]="!isClicked" (blur)="setNote($event.target.value)" [placeholder]="('MainPage.Note' | translate)" name="" id="" cols="30" rows="10">{{ item.note }}</textarea>
             </p>
           </div>
           <div class="product-size product-size-width">

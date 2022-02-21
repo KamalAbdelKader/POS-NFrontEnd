@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  ElementRef,
   Input,
   OnInit,
   TemplateRef,
@@ -31,6 +32,7 @@ export class QuickViewComponent extends BaseComponent implements OnInit, AfterVi
   extraItems: Item[];
   public closeResult: string;
   public modalOpen = false;
+  isClicked = false;
 
   get quantity(): number {
     if (ObjectHasValue(this.item)) {
@@ -47,7 +49,7 @@ export class QuickViewComponent extends BaseComponent implements OnInit, AfterVi
     protected lanService: LanguagesService
   ) {
     super(lanService);
-   }
+  }
 
 
   ngOnInit(): void {
@@ -109,6 +111,7 @@ export class QuickViewComponent extends BaseComponent implements OnInit, AfterVi
   setNote(note: string): void {
     this.item.note = note;
     this.shoppingService.update(this.item);
+    this.isClicked = false;
   }
 
   get_ImageUrl(item: Item): string {
@@ -117,10 +120,15 @@ export class QuickViewComponent extends BaseComponent implements OnInit, AfterVi
     return image;
   }
 
+  onClickNote(): void {
+    if (this.quantity > 0) {
+      this.isClicked = true;
+      this.QuickView.elementRef.nativeElement.parentElement.focus();
+    }
+  }
 
   ngAfterViewInit(): void {
     if (this.QuickView && this.QuickView.elementRef && this.QuickView.elementRef.nativeElement) {
-      debugger
       this.QuickView.elementRef.nativeElement.parentElement.blur();
     }
   }
