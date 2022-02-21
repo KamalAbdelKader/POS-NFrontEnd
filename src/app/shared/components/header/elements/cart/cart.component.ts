@@ -13,7 +13,7 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping.service';
   },
 })
 export class CartComponent implements OnInit {
-  @Input() openCart: boolean = false;
+  @Input() openCart = false;
   @ViewChild('quickView', { static: false }) QuickView: TemplateRef<any>;
 
   items: Item[] = [];
@@ -21,9 +21,9 @@ export class CartComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private router: Router,
     private _eref: ElementRef
-  ) {}
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.openCart = false;
     this.shoppingCartService.currentItemsList.subscribe((items) => {
       this.items = items;
@@ -31,40 +31,40 @@ export class CartComponent implements OnInit {
   }
 
   // For Mobile Device
-  toggleCart() {
+  toggleCart(): void {
     this.openCart = !this.openCart;
   }
 
   get_ImageUrl(item: Item): string {
-    const image = (item.image && item.image.length >0) ? 'data:image/png;base64,' + item.image:
-    './assets/images/no-image-available.png'
+    const image = (item.image && item.image.length > 0) ? 'data:image/png;base64,' + item.image :
+      './assets/images/no-image-available.png'
     return image;
   }
 
-  clearCart() {
+  clearCart(): void {
     this.openCart = false;
     this.shoppingCartService.clearProducts();
   }
 
-  getTotalPrice() {
+  getTotalPrice(): number {
     return this.shoppingCartService.getTotalPrice();
   }
 
-  removeFromCart(item: Item) {
+  removeFromCart(item: Item): void {
     this.shoppingCartService.removeFromCart(item, this.items);
   }
 
-  getQuantity(item: Item) {
+  getQuantity(item: Item): number {
     return this.shoppingCartService.getQuantity(item);
   }
 
-  navigate() {
+  navigate(): void {
     this.openCart = false;
     this.router.navigate(['products/checkout']);
   }
 
-  onClick(event: any) {
-    if(!this._eref.nativeElement.contains(event.target)) {
+  onClick(event: any): void {
+    if (!this._eref.nativeElement.contains(event.target)) {
       this.openCart = true;
     }
   }

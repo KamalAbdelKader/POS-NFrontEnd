@@ -113,11 +113,12 @@
                   </tr>
                   <tr>
                     <td>
-                      <a
-                        class="btn btn-success cart-btn-transform"
-                        (click)="checkout(view)"
-                        >{{ 'MainPage.Submit' | translate }}</a
-                      >
+                      <ng-template [ngIf]="disableBtn() != true">
+                        <button
+                          class="btn btn-success cart-btn-transform"
+                          (click)="checkout(view)"
+                          >{{ 'MainPage.Submit' | translate }}</button>
+                      </ng-template>
                     </td>
                     <td class="text-center" colspan="1">
                       <a

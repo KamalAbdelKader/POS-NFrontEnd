@@ -16,7 +16,7 @@ export class ProductCheckoutComponent extends BaseComponent implements OnInit {
   showMsg = false;
   constructor(private shoppingCartService: ShoppingCartService, protected lanService: LanguagesService) {
     super(lanService);
-   }
+  }
 
   ngOnInit(): void {
     this.shoppingCartService.currentItemsList.subscribe((items) => {
@@ -48,5 +48,9 @@ export class ProductCheckoutComponent extends BaseComponent implements OnInit {
 
   removeExtraFromCart(item: Item, extraItem: Item): void {
     this.shoppingCartService.removeFromCart(extraItem, item.extraItems, item);
+  }
+
+  disableBtn(): boolean {
+    return this.items.length <= 0;
   }
 }
