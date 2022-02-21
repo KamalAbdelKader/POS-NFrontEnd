@@ -1,22 +1,16 @@
-<ng-container
-  *ngIf="control && (control?.touched || control?.invalid)"
-  class="alert alert-danger my-2"
->
+<ng-container *ngIf="control && (control?.touched || control?.invalid)" class="alert alert-danger my-2">
   <span *ngIf="control?.errors?.required && fieldName">
     {{'delivery.required' | translate: {name: fieldName} }}
     <!-- Please fill in this field ( {{ fieldName }} ). -->
   </span>
-  <span *ngIf="control?.errors?.pattern"> invalid {{ fieldName }} </span>
+  <span *ngIf="control?.errors?.pattern"> {{'delivery.invalid' | translate: {name: fieldName} }} </span>
   <span *ngIf="control?.errors?.minlength">
-    minimum characters for {{ fieldName }} (
-    {{ control?.errors?.minlength.requiredLength }} )
+    {{'delivery.minimum' | translate: {name: fieldName, length: control?.errors?.minlength.requiredLength} }}
   </span>
   <span *ngIf="control?.errors?.maxlength">
-    maximum characters for {{ fieldName }} (
-    {{ control?.errors?.maxlength.requiredLength }} )
+    {{'delivery.maximum' | translate: {name: fieldName, length: control?.errors?.minlength.requiredLength} }}
   </span>
   <span *ngIf="control?.errors?.max">
-    max {{ fieldName }} {{ control?.errors?.max.max }} ( you entered
-    {{ control?.errors?.max.actual }})
+    {{'delivery.max' | translate: {name: fieldName, max: control?.errors?.max.max, actual:  control?.errors?.max.actual} }}
   </span>
 </ng-container>

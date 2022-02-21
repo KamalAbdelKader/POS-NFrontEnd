@@ -237,6 +237,10 @@
     "Color": "Color",
     "CarId": "Car Number",
     "CarModel": "Car Model",
-    "required":"Please fill in this field"
+    "required":"Please fill in this field {{name}}",
+    "invalid":"invalid {{name}}",
+    "minimum":"minimum characters for {{ name }} ({{ length }} )",
+    "maximum":"maximum characters for {{ name }} ({{ length }} )",
+    "max": "max {{ name }} {{ max }} ( you entered {{ actual }})"
   }
 }
