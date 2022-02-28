@@ -5,3 +5,15 @@
     }
   }
   
+
+.img-fluid {
+  height: 155px;
+}
+
+
+
+@media (max-width: 375px) {
+  .product-box .product-img > img {
+    height: 146px;
+  }
+}

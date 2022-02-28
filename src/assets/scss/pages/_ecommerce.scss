@@ -39,7 +39,7 @@
   }
 
   li {
-    & + li {
+    &+li {
       margin-top: 15px;
     }
   }
@@ -376,7 +376,7 @@
         border-radius: 100%;
         cursor: pointer;
 
-        + li {
+        +li {
           margin-left: 3px;
         }
 
@@ -428,7 +428,8 @@
 
     .product-box {
       align-items: center;
-      + .product-box {
+
+      +.product-box {
         margin-top: 5px;
       }
     }
@@ -591,7 +592,8 @@
         ul {
           li {
             display: inline-block;
-            + li {
+
+            +li {
               margin-left: 5px;
             }
           }
@@ -656,6 +658,7 @@
 
 .br-theme-fontawesome-stars {
   .br-widget {
+
     a,
     a.br-selected:after,
     a.br-active:after {
