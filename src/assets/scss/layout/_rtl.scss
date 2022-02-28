@@ -5851,10 +5851,21 @@ html[dir="rtl"] {
     }
 
   }
-  .categories_carousel .owl-carousel .owl-stage-outer owl-stage >div {
-    display: flex;
-    justify-content: right;
+
+  // .categories_carousel .owl-carousel .owl-stage-outer owl-stage>div {
+  //   display: flex;
+  //   justify-content: right;
+  // }
+
+  @media (min-width:1281px) {
+
+    /* For pc: */
+    .categories_carousel .owl-carousel .owl-stage-outer owl-stage>div {
+      display: flex;
+      justify-content: right;
+    }
   }
+
 }
 
 
