@@ -113,7 +113,9 @@ export class DeliveryViewComponent implements OnInit {
       CarNumber: new FormControl(''),
     });
   }
+
   public removeValidators(): void {
+    // tslint:disable-next-line:forin
     for (const key in this.form.controls) {
       this.form.get(key).clearValidators();
       this.form.get(key).updateValueAndValidity();

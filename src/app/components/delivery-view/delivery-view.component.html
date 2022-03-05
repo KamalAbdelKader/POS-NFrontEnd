@@ -49,7 +49,7 @@
           <div class="form-group">
             <label for="Number" class="col-form-label">{{ 'delivery.ContactNumber' | translate }} <span
                 style="color: red">*</span></label>
-            <input id="Number" formControlName="Number" class="form-control"
+            <input id="Number" type="text" formControlName="Number" class="form-control"
               [placeholder]="('delivery.ContactNumber' | translate)" />
             <app-validation [control]="getControl('Number')" [fieldName]="('delivery.ContactNumber' | translate)">
             </app-validation>

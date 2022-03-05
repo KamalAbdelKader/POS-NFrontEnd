@@ -24,17 +24,17 @@ export class ContentComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     setTimeout(() => {
       feather.replace();
     });
   }
 
-  public getRouterOutletState(outlet) {
+  public getRouterOutletState(outlet): string {
     return outlet.isActivated ? outlet.activatedRoute : '';
   }
 
-  get layoutClass() {
+  get layoutClass(): string {
     switch (this.layout.config.settings.layout) {
       case 'Dubai':
         return 'compact-wrapper';
@@ -69,5 +69,5 @@ export class ContentComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit(): void { }
 }
