@@ -47,7 +47,7 @@
       <div class="item_version_2">
         <a (click)="route(c.guid)">
           <figure>
-            <img [src]="category" alt="" class="owl-lazy" width="350" height="450"
+            <img [src]="get_ImageUrl(c)" alt="" class="owl-lazy" width="350" height="450"
               [owlRouterLink]="['/products']" [queryParams]="{ category: c.guid }" />
             <div class="info">
               <h3>{{ c.name }}</h3>
