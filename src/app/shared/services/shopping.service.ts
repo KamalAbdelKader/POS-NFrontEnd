@@ -265,7 +265,7 @@ export class ShoppingCartService extends DataService {
     const items: Item[] = [];
     if (ArrayIsNotEmpty(shortItem) && ArrayIsNotEmpty(this._itemList)) {
       shortItem.forEach((sItem) => {
-        const item = this._itemList.find((i) => i.id == sItem.id);
+        let item = this._itemList.find((i) => i.id == sItem.id);
         const exItems: Item[] = [];
         if (ArrayIsNotEmpty(sItem.extra)) {
           sItem.extra.forEach((ex) => {
@@ -277,7 +277,7 @@ export class ShoppingCartService extends DataService {
             }
           });
         }
-
+        item = (ObjectHasValue(item)) ? item : new Item();
         item.quantity = sItem.quantity;
         item.note = sItem.note;
         item.extraItems = exItems;
